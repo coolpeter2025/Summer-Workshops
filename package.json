@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "mkdir -p public && cp *.html public/ && cp *.jpg public/ 2>/dev/null || true"
+    "build": "mkdir -p public && cp -f *.html public/ && cp -f *.jpg public/ && echo 'Build completed: Static files copied to public directory'"
   },
   "dependencies": {
     "nodemailer": "^6.9.7"
