@@ -790,77 +790,100 @@
                     </div>
                 </div>
 
-                <!-- Parent/Guardian Information #2 -->
-                <div class="form-section">
-                    <h3>Parent/Guardian Information #2 (Optional)</h3>
-                    
-                    <div class="form-group">
-                        <label for="parent2Name">Full Name</label>
-                        <input type="text" id="parent2Name" name="parent2Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="parent2Phone">Phone Number</label>
-                        <input type="tel" id="parent2Phone" name="parent2Phone">
-                    </div>
-                </div>
-
                 <!-- Important Notice -->
                 <div class="important-notice">
                     <h3>🚨 Very Important Notice</h3>
                     <p>Please make sure your child has a <strong>lunch box</strong> and a <strong>water bottle</strong> every day at camp.</p>
                 </div>
 
-                <!-- Submit Button and Payment Information -->
-                <div class="form-submit" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 300px;">
-                        <button type="submit" class="submit-button">Submit Registration</button>
-                        <p class="payment-info">This will send your registration to summerworkshops25@gmail.com<br>Payment ($35.00) is required and can be completed after registration</p>
-                        <p class="contact-info">For additional questions contact: <strong>727-637-3362</strong></p>
+                <!-- Parental Consent and Medical Authorization -->
+                <div class="consent-section" style="background: #f8fafc; padding: 2rem; border-radius: 10px; border: 2px solid #e5e7eb; margin: 2rem 0;">
+                    <h3 style="color: #dc2626; margin-bottom: 1rem;">📋 Parental Consent and Medical Authorization</h3>
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.6;">
+                        
+                        <p><strong>SFGC - 300 N Highland Ave, Tarpon Springs, FL 34688</strong></p>
+                        
+                        <p>As the parent (or legal guardian) of the above-named student, I understand that my student will be participating in a number of activities conducted by SFGC, which carry a degree of risk. I consent for my student to participate in these activities.</p>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #6366f1; margin-bottom: 0.5rem;">I understand and agree to the following:</h4>
+                            <ul style="margin-left: 1.5rem;">
+                                <li>My child/youth is physically fit and has the necessary skills to safely participate in these activities</li>
+                                <li>I give consent for my student to travel to and from events in transportation provided by volunteer drivers</li>
+                                <li>As parent and/or legal guardian, I remain legally responsible for any personal actions taken by my child</li>
+                                <li>I agree to release, indemnify, and hold harmless SFGC, its directors, officers, representatives, members, agents, guests, volunteers, and employees from any and all claims, including but not limited to bodily injury or property damage claims</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #6366f1; margin-bottom: 0.5rem;">PHOTOS & MEDIA:</h4>
+                            <p>All participants in programs may be photographed or recorded for promotional or social media use, including but not limited to Facebook, Instagram, program websites, and other similar outlets.</p>
+                        </div>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #6366f1; margin-bottom: 0.5rem;">MEDICAL AUTHORIZATION:</h4>
+                            <p>I understand that SFGC will attempt to notify me in case of a medical emergency involving my student. If the church cannot reach me, I authorize the staff to hire a doctor or healthcare professional to provide necessary treatment. I will pay for any medical expenses incurred.</p>
+                        </div>
                     </div>
                     
-                    <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #6366f1;">
-                        <h3 style="margin: 0 0 1rem 0; color: #6366f1;">💳 Payment Information</h3>
+                    <!-- Agreement Checkboxes -->
+                    <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                        <h4 style="margin: 0 0 1rem 0; color: #92400e;">Required Agreements:</h4>
+                        
                         <div style="margin-bottom: 1rem;">
-                            <p style="margin: 0.5rem 0;"><strong>Registration Fee:</strong> $35.00</p>
-                            <p style="margin: 0.5rem 0;"><strong>Payment Method:</strong> Secure online payment via Square</p>
-                            <p style="margin: 0.5rem 0;"><strong>What's Included:</strong> All workshop activities, materials, and supervision</p>
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="consent-participation" name="consentParticipation" required style="margin-top: 0.25rem;">
+                                <span>I consent for my child to participate in SFGC summer workshop activities and understand the associated risks.</span>
+                            </label>
                         </div>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; color: #6b7280;">
-                            <span>💳 Credit Cards</span>
-                            <span>💰 Debit Cards</span>
-                            <span>🔒 Secure Processing</span>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="consent-transportation" name="consentTransportation" required style="margin-top: 0.25rem;">
+                                <span>I give consent for transportation provided by volunteer drivers if applicable.</span>
+                            </label>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="consent-medical" name="consentMedical" required style="margin-top: 0.25rem;">
+                                <span>I authorize SFGC staff to seek medical treatment for my child in case of emergency if I cannot be reached.</span>
+                            </label>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="consent-photos" name="consentPhotos" required style="margin-top: 0.25rem;">
+                                <span>I consent to my child being photographed/recorded for promotional and social media use.</span>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="consent-liability" name="consentLiability" required style="margin-top: 0.25rem;">
+                                <span>I agree to release and hold harmless SFGC from any claims arising from participation in the program.</span>
+                            </label>
                         </div>
                     </div>
+                </div>
+
+                <!-- Submit Button and Payment Button -->
+                <div class="form-submit">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                        <button type="submit" class="submit-button" style="flex: 1; min-width: 200px; background: #6366f1; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: background 0.3s;">Submit Registration</button>
+                        <a href="https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet" 
+                           target="_blank" 
+                           style="flex: 1; min-width: 200px; background: #10b981; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: background 0.3s;">
+                            Pay Now - $35.00
+                        </a>
+                    </div>
+                    <p class="payment-info">Registration will be sent to summerworkshops25@gmail.com<br>Payment ($35.00) is required for workshop participation</p>
+                    <p class="contact-info">For additional questions contact: <strong>727-637-3362</strong></p>
                 </div>
             </form>
         </div>
     </section>
 
-    <!-- Payment Information Section -->
-    <section class="payment-info" id="payment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 0;">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">💳 Payment Information</h2>
-            <div class="payment-details" style="max-width: 600px; margin: 0 auto; text-align: center;">
-                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                    <h3 style="color: #fbbf24; margin-bottom: 1rem;">Workshop Fee: $35.00</h3>
-                    <p style="margin-bottom: 1.5rem;">Secure payment processing through Square</p>
-                    <a href="https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet" 
-                       target="_blank" 
-                       class="cta-button" 
-                       style="background: #10b981; margin: 0;">
-                        Pay Now - $35.00
-                    </a>
-                </div>
-                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
-                    <h4 style="margin-bottom: 1rem;">Payment Options:</h4>
-                    <p>✅ Pay online now with credit/debit card<br>
-                    ✅ Payment due before workshop starts<br>
-                    ✅ Questions? Call 727-637-3362</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Payment Step Section -->
     <section class="payment-step" id="payment-step" style="display: none; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 4rem 0; min-height: 80vh;">
