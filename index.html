@@ -7,6 +7,9 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="My Purpose">
     <meta name="language" content="en-US">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     
     <!-- Primary Meta Tags -->
     <title>My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program</title>
@@ -535,6 +538,27 @@
                 font-size: 1.1rem;
             }
         }
+        
+        /* Animation for inline messages */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Disable browser validation styling */
+        input:invalid {
+            box-shadow: none !important;
+        }
+        
+        input:required {
+            box-shadow: none !important;
+        }
     </style>
 
     <!-- Schema.org JSON-LD structured data -->
@@ -682,7 +706,7 @@
                 </div>
             </div>
 
-            <form class="registration-form" id="registrationForm" netlify netlify-honeypot="bot-field">
+            <form class="registration-form" id="registrationForm" netlify netlify-honeypot="bot-field" novalidate>
                 <!-- Hidden fields for spam protection -->
                 <input type="hidden" name="form-name" value="summer-workshop-registration">
                 <div style="display: none;">
@@ -968,6 +992,11 @@
             observer.observe(card);
         });
 
+        // Disable browser validation popups globally
+        document.addEventListener('invalid', function(e) {
+            e.preventDefault();
+        }, true);
+        
         // Form handling for conditional inputs
         document.addEventListener('DOMContentLoaded', function() {
             // Handle allergies conditional input
@@ -1047,11 +1076,22 @@
                     border-radius: 8px; 
                     margin: 1rem 0; 
                     font-weight: 500;
+                    position: relative;
+                    animation: slideIn 0.3s ease-out;
                     ${type === 'error' ? 'background: #fef2f2; color: #dc2626; border-left: 4px solid #dc2626;' : ''}
                     ${type === 'success' ? 'background: #f0fdf4; color: #16a34a; border-left: 4px solid #16a34a;' : ''}
                     ${type === 'warning' ? 'background: #fef3c7; color: #d97706; border-left: 4px solid #d97706;' : ''}
                 `;
                 messageDiv.innerHTML = message;
+                
+                // Add close button for errors
+                if (type === 'error') {
+                    const closeBtn = document.createElement('span');
+                    closeBtn.innerHTML = '&times;';
+                    closeBtn.style.cssText = 'position: absolute; top: 0.5rem; right: 1rem; font-size: 1.5rem; cursor: pointer; color: #dc2626;';
+                    closeBtn.onclick = () => messageDiv.remove();
+                    messageDiv.appendChild(closeBtn);
+                }
                 
                 const form = document.getElementById('registrationForm');
                 form.insertBefore(messageDiv, form.firstChild);
@@ -1059,13 +1099,15 @@
                 // Scroll to message
                 messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // Auto remove after 10 seconds for non-error messages
+                // Auto remove after 8 seconds for non-error messages
                 if (type !== 'error') {
                     setTimeout(() => {
                         if (messageDiv.parentNode) {
-                            messageDiv.remove();
+                            messageDiv.style.opacity = '0';
+                            messageDiv.style.transition = 'opacity 0.5s ease-out';
+                            setTimeout(() => messageDiv.remove(), 500);
                         }
-                    }, 10000);
+                    }, 8000);
                 }
             }
 
@@ -1107,16 +1149,22 @@
             
             registrationForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                
+                // Remove any existing messages first
+                const existingMessages = document.querySelectorAll('.form-message');
+                existingMessages.forEach(msg => msg.remove());
                 
                 // Validate required fields
                 const requiredFields = this.querySelectorAll('input[required]');
                 let isValid = true;
+                let firstInvalidField = null;
                 
                 requiredFields.forEach(field => {
                     if (!field.value.trim()) {
                         isValid = false;
                         field.style.borderColor = 'var(--error)';
-                        field.focus();
+                        if (!firstInvalidField) firstInvalidField = field;
                     } else {
                         field.style.borderColor = 'var(--border)';
                     }
@@ -1135,6 +1183,10 @@
                 
                 if (!isValid) {
                     this.showRequiredFieldsError();
+                    if (firstInvalidField) {
+                        firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => firstInvalidField.focus(), 300);
+                    }
                     return;
                 }
                 
