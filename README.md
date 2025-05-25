@@ -5,12 +5,12 @@ A complete registration system for Slavic Full Gospel Church Summer Workshops wi
 ## Features
 
 - ✅ Complete registration form with inline validation and messaging
-- 📧 Automated email notifications using Nodemailer via Vercel API
+- 📧 **Multiple email options**: Vercel API + mailto fallback + FormSubmit standalone
 - 💳 Square payment integration ($35.00 fee)
 - 📱 Responsive design for all devices
 - 🔒 Age validation (6-12 years) with contact info for other ages
 - 🎯 Two-step process: Registration → Payment
-- ⚡ Serverless deployment ready for Vercel
+- ⚡ Works anywhere: Vercel, GitHub Pages, or any web host
 
 ## Vercel Deployment
 
@@ -90,6 +90,26 @@ https://your-vercel-domain.vercel.app/api/test-email
 ```
 
 This will verify the email setup and send a test email.
+
+## Email Options
+
+### 1. Full Version (index.html)
+- **Primary**: Vercel API with Gmail SMTP
+- **Fallback**: mailto link if server unavailable
+- **Best for**: Vercel deployment
+
+### 2. Standalone Version (standalone.html)  
+- **Uses**: FormSubmit.co service (no server needed)
+- **Direct email**: Goes straight to summerworkshops25@gmail.com
+- **Best for**: GitHub Pages, any static hosting
+
+### 3. Quick Deploy Standalone
+For immediate use without any server:
+```html
+<!-- Use standalone.html directly -->
+<!-- Works on any web host -->
+<!-- No configuration needed -->
+```
 
 ## Contact
 

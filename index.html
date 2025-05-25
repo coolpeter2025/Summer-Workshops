@@ -1114,21 +1114,26 @@
             // Form submission handling
             const registrationForm = document.getElementById('registrationForm');
             
-            registrationForm.showSuccessMessage = function() {
+            registrationForm.showSuccessMessage = function(isClientEmail = false) {
+                const emailMessage = isClientEmail 
+                    ? '📧 Email client will open to send registration to summerworkshops25@gmail.com'
+                    : '📧 Email sent automatically to summerworkshops25@gmail.com';
+                    
                 showMessage(`
                     <div style="text-align: center;">
                         <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
                         <h3 style="margin: 0 0 1rem 0;">STEP 1 COMPLETE: Registration Submitted!</h3>
-                        <p style="margin: 0 0 1rem 0;">📧 Email sent to summerworkshops25@gmail.com<br>
+                        <p style="margin: 0 0 1rem 0;">${emailMessage}<br>
                         📝 Your child is now registered for the workshop</p>
                         <p style="margin: 0; font-weight: bold; color: #059669;">🔄 Proceeding to Step 2 - Payment...</p>
+                        ${isClientEmail ? '<p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.8;">Please send the email that will open to complete registration</p>' : ''}
                     </div>
                 `, 'success');
                 
                 // Proceed to payment step after brief delay
                 setTimeout(() => {
                     showPaymentStep('https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet');
-                }, 2000);
+                }, isClientEmail ? 3000 : 2000);
             };
             
             registrationForm.showAgeError = function(age) {
@@ -1145,6 +1150,76 @@
             registrationForm.showSubmissionError = function(errorMessage = null) {
                 const message = errorMessage || 'Sorry, there was an error submitting your registration. Please try again or contact us at <strong>727-637-3362</strong>';
                 showMessage(`❌ <strong>Submission Error</strong><br>${message}`, 'error');
+            };
+            
+            // Client-side email fallback function
+            registrationForm.sendClientEmail = function(data) {
+                // Create formatted email content
+                const emailSubject = `Summer Workshop Registration - ${data.childName}`;
+                const emailBody = `
+SUMMER WORKSHOP REGISTRATION
+============================
+
+CHILD'S INFORMATION:
+Full Name: ${data.childName}
+Date of Birth: ${data.dateOfBirth}
+Age: ${data.age} years old
+Gender: ${data.gender || 'Not specified'}
+Grade (Fall 2025): ${data.grade || 'Not specified'}
+
+CONTACT INFORMATION:
+Address: ${data.address}
+City: ${data.city}
+State: ${data.state}
+ZIP Code: ${data.zip}
+Phone: ${data.phone || 'Not provided'}
+
+PARENT/GUARDIAN #1:
+Name: ${data.parent1Name}
+Phone: ${data.parent1Phone}
+Email: ${data.parent1Email}
+
+PARENT/GUARDIAN #2:
+Name: ${data.parent2Name || 'Not provided'}
+Phone: ${data.parent2Phone || 'Not provided'}
+Email: ${data.parent2Email || 'Not provided'}
+
+EMERGENCY CONTACT:
+Name: ${data.emergencyName || 'Not provided'}
+Phone: ${data.emergencyPhone || 'Not provided'}
+Relationship: ${data.emergencyRelationship || 'Not provided'}
+
+MEDICAL INFORMATION:
+Allergies: ${data.hasAllergies === 'yes' ? data.allergies || 'Specified but details not provided' : 'None reported'}
+Medical Conditions: ${data.hasMedical === 'yes' ? data.medicalConditions || 'Specified but details not provided' : 'None reported'}
+Special Instructions: ${data.specialInstructions || 'None'}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday
+Time: 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+Fee: $35.00
+
+PAYMENT STATUS: Pending
+
+Registration submitted on: ${new Date().toLocaleString()}
+
+Remember: Child needs lunch box & water bottle daily!
+
+For questions, contact: 727-637-3362
+                `.trim();
+                
+                // Create mailto link
+                const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                // Open email client
+                setTimeout(() => {
+                    window.location.href = mailtoLink;
+                }, 1000);
+                
+                console.log('Client-side email prepared for:', data.childName);
             };
             
             registrationForm.addEventListener('submit', async function(e) {
@@ -1215,31 +1290,34 @@
                     // Combine address fields
                     data.address = data.street;
                     
-                    // Submit to Vercel API
-                    const response = await fetch('/api/submit-registration', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (result.success) {
-                        // Store registration data
+                    // Try server API first, fallback to mailto
+                    try {
+                        const response = await fetch('/api/submit-registration', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.success) {
+                            // Server email successful
+                            localStorage.setItem('registrationData', JSON.stringify(data));
+                            this.showSuccessMessage(false);
+                            this.reset();
+                        } else {
+                            throw new Error(result.message);
+                        }
+                    } catch (serverError) {
+                        console.log('Server unavailable, using client-side email fallback');
+                        
+                        // Fallback to client-side email
+                        this.sendClientEmail(data);
                         localStorage.setItem('registrationData', JSON.stringify(data));
-                        
-                                // Show inline success message
-                        this.showSuccessMessage();
-                        
-                        // Reset form
+                        this.showSuccessMessage(true);
                         this.reset();
-                        
-                        // Payment URL is handled in showSuccessMessage
-                        
-                    } else {
-                        throw new Error(result.message);
                     }
                     
                 } catch (error) {

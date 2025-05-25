@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Workshop Registration - Standalone Version</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #6366f1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #374151;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        .submit-btn {
+            background: #6366f1;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background: #5b5bd6;
+        }
+        .note {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <h1>🌟 My Purpose Summer Workshop</h1>
+            <h2>Registration Form - Ages 6-12</h2>
+            <p><strong>June 17 - July 24, 2025 | Tuesday & Thursday | 9:30am - 1:00pm</strong></p>
+        </div>
+
+        <div class="note">
+            <strong>📧 Email Delivery:</strong> This form sends directly to summerworkshops25@gmail.com using FormSubmit service.
+            No server required - works anywhere!
+        </div>
+
+        <!-- FormSubmit.co form - no backend needed -->
+        <form action="https://formsubmit.co/summerworkshops25@gmail.com" method="POST">
+            <!-- FormSubmit Configuration -->
+            <input type="hidden" name="_subject" value="Summer Workshop Registration - My Purpose">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://coolpeter2025.github.io/Summer-Workshops/thanks.html">
+
+            <!-- Child Information -->
+            <h3>👶 Child Information</h3>
+            
+            <div class="form-group">
+                <label for="child_name">Child's Full Name *</label>
+                <input type="text" id="child_name" name="Child Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth *</label>
+                <input type="date" id="date_of_birth" name="Date of Birth" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age (6-12 years) *</label>
+                <input type="number" id="age" name="Age" min="6" max="12" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="Gender">
+                    <option value="">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Address Information -->
+            <h3>📍 Address Information</h3>
+            
+            <div class="form-group">
+                <label for="address">Street Address *</label>
+                <input type="text" id="address" name="Address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="City" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="State" required>
+            </div>
+
+            <div class="form-group">
+                <label for="zip">ZIP Code *</label>
+                <input type="text" id="zip" name="ZIP Code" required>
+            </div>
+
+            <!-- Parent Information -->
+            <h3>👨‍👩‍👧‍👦 Parent/Guardian Information</h3>
+            
+            <div class="form-group">
+                <label for="parent_name">Parent/Guardian Name *</label>
+                <input type="text" id="parent_name" name="Parent Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="parent_email">Parent/Guardian Email *</label>
+                <input type="email" id="parent_email" name="Parent Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="parent_phone">Parent/Guardian Phone *</label>
+                <input type="tel" id="parent_phone" name="Parent Phone" required>
+            </div>
+
+            <!-- Medical Information -->
+            <h3>🏥 Medical Information</h3>
+            
+            <div class="form-group">
+                <label for="allergies">Allergies</label>
+                <textarea id="allergies" name="Allergies" rows="3" placeholder="List any food allergies, medicine allergies, etc. (Leave blank if none)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="medical_conditions">Medical Conditions</label>
+                <textarea id="medical_conditions" name="Medical Conditions" rows="3" placeholder="List any medical conditions or special needs (Leave blank if none)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="special_instructions">Special Instructions</label>
+                <textarea id="special_instructions" name="Special Instructions" rows="3" placeholder="Any additional information we should know"></textarea>
+            </div>
+
+            <!-- Workshop Details (for reference) -->
+            <div class="note">
+                <h3>📅 Workshop Information</h3>
+                <p><strong>Fee:</strong> $35.00 (Payment details will be provided after registration)</p>
+                <p><strong>Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688</p>
+                <p><strong>Remember:</strong> Bring lunch box & water bottle daily!</p>
+                <p><strong>Questions:</strong> Call 727-637-3362</p>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                📧 Submit Registration
+            </button>
+        </form>
+    </div>
+</body>
+</html>
