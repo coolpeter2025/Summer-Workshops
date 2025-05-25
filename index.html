@@ -1034,8 +1034,76 @@
                 });
             });
 
+            // Message display functions
+            function showMessage(message, type = 'info') {
+                // Remove existing messages
+                const existingMessages = document.querySelectorAll('.form-message');
+                existingMessages.forEach(msg => msg.remove());
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'form-message';
+                messageDiv.style.cssText = `
+                    padding: 1rem; 
+                    border-radius: 8px; 
+                    margin: 1rem 0; 
+                    font-weight: 500;
+                    ${type === 'error' ? 'background: #fef2f2; color: #dc2626; border-left: 4px solid #dc2626;' : ''}
+                    ${type === 'success' ? 'background: #f0fdf4; color: #16a34a; border-left: 4px solid #16a34a;' : ''}
+                    ${type === 'warning' ? 'background: #fef3c7; color: #d97706; border-left: 4px solid #d97706;' : ''}
+                `;
+                messageDiv.innerHTML = message;
+                
+                const form = document.getElementById('registrationForm');
+                form.insertBefore(messageDiv, form.firstChild);
+                
+                // Scroll to message
+                messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto remove after 10 seconds for non-error messages
+                if (type !== 'error') {
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.remove();
+                        }
+                    }, 10000);
+                }
+            }
+
             // Form submission handling
             const registrationForm = document.getElementById('registrationForm');
+            
+            registrationForm.showSuccessMessage = function() {
+                showMessage(`
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                        <h3 style="margin: 0 0 1rem 0;">STEP 1 COMPLETE: Registration Submitted!</h3>
+                        <p style="margin: 0 0 1rem 0;">📧 Email sent to summerworkshops25@gmail.com<br>
+                        📝 Your child is now registered for the workshop</p>
+                        <p style="margin: 0; font-weight: bold; color: #059669;">🔄 Proceeding to Step 2 - Payment...</p>
+                    </div>
+                `, 'success');
+                
+                // Proceed to payment step after brief delay
+                setTimeout(() => {
+                    showPaymentStep('https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet');
+                }, 2000);
+            };
+            
+            registrationForm.showAgeError = function(age) {
+                const message = age < 6 
+                    ? `⚠️ <strong>Age Requirement Notice</strong><br><br>This workshop is designed for children ages 6-12.<br><br>For younger children, please contact us at <strong>727-637-3362</strong> to discuss alternative options and age-appropriate programs.`
+                    : `⚠️ <strong>Age Requirement Notice</strong><br><br>This workshop is designed for children ages 6-12.<br><br>For older children, please contact us at <strong>727-637-3362</strong> to discuss alternative programs suitable for their age group.`;
+                showMessage(message, 'warning');
+            };
+            
+            registrationForm.showRequiredFieldsError = function() {
+                showMessage('❌ <strong>Required Fields Missing</strong><br>Please fill in all required fields marked with *', 'error');
+            };
+            
+            registrationForm.showSubmissionError = function() {
+                showMessage('❌ <strong>Submission Error</strong><br>Sorry, there was an error submitting your registration. Please try again or contact us at <strong>727-637-3362</strong>', 'error');
+            };
+            
             registrationForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
@@ -1060,16 +1128,12 @@
                     isValid = false;
                     ageInput.style.borderColor = 'var(--error)';
                     
-                    if (age < 6) {
-                        alert('⚠️ Age Requirement Notice\n\nThis workshop is designed for children ages 6-12.\n\nFor younger children, please contact us at 727-637-3362 to discuss alternative options and age-appropriate programs.');
-                    } else if (age > 12) {
-                        alert('⚠️ Age Requirement Notice\n\nThis workshop is designed for children ages 6-12.\n\nFor older children, please contact us at 727-637-3362 to discuss alternative programs suitable for their age group.');
-                    }
+                    this.showAgeError(age);
                     return;
                 }
                 
                 if (!isValid) {
-                    alert('Please fill in all required fields marked with *');
+                    this.showRequiredFieldsError();
                     return;
                 }
                 
@@ -1098,8 +1162,8 @@
                     // Combine address fields
                     data.address = data.street;
                     
-                    // Submit to server
-                    const response = await fetch('/submit-registration', {
+                    // Submit to Vercel API
+                    const response = await fetch('/api/submit-registration', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1113,20 +1177,13 @@
                         // Store registration data
                         localStorage.setItem('registrationData', JSON.stringify(data));
                         
-                        // Show step 1 completion message
-                        alert(
-                            '✅ STEP 1 COMPLETE: Registration Submitted!\n\n' +
-                            '📧 Email sent to summerworkshops25@gmail.com\n' +
-                            '📝 Your child is now registered for the workshop\n\n' +
-                            '🔄 NEXT: Complete Step 2 - Payment\n\n' +
-                            'Click OK to proceed to payment step.'
-                        );
+                                // Show inline success message
+                        this.showSuccessMessage();
                         
                         // Reset form
                         this.reset();
                         
-                        // Show payment step
-                        showPaymentStep(result.paymentUrl);
+                        // Payment URL is handled in showSuccessMessage
                         
                     } else {
                         throw new Error(result.message);
@@ -1134,7 +1191,7 @@
                     
                 } catch (error) {
                     console.error('Submission error:', error);
-                    alert('❌ Sorry, there was an error submitting your registration.\n\nPlease try again or contact us at 727-637-3362');
+                    this.showSubmissionError();
                 } finally {
                     // Reset button
                     submitBtn.textContent = originalText;
@@ -1159,17 +1216,8 @@
                 paymentButton.onclick = function() {
                     window.open(paymentUrl, '_blank');
                     
-                    // Show completion message
+                    // Show completion step after brief delay
                     setTimeout(() => {
-                        alert(
-                            '🎉 REGISTRATION COMPLETE!\n\n' +
-                            '✅ Step 1: Registration submitted\n' +
-                            '💳 Step 2: Payment window opened\n\n' +
-                            'Please complete your $35.00 payment in the new window.\n\n' +
-                            'For questions: 727-637-3362'
-                        );
-                        
-                        // Show completion step
                         showCompletionStep();
                     }, 1000);
                 };

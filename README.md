@@ -1,66 +1,87 @@
 # Summer Workshop Registration System
 
-A complete registration system for Slavic Full Gospel Church Summer Workshops with automated email notifications and Square payment integration.
+A complete registration system for Slavic Full Gospel Church Summer Workshops with automated email notifications and Square payment integration. Optimized for Vercel deployment.
 
 ## Features
 
-- ✅ Complete registration form with validation
-- 📧 Automated email notifications using Nodemailer
+- ✅ Complete registration form with inline validation and messaging
+- 📧 Automated email notifications using Nodemailer via Vercel API
 - 💳 Square payment integration ($35.00 fee)
 - 📱 Responsive design for all devices
-- 🔒 Form validation and error handling
+- 🔒 Age validation (6-12 years) with contact info for other ages
+- 🎯 Two-step process: Registration → Payment
+- ⚡ Serverless deployment ready for Vercel
 
-## Setup Instructions
+## Vercel Deployment
+
+### Quick Deploy
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/coolpeter2025/Summer-Workshops)
+
+### Manual Deployment
+1. Fork this repository
+2. Connect your Vercel account to GitHub
+3. Import the project in Vercel
+4. Add environment variables in Vercel dashboard:
+   - `EMAIL_USER`: summerworkshops25@gmail.com
+   - `EMAIL_PASS`: (Gmail app password)
+5. Deploy!
+
+### Environment Variables for Vercel
+In your Vercel dashboard, add these environment variables:
+```
+EMAIL_USER=summerworkshops25@gmail.com
+EMAIL_PASS=sxyv pyaw bvav kulh
+```
+
+## Local Development
 
 ### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Configure Email Settings
-1. Copy `.env.example` to `.env`
-2. Update the email credentials:
+### 2. Configure Environment
+Create `.env.local`:
 ```env
 EMAIL_USER=summerworkshops25@gmail.com
-EMAIL_PASS=your-gmail-app-password
-PORT=3000
+EMAIL_PASS=sxyv pyaw bvav kulh
 ```
 
-### 3. Gmail App Password Setup
-To send emails through Gmail, you need to:
-1. Enable 2-factor authentication on the Gmail account
-2. Generate an App Password:
-   - Go to Google Account settings
-   - Security → 2-Step Verification → App passwords
-   - Generate password for "Mail"
-   - Use this password in the `.env` file
-
-### 4. Start the Server
-```bash
-npm start
-```
-
-For development with auto-restart:
+### 3. Start Development Server
 ```bash
 npm run dev
 ```
 
-## Usage
+For testing the Vercel API locally:
+```bash
+vercel dev
+```
 
-1. Visit `http://localhost:3000`
-2. Fill out the registration form
-3. Submit - email will be automatically sent to `summerworkshops25@gmail.com`
-4. Complete payment through Square checkout
-5. Registration complete!
+## Features
+
+### Age Requirements
+- Workshop designed for children **ages 6-12**
+- Real-time age validation with helpful messages
+- Contact information (727-637-3362) provided for younger children
+
+### Two-Step Process
+1. **Registration**: Form submission with email notification
+2. **Payment**: Optional immediate payment or pay later option
+
+### No Popups
+- All notifications use inline messages
+- Perfect for mobile devices and Vercel hosting
+- Better user experience
 
 ## Workshop Details
 
 - **Event**: My Purpose Summer Workshops
-- **Dates**: June 17, 19, 24, 26. July 1, 3, 8, 10, 15, 17, 22, 24
-- **Time**: Tuesday & Thursday, 9:30 AM - 1:00 PM
+- **Age Range**: 6-12 years old
+- **Dates**: June 17 - July 24, 2025
+- **Schedule**: Tuesday & Thursday, 9:30 AM - 1:00 PM
 - **Location**: 300 N Highland Ave, Tarpon Springs, FL 34688
 - **Fee**: $35.00
 
 ## Contact
 
-For questions: 727-637-3362
+For questions or younger children: **727-637-3362**

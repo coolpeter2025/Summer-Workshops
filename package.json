@@ -2,21 +2,19 @@
   "name": "summer-workshops",
   "version": "1.0.0",
   "description": "Summer Workshop Registration System",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "echo 'No build required for static site'"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "nodemailer": "^6.9.7"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["registration", "summer", "workshops"],
+  "keywords": ["registration", "summer", "workshops", "vercel"],
   "author": "Your Name",
   "license": "MIT"
 }
