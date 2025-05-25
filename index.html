@@ -895,7 +895,7 @@
 
             // Form submission handling
             const registrationForm = document.getElementById('registrationForm');
-            registrationForm.addEventListener('submit', function(e) {
+            registrationForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 // Validate required fields
@@ -917,74 +917,70 @@
                     return;
                 }
                 
-                // Collect form data
-                const formData = new FormData(this);
-                const data = {};
-                for (let [key, value] of formData.entries()) {
-                    data[key] = value;
-                }
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
                 
-                // Create email content
-                const emailSubject = 'Summer Workshop Registration - Slavic Full Gospel Church';
-                const emailBody = `
-SUMMER WORKSHOP REGISTRATION
-============================
-
-CHILD'S INFORMATION:
-- Full Name: ${data.childName}
-- Date of Birth: ${data.dateOfBirth}
-- Age: ${data.age}
-
-ADDRESS:
-- Street: ${data.street}
-- City: ${data.city}
-- State: ${data.state}
-- Zip: ${data.zip}
-- Country: ${data.country}
-
-HEALTH INFORMATION:
-- Allergies: ${data.allergies === 'yes' ? 'YES - ' + (data.allergyDetails || 'Details not provided') : 'NO'}
-- Medical Conditions: ${data.medicalConditions === 'yes' ? 'YES - ' + (data.medicalDetails || 'Details not provided') : 'NO'}
-
-PARENT/GUARDIAN #1:
-- Name: ${data.parent1Name}
-- Email: ${data.parent1Email}
-- Phone: ${data.parent1Phone}
-
-PARENT/GUARDIAN #2:
-- Name: ${data.parent2Name || 'Not provided'}
-- Phone: ${data.parent2Phone || 'Not provided'}
-
-WORKSHOP DETAILS:
-- Event: My Purpose Summer Workshops
-- Dates: June 17, 19, 24, 26. July 1, 3, 8, 10, 15, 17, 22, 24
-- Time: Tuesday & Thursday, 9:30 AM - 1:00 PM
-- Location: 300 N Highland Ave, Tarpon Springs, FL 34688
-- Fee: $35.00
-
-Registration submitted on: ${new Date().toLocaleString()}
-                `.trim();
-                
-                // Store registration data
-                localStorage.setItem('registrationData', JSON.stringify(data));
-                
-                // Try to send email (this will open the user's email client)
-                const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                
-                // Show confirmation
-                if (confirm('Registration information collected! Click OK to:\n1. Send registration email\n2. Proceed to payment ($35.00)\n\nClick Cancel to review your information.')) {
-                    // Open email client
-                    window.location.href = mailtoLink;
+                try {
+                    // Collect form data
+                    const formData = new FormData(this);
+                    const data = {};
+                    for (let [key, value] of formData.entries()) {
+                        data[key] = value;
+                    }
                     
-                    // Open payment link after a short delay
-                    setTimeout(() => {
-                        window.open('https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet', '_blank');
+                    // Add conditional fields
+                    data.hasAllergies = document.querySelector('input[name="allergies"]:checked').value;
+                    data.allergies = data.hasAllergies === 'yes' ? 
+                        document.getElementById('allergyDetails').value : 'None';
+                    data.hasMedical = document.querySelector('input[name="medicalConditions"]:checked').value;
+                    data.medicalConditions = data.hasMedical === 'yes' ? 
+                        document.getElementById('medicalDetails').value : 'None';
+                    
+                    // Combine address fields
+                    data.address = data.street;
+                    
+                    // Submit to server
+                    const response = await fetch('/submit-registration', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Store registration data
+                        localStorage.setItem('registrationData', JSON.stringify(data));
+                        
+                        // Show success message
+                        alert('✅ Registration submitted successfully!\n📧 Email sent to summerworkshops25@gmail.com\n\nRedirecting to payment...');
+                        
+                        // Redirect to payment
+                        window.open(result.paymentUrl, '_blank');
+                        
+                        // Reset form
+                        this.reset();
                         
                         // Show final confirmation
                         setTimeout(() => {
-                            alert('✅ Registration email opened!\n💳 Payment window opened!\n\nPlease:\n1. Send the registration email\n2. Complete payment in the new window\n\nFor questions: 727-637-3362');
-                        }, 1500);
-                    }, 2000);
+                            alert('🎉 All done!\n\n✅ Registration email sent\n💳 Payment window opened\n\nFor questions: 727-637-3362');
+                        }, 1000);
+                    } else {
+                        throw new Error(result.message);
+                    }
+                    
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    alert('❌ Sorry, there was an error submitting your registration.\n\nPlease try again or contact us at 727-637-3362');
+                } finally {
+                    // Reset button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
                 }
             });
         });
