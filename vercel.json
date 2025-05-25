@@ -1,7 +1,10 @@
 {
   "functions": {
     "api/submit-registration.js": {
-      "runtime": "nodejs18.x"
+      "maxDuration": 10
+    },
+    "api/test-email.js": {
+      "maxDuration": 10
     }
   }
 }

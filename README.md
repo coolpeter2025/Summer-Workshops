@@ -27,11 +27,14 @@ A complete registration system for Slavic Full Gospel Church Summer Workshops wi
 5. Deploy!
 
 ### Environment Variables for Vercel
-In your Vercel dashboard, add these environment variables:
-```
-EMAIL_USER=summerworkshops25@gmail.com
-EMAIL_PASS=sxyv pyaw bvav kulh
-```
+**IMPORTANT:** Add these in your Vercel dashboard (Settings → Environment Variables):
+
+| Variable | Value |
+|----------|--------|
+| `EMAIL_USER` | `summerworkshops25@gmail.com` |
+| `EMAIL_PASS` | `sxyv pyaw bvav kulh` |
+
+**Note:** Do NOT put credentials in vercel.json - always use the dashboard!
 
 ## Local Development
 
