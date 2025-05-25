@@ -563,6 +563,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Activities</a></li>
                 <li><a href="#register">Register</a></li>
+                <li><a href="#payment">Payment</a></li>
                 <li><a href="tel:727-637-3362">Contact</a></li>
             </ul>
         </nav>
@@ -623,6 +624,31 @@
                 <div class="feature-icon">🎭</div>
                 <h3>Performance & Expression</h3>
                 <p>Drama, storytelling, and presentation activities that build confidence and communication skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Information Section -->
+    <section class="payment-info" id="payment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">💳 Payment Information</h2>
+            <div class="payment-details" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3 style="color: #fbbf24; margin-bottom: 1rem;">Workshop Fee: $35.00</h3>
+                    <p style="margin-bottom: 1.5rem;">Secure payment processing through Square</p>
+                    <a href="https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet" 
+                       target="_blank" 
+                       class="cta-button" 
+                       style="background: #10b981; margin: 0;">
+                        Pay Now - $35.00
+                    </a>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
+                    <h4 style="margin-bottom: 1rem;">Payment Options:</h4>
+                    <p>✅ Pay online now with credit/debit card<br>
+                    ✅ Payment due before workshop starts<br>
+                    ✅ Questions? Call 727-637-3362</p>
+                </div>
             </div>
         </div>
     </section>
@@ -793,8 +819,8 @@
 
                 <!-- Submit Button -->
                 <div class="form-submit">
-                    <button type="submit" class="submit-button">Send Registration & Pay $35.00</button>
-                    <p class="payment-info">This will send your registration to summerworkshops25@gmail.com and open payment processing</p>
+                    <button type="submit" class="submit-button">Submit Registration</button>
+                    <p class="payment-info">This will send your registration to summerworkshops25@gmail.com<br>Payment ($35.00) is optional and can be completed separately</p>
                     <p class="contact-info">For additional questions contact: <strong>727-637-3362</strong></p>
                 </div>
             </form>
@@ -957,19 +983,38 @@
                         // Store registration data
                         localStorage.setItem('registrationData', JSON.stringify(data));
                         
-                        // Show success message
-                        alert('✅ Registration submitted successfully!\n📧 Email sent to summerworkshops25@gmail.com\n\nRedirecting to payment...');
+                        // Show success message and ask about payment
+                        const proceedToPayment = confirm(
+                            '✅ Registration submitted successfully!\n' +
+                            '📧 Email sent to summerworkshops25@gmail.com\n\n' +
+                            'Your registration is now complete.\n\n' +
+                            'Would you like to proceed to payment ($35.00) now?\n\n' +
+                            'Click OK to pay now, or Cancel to pay later.'
+                        );
                         
-                        // Redirect to payment
-                        window.open(result.paymentUrl, '_blank');
+                        if (proceedToPayment) {
+                            // Open payment in new window
+                            window.open(result.paymentUrl, '_blank');
+                            
+                            // Show payment confirmation
+                            setTimeout(() => {
+                                alert('💳 Payment window opened!\n\nPlease complete your $35.00 payment in the new window.\n\nFor questions: 727-637-3362');
+                            }, 500);
+                        } else {
+                            // Show how to pay later
+                            alert(
+                                '📝 Registration Complete!\n\n' +
+                                '✅ Your registration has been submitted\n' +
+                                '📧 Confirmation email sent\n\n' +
+                                '💰 Payment Due: $35.00\n' +
+                                'You can complete payment anytime before the workshop.\n\n' +
+                                'For questions or to pay later: 727-637-3362'
+                            );
+                        }
                         
-                        // Reset form
+                        // Reset form after either choice
                         this.reset();
                         
-                        // Show final confirmation
-                        setTimeout(() => {
-                            alert('🎉 All done!\n\n✅ Registration email sent\n💳 Payment window opened\n\nFor questions: 727-637-3362');
-                        }, 1000);
                     } else {
                         throw new Error(result.message);
                     }
