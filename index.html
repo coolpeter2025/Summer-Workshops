@@ -9,8 +9,8 @@
     <meta name="language" content="en-US">
     
     <!-- Primary Meta Tags -->
-    <title>My Purpose Kids Summer Workshop | Creative Learning Program</title>
-    <meta name="description" content="Join our engaging Kids Summer Workshop in Tarpon Springs! Creative activities, learning, and fun every Tuesday and Thursday from June 17 - July 24.">
+    <title>My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program</title>
+    <meta name="description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities, learning, and fun every Tuesday and Thursday from June 17 - July 24.">
     <meta name="keywords" content="kids summer workshop, children activities, Tarpon Springs, summer camp, creative learning, kids program, educational workshop, summer activities">
     
     <!-- Canonical URL -->
@@ -19,15 +19,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.mypurpose.com">
-    <meta property="og:title" content="My Purpose Kids Summer Workshop | Creative Learning Program">
-    <meta property="og:description" content="Join our engaging Kids Summer Workshop in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
+    <meta property="og:title" content="My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program">
+    <meta property="og:description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.mypurpose.com">
-    <meta property="twitter:title" content="My Purpose Kids Summer Workshop | Creative Learning Program">
-    <meta property="twitter:description" content="Join our engaging Kids Summer Workshop in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
+    <meta property="twitter:title" content="My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program">
+    <meta property="twitter:description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
     
     <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -576,7 +576,13 @@
                 <img src="my purpose.jpg" alt="My Purpose Kids Summer Workshop" style="max-width: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
             </div>
             <h1>My Purpose Kids Summer Workshop</h1>
-            <p>Creative learning and fun activities for kids! Join us every Tuesday and Thursday from 9:30am to 1:00pm in beautiful Tarpon Springs.</p>
+            <p>Creative learning and fun activities for kids ages 6-12! Join us every Tuesday and Thursday from 9:30am to 1:00pm in beautiful Tarpon Springs.</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid #fbbf24;">
+                <p style="margin: 0; font-size: 0.95rem;">
+                    <strong>Age Requirements:</strong> This workshop is designed for children ages 6-12.<br>
+                    <strong>Younger children?</strong> Please contact us at <strong>727-637-3362</strong> to discuss options.
+                </p>
+            </div>
             <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 1rem; backdrop-filter: blur(10px);">
                 <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 1rem;">📅 June 17 - July 24, 2024</h3>
                 <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">📍 300 N Highland Ave, Tarpon Springs, FL 34688</p>
@@ -589,6 +595,10 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <h2>What Your Kids Will Experience</h2>
+        <div style="max-width: 800px; margin: 0 auto 3rem; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1f2937; padding: 1.5rem; border-radius: 15px; text-align: center;">
+            <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;">👥 Age Group: 6-12 Years Old</h3>
+            <p style="margin: 0; font-weight: 500;">Our activities are specifically designed for children in this age range. Have a younger child? Call us at <strong>727-637-3362</strong></p>
+        </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🎨</div>
@@ -694,8 +704,8 @@
                             <input type="date" id="dateOfBirth" name="dateOfBirth" required>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age *</label>
-                            <input type="number" id="age" name="age" min="1" max="18" required>
+                            <label for="age">Age (6-12 years) *</label>
+                            <input type="number" id="age" name="age" min="6" max="12" required>
                         </div>
                     </div>
 
@@ -977,6 +987,36 @@
                 });
             });
 
+            // Age validation
+            const ageInput = document.getElementById('age');
+            ageInput.addEventListener('input', function() {
+                const age = parseInt(this.value);
+                if (age && (age < 6 || age > 12)) {
+                    this.style.borderColor = 'var(--warning)';
+                    
+                    // Show age warning message
+                    let ageWarning = document.getElementById('age-warning');
+                    if (!ageWarning) {
+                        ageWarning = document.createElement('div');
+                        ageWarning.id = 'age-warning';
+                        ageWarning.style.cssText = 'background: #fef3c7; color: #92400e; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem; font-size: 0.9rem; border-left: 4px solid #f59e0b;';
+                        this.parentNode.appendChild(ageWarning);
+                    }
+                    
+                    if (age < 6) {
+                        ageWarning.innerHTML = '⚠️ <strong>Age Notice:</strong> This workshop is for ages 6-12. For younger children, please contact us at <strong>727-637-3362</strong> to discuss options.';
+                    } else if (age > 12) {
+                        ageWarning.innerHTML = '⚠️ <strong>Age Notice:</strong> This workshop is designed for children ages 6-12. Please contact us at <strong>727-637-3362</strong> for alternative programs.';
+                    }
+                } else {
+                    this.style.borderColor = 'var(--border)';
+                    const ageWarning = document.getElementById('age-warning');
+                    if (ageWarning) {
+                        ageWarning.remove();
+                    }
+                }
+            });
+
             // Handle medical conditions conditional input
             const medicalRadios = document.querySelectorAll('input[name="medicalConditions"]');
             const medicalDetails = document.getElementById('medicalDetails');
@@ -1012,6 +1052,21 @@
                         field.style.borderColor = 'var(--border)';
                     }
                 });
+                
+                // Validate age range
+                const ageInput = document.getElementById('age');
+                const age = parseInt(ageInput.value);
+                if (age && (age < 6 || age > 12)) {
+                    isValid = false;
+                    ageInput.style.borderColor = 'var(--error)';
+                    
+                    if (age < 6) {
+                        alert('⚠️ Age Requirement Notice\n\nThis workshop is designed for children ages 6-12.\n\nFor younger children, please contact us at 727-637-3362 to discuss alternative options and age-appropriate programs.');
+                    } else if (age > 12) {
+                        alert('⚠️ Age Requirement Notice\n\nThis workshop is designed for children ages 6-12.\n\nFor older children, please contact us at 727-637-3362 to discuss alternative programs suitable for their age group.');
+                    }
+                    return;
+                }
                 
                 if (!isValid) {
                     alert('Please fill in all required fields marked with *');
