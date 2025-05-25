@@ -17,12 +17,39 @@ export default async function handler(req, res) {
   try {
     const data = req.body;
     
-    // Configure nodemailer
+    // Validate required fields
+    const requiredFields = ['childName', 'dateOfBirth', 'age', 'street', 'city', 'state', 'zip', 'parent1Name', 'parent1Email', 'parent1Phone'];
+    const missingFields = requiredFields.filter(field => !data[field]);
+    
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Missing required fields: ${missingFields.join(', ')}`
+      });
+    }
+    
+    // Validate age range
+    const age = parseInt(data.age);
+    if (age < 6 || age > 12) {
+      return res.status(400).json({
+        success: false,
+        message: 'Age must be between 6 and 12 years. For other ages, please contact 727-637-3362.'
+      });
+    }
+    
+    console.log('Processing registration for:', data.childName, 'Age:', data.age);
+    
+    // Configure Gmail SMTP
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // Use TLS
       auth: {
         user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
         pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
 
@@ -71,17 +98,123 @@ PAYMENT STATUS: Pending ($35.00)
 Registration submitted on: ${new Date().toLocaleString()}
     `;
 
-    // Email options
+    // Enhanced email options with proper formatting
+    const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .header { background: #6366f1; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; }
+        .section { margin-bottom: 20px; padding: 15px; border-left: 4px solid #6366f1; background: #f8fafc; }
+        .section h3 { margin-top: 0; color: #6366f1; }
+        .footer { background: #f3f4f6; padding: 15px; text-align: center; font-size: 12px; }
+        .important { background: #fef3c7; border-left-color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎉 New Summer Workshop Registration</h1>
+        <p>Slavic Full Gospel Church - My Purpose Kids Summer Workshop</p>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>👶 Child Information</h3>
+            <p><strong>Full Name:</strong> ${data.childName}</p>
+            <p><strong>Date of Birth:</strong> ${data.dateOfBirth}</p>
+            <p><strong>Age:</strong> ${data.age} years old</p>
+            <p><strong>Gender:</strong> ${data.gender || 'Not specified'}</p>
+            <p><strong>Grade (Fall 2025):</strong> ${data.grade || 'Not specified'}</p>
+        </div>
+
+        <div class="section">
+            <h3>📍 Contact Information</h3>
+            <p><strong>Address:</strong> ${data.address}</p>
+            <p><strong>City:</strong> ${data.city}</p>
+            <p><strong>State:</strong> ${data.state}</p>
+            <p><strong>ZIP Code:</strong> ${data.zip}</p>
+            <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+        </div>
+
+        <div class="section">
+            <h3>👨‍👩‍👧‍👦 Parent/Guardian Information</h3>
+            <h4>Parent/Guardian #1:</h4>
+            <p><strong>Name:</strong> ${data.parent1Name}</p>
+            <p><strong>Phone:</strong> ${data.parent1Phone}</p>
+            <p><strong>Email:</strong> ${data.parent1Email}</p>
+            
+            ${data.parent2Name ? `
+            <h4>Parent/Guardian #2:</h4>
+            <p><strong>Name:</strong> ${data.parent2Name}</p>
+            <p><strong>Phone:</strong> ${data.parent2Phone || 'Not provided'}</p>
+            <p><strong>Email:</strong> ${data.parent2Email || 'Not provided'}</p>
+            ` : '<p><em>No second parent/guardian provided</em></p>'}
+        </div>
+
+        ${data.emergencyName ? `
+        <div class="section">
+            <h3>🚨 Emergency Contact</h3>
+            <p><strong>Name:</strong> ${data.emergencyName}</p>
+            <p><strong>Phone:</strong> ${data.emergencyPhone}</p>
+            <p><strong>Relationship:</strong> ${data.emergencyRelationship}</p>
+        </div>
+        ` : ''}
+
+        <div class="section important">
+            <h3>🏥 Medical Information</h3>
+            <p><strong>Allergies:</strong> ${data.hasAllergies === 'yes' ? data.allergies || 'Specified but details not provided' : 'None reported'}</p>
+            <p><strong>Medical Conditions:</strong> ${data.hasMedical === 'yes' ? data.medicalConditions || 'Specified but details not provided' : 'None reported'}</p>
+            ${data.specialInstructions ? `<p><strong>Special Instructions:</strong> ${data.specialInstructions}</p>` : ''}
+        </div>
+
+        <div class="section">
+            <h3>📅 Workshop Details</h3>
+            <p><strong>Event:</strong> My Purpose Summer Workshops</p>
+            <p><strong>Dates:</strong> June 17 - July 24, 2025</p>
+            <p><strong>Schedule:</strong> Every Tuesday & Thursday</p>
+            <p><strong>Time:</strong> 9:30 AM - 1:00 PM</p>
+            <p><strong>Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688</p>
+            <p><strong>Fee:</strong> $35.00</p>
+        </div>
+
+        <div class="section important">
+            <h3>💳 Payment Status</h3>
+            <p><strong>Status:</strong> PENDING</p>
+            <p><strong>Amount Due:</strong> $35.00</p>
+            <p><em>Payment link provided to parent during registration</em></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Registration submitted on: ${new Date().toLocaleString()}</p>
+        <p>For questions, contact: 727-637-3362</p>
+        <p>Remember: Child needs lunch box & water bottle daily!</p>
+    </div>
+</body>
+</html>
+    `;
+
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+      from: {
+        name: 'My Purpose Summer Workshop',
+        address: process.env.EMAIL_USER || 'summerworkshops25@gmail.com'
+      },
       to: 'summerworkshops25@gmail.com',
-      subject: emailSubject,
+      subject: `${emailSubject} - ${data.childName}`,
       text: emailBody,
-      html: emailBody.replace(/\n/g, '<br>')
+      html: htmlBody
     };
 
+    // Verify SMTP connection first
+    await transporter.verify();
+    console.log('SMTP connection verified');
+    
     // Send email
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
     
     res.json({ 
       success: true, 
@@ -90,10 +223,28 @@ Registration submitted on: ${new Date().toLocaleString()}
     });
     
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      stack: error.stack
+    });
+    
+    // More specific error messages
+    let errorMessage = 'Failed to submit registration. Please try again.';
+    
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Email authentication failed. Please contact support at 727-637-3362.';
+    } else if (error.code === 'ECONNECTION') {
+      errorMessage = 'Connection error. Please check your internet connection and try again.';
+    } else if (error.message.includes('Invalid login')) {
+      errorMessage = 'Email configuration error. Please contact support at 727-637-3362.';
+    }
+    
     res.status(500).json({ 
       success: false, 
-      message: 'Failed to submit registration. Please try again.' 
+      message: errorMessage,
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }

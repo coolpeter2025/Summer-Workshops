@@ -1100,8 +1100,9 @@
                 showMessage('❌ <strong>Required Fields Missing</strong><br>Please fill in all required fields marked with *', 'error');
             };
             
-            registrationForm.showSubmissionError = function() {
-                showMessage('❌ <strong>Submission Error</strong><br>Sorry, there was an error submitting your registration. Please try again or contact us at <strong>727-637-3362</strong>', 'error');
+            registrationForm.showSubmissionError = function(errorMessage = null) {
+                const message = errorMessage || 'Sorry, there was an error submitting your registration. Please try again or contact us at <strong>727-637-3362</strong>';
+                showMessage(`❌ <strong>Submission Error</strong><br>${message}`, 'error');
             };
             
             registrationForm.addEventListener('submit', async function(e) {
@@ -1191,7 +1192,22 @@
                     
                 } catch (error) {
                     console.error('Submission error:', error);
-                    this.showSubmissionError();
+                    
+                    // Try to get more specific error message
+                    let errorMessage = null;
+                    if (error.response) {
+                        try {
+                            const errorData = await error.response.json();
+                            errorMessage = errorData.message;
+                        } catch (e) {
+                            // Fallback if response isn't JSON
+                            errorMessage = `Server error (${error.response.status}). Please try again.`;
+                        }
+                    } else if (error.message) {
+                        errorMessage = error.message;
+                    }
+                    
+                    this.showSubmissionError(errorMessage);
                 } finally {
                     // Reset button
                     submitBtn.textContent = originalText;

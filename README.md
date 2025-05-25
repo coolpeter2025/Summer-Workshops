@@ -82,6 +82,15 @@ vercel dev
 - **Location**: 300 N Highland Ave, Tarpon Springs, FL 34688
 - **Fee**: $35.00
 
+## Testing Email Configuration
+
+Visit `/api/test-email` to test Gmail SMTP configuration:
+```
+https://your-vercel-domain.vercel.app/api/test-email
+```
+
+This will verify the email setup and send a test email.
+
 ## Contact
 
 For questions or younger children: **727-637-3362**
