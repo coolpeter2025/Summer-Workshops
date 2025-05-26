@@ -559,6 +559,16 @@
         input:required {
             box-shadow: none !important;
         }
+        
+        /* Gallery hover effects */
+        .workshop-gallery img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .workshop-gallery > div > div:hover {
+            transform: translateY(-5px);
+        }
     </style>
 
     <!-- Schema.org JSON-LD structured data -->
@@ -597,7 +607,7 @@
     <section class="hero">
         <div class="hero-content">
             <div style="margin-bottom: 2rem;">
-                <img src="my purpose.jpg" alt="My Purpose Kids Summer Workshop" style="max-width: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="images/workshop-hero.png" alt="My Purpose Kids Summer Workshop" style="max-width: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
             </div>
             <h1>My Purpose Kids Summer Workshop</h1>
             <p>Creative learning and fun activities for kids ages 6-12! Join us every Tuesday and Thursday from 9:30am to 1:00pm in beautiful Tarpon Springs.</p>
@@ -613,6 +623,27 @@
                 <p style="font-size: 1.1rem;">🕘 Every Tuesday & Thursday • 9:30am - 1:00pm</p>
             </div>
             <a href="#register" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <!-- Workshop Gallery -->
+    <section class="workshop-gallery" style="padding: 4rem 2rem; background: white;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: var(--text-dark);">See Our Workshop in Action</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <div style="border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.3s ease;">
+                    <img src="images/Image May 25, 2025, 10_34_15 PM.png" alt="Workshop Activity 1" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+                <div style="border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.3s ease;">
+                    <img src="images/Image May 25, 2025, 10_34_18 PM.png" alt="Workshop Activity 2" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+                <div style="border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.3s ease;">
+                    <img src="images/Image May 25, 2025, 10_34_40 PM.png" alt="Workshop Activity 3" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+                <div style="border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-lg); transition: transform 0.3s ease;">
+                    <img src="images/Image May 25, 2025, 10_35_32 PM.png" alt="Workshop Activity 4" style="width: 100%; height: 200px; object-fit: cover;">
+                </div>
+            </div>
         </div>
     </section>
 
