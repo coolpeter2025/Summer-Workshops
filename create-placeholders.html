@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Image Placeholders</title>
+</head>
+<body>
+    <canvas id="canvas1" width="400" height="300"></canvas>
+    <canvas id="canvas2" width="400" height="300"></canvas>
+    <canvas id="canvas3" width="400" height="300"></canvas>
+    <canvas id="canvas4" width="400" height="300"></canvas>
+
+    <script>
+        // Create placeholder images using canvas
+        function createPlaceholder(canvasId, text, bgColor, textColor) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Fill background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 400, 300);
+            
+            // Add text
+            ctx.fillStyle = textColor;
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 200, 150);
+            
+            // Convert to blob and download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = canvasId.replace('canvas', 'workshop-') + '.jpg';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/jpeg', 0.8);
+        }
+        
+        // Create placeholders
+        window.onload = function() {
+            createPlaceholder('canvas1', 'Creative Arts & Crafts', '#6366f1', '#ffffff');
+            createPlaceholder('canvas2', 'Learning Adventures', '#ec4899', '#ffffff');
+            createPlaceholder('canvas3', 'Group Activities', '#f59e0b', '#000000');
+            createPlaceholder('canvas4', 'Workshop Fun', '#10b981', '#ffffff');
+        };
+    </script>
+</body>
+</html>
