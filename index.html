@@ -974,9 +974,15 @@
                 <div style="margin-bottom: 2rem;">
                     <p style="font-size: 1.1rem; margin-bottom: 1rem;">Questions or need help?</p>
                     <a href="tel:727-637-3362" 
-                       style="background: #10b981; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">
+                       style="background: #10b981; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 1rem;">
                         📞 Call 727-637-3362
                     </a>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-top: 2rem;">
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">
+                        🏠 Automatically returning to home page in <span id="countdown">10</span> seconds...
+                    </p>
                 </div>
                 
             </div>
@@ -1421,6 +1427,37 @@ For questions, contact: 727-637-3362
                 document.getElementById('payment-step').style.display = 'none';
                 document.getElementById('completion-step').style.display = 'block';
                 document.getElementById('completion-step').scrollIntoView({ behavior: 'smooth' });
+                
+                // Start countdown timer
+                let timeLeft = 10;
+                const countdownElement = document.getElementById('countdown');
+                
+                const countdownTimer = setInterval(() => {
+                    timeLeft--;
+                    if (countdownElement) {
+                        countdownElement.textContent = timeLeft;
+                    }
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownTimer);
+                        
+                        // Reset all sections to initial state
+                        document.getElementById('register').style.display = 'block';
+                        document.getElementById('payment-step').style.display = 'none';
+                        document.getElementById('completion-step').style.display = 'none';
+                        
+                        // Scroll to top of page (hero section)
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        
+                        // Clear any form data
+                        const form = document.getElementById('registrationForm');
+                        if (form) form.reset();
+                        
+                        // Remove any existing messages
+                        const existingMessages = document.querySelectorAll('.form-message');
+                        existingMessages.forEach(msg => msg.remove());
+                    }
+                }, 1000); // Update every second
             };
 
             // Reset to registration function
