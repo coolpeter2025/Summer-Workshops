@@ -5,12 +5,13 @@
   "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'No build step required'",
+    "build": "echo 'Static site - no build required'",
     "start": "vercel dev"
   },
   "dependencies": {
     "nodemailer": "^6.9.8"
   },
+  "devDependencies": {},
   "keywords": [
     "summer-workshop",
     "kids",
@@ -23,5 +24,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/coolpeter2025/Summer-Workshop-2.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
