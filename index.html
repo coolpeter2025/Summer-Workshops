@@ -597,7 +597,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Activities</a></li>
                 <li><a href="#register">Register</a></li>
-                <li><a href="#payment">Payment</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
                 <li><a href="tel:727-637-3362">Contact</a></li>
             </ul>
         </nav>
@@ -622,7 +622,10 @@
                 <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">📍 300 N Highland Ave, Tarpon Springs, FL 34688</p>
                 <p style="font-size: 1.1rem;">🕘 Every Tuesday & Thursday • 9:30am - 1:00pm</p>
             </div>
-            <a href="#register" class="cta-button">Register Now</a>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#register" class="cta-button">Register Now</a>
+                <a href="#volunteer" class="cta-button" style="background: #10b981; color: white;">Volunteer</a>
+            </div>
         </div>
     </section>
 
@@ -915,6 +918,151 @@
         </div>
     </section>
 
+    <!-- Volunteer Form Section -->
+    <section class="volunteer-section" id="volunteer" style="background: #f0fdf4; padding: 4rem 2rem;">
+        <div class="volunteer-container" style="max-width: 800px; margin: 0 auto;">
+            <div class="volunteer-header" style="text-align: center; margin-bottom: 3rem;">
+                <h1 style="color: #10b981; font-size: 2.5rem; margin-bottom: 0.5rem;">🤝 Volunteer with Us</h1>
+                <h2 style="color: var(--text-dark); font-size: 2rem; margin-bottom: 2rem;">Help Make a Difference in Children's Lives</h2>
+                
+                <div style="background: var(--bg-white); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); margin-bottom: 2rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <h3 style="color: #10b981; margin-bottom: 1rem; font-size: 1.5rem;">Workshop Information</h3>
+                        <p><strong>Event:</strong> My Purpose Summer Workshops</p>
+                        <p><strong>Dates:</strong> June 17 - July 24, 2025</p>
+                        <p><strong>Schedule:</strong> Every Tuesday and Thursday, 9:30 AM - 1:00 PM</p>
+                        <p><strong>Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688</p>
+                        <p><strong>Age Group:</strong> Children ages 6-12</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="volunteer-form" id="volunteerForm" style="background: var(--bg-white); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                <!-- Volunteer Information -->
+                <div class="form-section" style="margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 2px solid var(--border);">
+                    <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #10b981;">👤 Volunteer Information</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="volunteerName" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">Full Name *</label>
+                        <input type="text" id="volunteerName" name="volunteerName" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="volunteerPhone" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">Phone Number *</label>
+                        <input type="tel" id="volunteerPhone" name="volunteerPhone" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="volunteerEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">Email Address *</label>
+                        <input type="email" id="volunteerEmail" name="volunteerEmail" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 0.5rem; font-size: 1rem; transition: border-color 0.3s ease;">
+                    </div>
+                </div>
+
+                <!-- Availability Section -->
+                <div class="form-section" style="margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 2px solid var(--border);">
+                    <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #10b981;">📅 Availability</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 1rem; font-weight: 600; color: var(--text-dark);">Which dates are you available? (Check all that apply)</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="June 17" style="margin-right: 0.5rem;">
+                                Tuesday, June 17
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="June 19" style="margin-right: 0.5rem;">
+                                Thursday, June 19
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="June 24" style="margin-right: 0.5rem;">
+                                Tuesday, June 24
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="June 26" style="margin-right: 0.5rem;">
+                                Thursday, June 26
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 1" style="margin-right: 0.5rem;">
+                                Tuesday, July 1
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 3" style="margin-right: 0.5rem;">
+                                Thursday, July 3
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 8" style="margin-right: 0.5rem;">
+                                Tuesday, July 8
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 10" style="margin-right: 0.5rem;">
+                                Thursday, July 10
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 15" style="margin-right: 0.5rem;">
+                                Tuesday, July 15
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 17" style="margin-right: 0.5rem;">
+                                Thursday, July 17
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 22" style="margin-right: 0.5rem;">
+                                Tuesday, July 22
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal; padding: 0.5rem; border-radius: 0.25rem; background: #f8fafc;">
+                                <input type="checkbox" name="availableDates" value="July 24" style="margin-right: 0.5rem;">
+                                Thursday, July 24
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 1rem; font-weight: 600; color: var(--text-dark);">Preferred Time Slots *</label>
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal;">
+                                <input type="radio" name="timeSlot" value="9:30 AM - 1:00 PM (Full Day)" required style="margin-right: 0.5rem;">
+                                9:30 AM - 1:00 PM (Full Day)
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal;">
+                                <input type="radio" name="timeSlot" value="9:30 AM - 11:15 AM (Morning)" style="margin-right: 0.5rem;">
+                                9:30 AM - 11:15 AM (Morning)
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer; font-weight: normal;">
+                                <input type="radio" name="timeSlot" value="11:15 AM - 1:00 PM (Late Morning)" style="margin-right: 0.5rem;">
+                                11:15 AM - 1:00 PM (Late Morning)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section" style="margin-bottom: 2rem;">
+                    <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #10b981;">📝 Additional Information</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="volunteerExperience" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">Do you have experience working with children? (Optional)</label>
+                        <textarea id="volunteerExperience" name="volunteerExperience" rows="3" style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 0.5rem; font-size: 1rem; resize: vertical;" placeholder="Please describe any relevant experience..."></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="volunteerInterests" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">What activities are you most interested in helping with? (Optional)</label>
+                        <textarea id="volunteerInterests" name="volunteerInterests" rows="3" style="width: 100%; padding: 0.75rem; border: 2px solid var(--border); border-radius: 0.5rem; font-size: 1rem; resize: vertical;" placeholder="Arts & crafts, outdoor activities, reading, games, etc..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 1rem 3rem; border: none; border-radius: 0.5rem; font-size: 1.25rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: var(--shadow-lg); margin-bottom: 1rem;">
+                        🤝 Submit Volunteer Application
+                    </button>
+                    <p style="color: var(--text-gray); font-size: 1rem; margin: 0;">
+                        Application will be sent to summerworkshops25@gmail.com<br>
+                        For questions contact: <strong>727-637-3362</strong>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <!-- Payment Step Section -->
     <section class="payment-step" id="payment-step" style="display: none; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 4rem 0; min-height: 80vh;">
@@ -1467,6 +1615,167 @@ For questions, contact: 727-637-3362
                 document.getElementById('completion-step').style.display = 'none';
                 document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
             };
+
+            // Volunteer form handling
+            const volunteerForm = document.getElementById('volunteerForm');
+            if (volunteerForm) {
+                volunteerForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Validate required fields
+                    const requiredFields = this.querySelectorAll('input[required], select[required]');
+                    let isValid = true;
+                    let firstInvalidField = null;
+                    
+                    requiredFields.forEach(field => {
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.style.borderColor = 'var(--error)';
+                            if (!firstInvalidField) firstInvalidField = field;
+                        } else {
+                            field.style.borderColor = 'var(--border)';
+                        }
+                    });
+                    
+                    // Check if at least one date is selected
+                    const dateCheckboxes = this.querySelectorAll('input[name="availableDates"]:checked');
+                    if (dateCheckboxes.length === 0) {
+                        isValid = false;
+                        showVolunteerMessage('Please select at least one available date.', 'error');
+                        return;
+                    }
+                    
+                    if (!isValid) {
+                        showVolunteerMessage('Please fill in all required fields.', 'error');
+                        if (firstInvalidField) {
+                            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            setTimeout(() => firstInvalidField.focus(), 300);
+                        }
+                        return;
+                    }
+                    
+                    // Show loading state
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Collect form data
+                        const formData = new FormData(this);
+                        const data = {};
+                        for (let [key, value] of formData.entries()) {
+                            if (key === 'availableDates') {
+                                if (!data[key]) data[key] = [];
+                                data[key].push(value);
+                            } else {
+                                data[key] = value;
+                            }
+                        }
+                        
+                        // Create email content
+                        const emailSubject = `Volunteer Application - ${data.volunteerName}`;
+                        const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
+                        
+                        const emailBody = `
+VOLUNTEER APPLICATION
+====================
+
+VOLUNTEER INFORMATION:
+Name: ${data.volunteerName}
+Phone: ${data.volunteerPhone}
+Email: ${data.volunteerEmail}
+
+AVAILABILITY:
+Available Dates: ${selectedDates}
+Preferred Time Slot: ${data.timeSlot}
+
+ADDITIONAL INFORMATION:
+Experience with Children: ${data.volunteerExperience || 'Not provided'}
+Activity Interests: ${data.volunteerInterests || 'Not provided'}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+
+Application submitted on: ${new Date().toLocaleString()}
+
+For questions, contact: 727-637-3362
+                        `.trim();
+                        
+                        // Create mailto link
+                        const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                        
+                        // Open email client
+                        window.location.href = mailtoLink;
+                        
+                        // Show success message
+                        showVolunteerMessage(`
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                                <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
+                                <p style="margin: 0 0 1rem 0;">📧 Email client opened to send application to summerworkshops25@gmail.com</p>
+                                <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
+                            </div>
+                        `, 'success');
+                        
+                        // Reset form
+                        this.reset();
+                        
+                        // Scroll to top of volunteer section
+                        document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth' });
+                        
+                    } catch (error) {
+                        console.error('Volunteer form error:', error);
+                        showVolunteerMessage('Sorry, there was an error submitting your application. Please try again or contact us at 727-637-3362', 'error');
+                    } finally {
+                        // Reset button
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Show volunteer form messages
+            function showVolunteerMessage(message, type = 'info') {
+                // Remove existing messages
+                const existingMessages = document.querySelectorAll('.volunteer-message');
+                existingMessages.forEach(msg => msg.remove());
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'volunteer-message';
+                messageDiv.style.cssText = `
+                    padding: 1rem; 
+                    border-radius: 8px; 
+                    margin: 1rem 0; 
+                    font-weight: 500;
+                    position: relative;
+                    animation: slideIn 0.3s ease-out;
+                    ${type === 'error' ? 'background: #fef2f2; color: #dc2626; border-left: 4px solid #dc2626;' : ''}
+                    ${type === 'success' ? 'background: #f0fdf4; color: #16a34a; border-left: 4px solid #16a34a;' : ''}
+                `;
+                messageDiv.innerHTML = message;
+                
+                const form = document.getElementById('volunteerForm');
+                form.insertBefore(messageDiv, form.firstChild);
+                
+                // Scroll to message
+                messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto remove after 8 seconds for non-error messages
+                if (type !== 'error') {
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.style.opacity = '0';
+                            messageDiv.style.transition = 'opacity 0.5s ease-out';
+                            setTimeout(() => messageDiv.remove(), 500);
+                        }
+                    }, 8000);
+                }
+            }
         });
     </script>
 </body>
