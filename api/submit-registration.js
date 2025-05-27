@@ -60,26 +60,38 @@ For questions, contact: 727-637-3362
 
     // Configure nodemailer transporter with SMTP
     const transporter = nodemailer.createTransporter({
-      host: 'smtp.gmail.com',
-      port: 587,
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: 'summerworkshops25@gmail.com',
-        pass: 'sxyv pyaw bvav kulh'
+        user: process.env.SMTP_USER || 'summerworkshops25@gmail.com',
+        pass: process.env.SMTP_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: {
         rejectUnauthorized: false
       }
     });
 
+    // Verify connection configuration
+    await transporter.verify();
+
     // Send email
-    await transporter.sendMail({
-      from: 'summerworkshops25@gmail.com',
-      to: 'summerworkshops25@gmail.com',
+    const mailOptions = {
+      from: process.env.EMAIL_FROM || 'summerworkshops25@gmail.com',
+      to: process.env.EMAIL_TO || 'summerworkshops25@gmail.com',
       subject: `Summer Workshop Registration - ${data.childName}`,
       text: emailContent,
-      html: emailContent.replace(/\n/g, '<br>')
-    });
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #6366f1;">Summer Workshop Registration</h2>
+          <div style="background: #f8fafc; padding: 20px; border-radius: 8px;">
+            ${emailContent.replace(/\n/g, '<br>')}
+          </div>
+        </div>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({ 
       success: true, 
