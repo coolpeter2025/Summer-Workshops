@@ -348,6 +348,12 @@
                 <h2>📝 Workshop Registration</h2>
                 <p style="text-align: center; color: var(--text-gray); margin-bottom: 2rem;">Register your child for our summer workshop program</p>
                 
+                <!-- Very Important Notice -->
+                <div style="background: #fef3c7; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 2rem; text-align: center;">
+                    <h3 style="color: #92400e; margin-bottom: 1rem; font-size: 1.25rem;">⚠️ Very Important Notice</h3>
+                    <p style="color: #92400e; font-weight: 600; font-size: 1.1rem;">Please make sure your child has a lunch box and a water bottle every day at camp.</p>
+                </div>
+                
                 <form id="registrationForm">
                     <div class="form-grid">
                         <div class="form-group">
@@ -421,18 +427,51 @@
                         </div>
                     </div>
 
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="consent" name="consent" required>
-                            <label for="consent">I give permission for my child to participate in all workshop activities and understand that activities may include physical play, arts and crafts, and group activities.</label>
+                    <!-- Parental Consent and Medical Authorization -->
+                    <div style="background: #f8fafc; border: 2px solid var(--primary); padding: 2rem; border-radius: var(--border-radius); margin: 2rem 0;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">📋 Parental Consent and Medical Authorization</h3>
+                        <p style="text-align: center; font-weight: 600; margin-bottom: 1.5rem;">SFGC - 300 N Highland Ave, Tarpon Springs, FL 34688</p>
+                        
+                        <div style="margin-bottom: 1.5rem; line-height: 1.7;">
+                            <p style="margin-bottom: 1rem;">As the parent (or legal guardian) of the above-named student, I understand that my student will be participating in a number of activities conducted by SFGC, which carry a degree of risk. I consent for my student to participate in these activities.</p>
+                            
+                            <p style="margin-bottom: 1rem; font-weight: 600;">I understand and agree to the following:</p>
+                            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                                <li>My child/youth is physically fit and has the necessary skills to safely participate in these activities</li>
+                                <li>I give consent for my student to travel to and from events in transportation provided by volunteer drivers</li>
+                                <li>As parent and/or legal guardian, I remain legally responsible for any personal actions taken by my child</li>
+                                <li>I agree to release, indemnify, and hold harmless SFGC, its directors, officers, representatives, members, agents, guests, volunteers, and employees from any and all claims, including but not limited to bodily injury or property damage claims</li>
+                            </ul>
+                            
+                            <p style="margin-bottom: 1rem; font-weight: 600;">PHOTOS & MEDIA:</p>
+                            <p style="margin-bottom: 1rem;">All participants in programs may be photographed or recorded for promotional or social media use, including but not limited to Facebook, Instagram, program websites, and other similar outlets.</p>
+                            
+                            <p style="margin-bottom: 1rem; font-weight: 600;">MEDICAL AUTHORIZATION:</p>
+                            <p style="margin-bottom: 1rem;">I understand that SFGC will attempt to notify me in case of a medical emergency involving my student. If the church cannot reach me, I authorize the staff to hire a doctor or healthcare professional to provide necessary treatment. I will pay for any medical expenses incurred.</p>
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="liability" name="liability" required>
-                            <label for="liability">I understand and accept the liability waiver and agree that My Purpose and its staff are not responsible for any injuries that may occur during workshop activities.</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="photoConsent" name="photoConsent">
-                            <label for="photoConsent">I give permission for photos of my child to be taken during activities for promotional purposes (optional).</label>
+                        
+                        <h4 style="color: var(--primary); margin-bottom: 1rem;">Required Agreements:</h4>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="participationConsent" name="participationConsent" required>
+                                <label for="participationConsent">I consent for my child to participate in SFGC summer workshop activities and understand the associated risks.</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="transportationConsent" name="transportationConsent" required>
+                                <label for="transportationConsent">I give consent for transportation provided by volunteer drivers if applicable.</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="medicalConsent" name="medicalConsent" required>
+                                <label for="medicalConsent">I authorize SFGC staff to seek medical treatment for my child in case of emergency if I cannot be reached.</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="photoMediaConsent" name="photoMediaConsent" required>
+                                <label for="photoMediaConsent">I consent to my child being photographed/recorded for promotional and social media use.</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="liabilityRelease" name="liabilityRelease" required>
+                                <label for="liabilityRelease">I agree to release and hold harmless SFGC from any claims arising from participation in the program.</label>
+                            </div>
                         </div>
                     </div>
 
@@ -569,9 +608,11 @@
             const data = Object.fromEntries(formData.entries());
             
             // Handle checkboxes
-            data.consent = formData.has('consent');
-            data.liability = formData.has('liability');
-            data.photoConsent = formData.has('photoConsent');
+            data.participationConsent = formData.has('participationConsent');
+            data.transportationConsent = formData.has('transportationConsent');
+            data.medicalConsent = formData.has('medicalConsent');
+            data.photoMediaConsent = formData.has('photoMediaConsent');
+            data.liabilityRelease = formData.has('liabilityRelease');
             
             try {
                 const response = await fetch('/api/submit-registration', {
