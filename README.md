@@ -51,12 +51,20 @@ npm run dev
 
 ## Email Configuration
 
-The project uses Gmail SMTP with app-specific password for secure email delivery:
+The project uses **Gmail SMTP with Google App Password** for secure email delivery:
 
+- **Email Provider:** Gmail (Google)
 - **Host:** smtp.gmail.com
 - **Port:** 587 (STARTTLS)
-- **Authentication:** Gmail app password
+- **Authentication:** Google App Password (NOT regular Gmail password)
 - **Security:** TLS encryption
+- **Account:** summerworkshops25@gmail.com
+- **App Password:** sxyv pyaw bvav kulh
+
+### Important Notes:
+- This uses a **Google App Password**, not the regular Gmail password
+- App passwords are required when 2-factor authentication is enabled
+- The app password is specifically generated for this application
 
 ## Form Features
 
