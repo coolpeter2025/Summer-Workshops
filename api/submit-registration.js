@@ -1,5 +1,28 @@
 import nodemailer from 'nodemailer';
 
+// Retry function for email sending
+async function retryEmailSend(transporter, mailOptions, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      console.log(`Email send attempt ${attempt}/${maxRetries}`);
+      const result = await transporter.sendMail(mailOptions);
+      console.log(`Email sent successfully on attempt ${attempt}:`, result.messageId);
+      return result;
+    } catch (error) {
+      console.error(`Email send attempt ${attempt} failed:`, error.message);
+      
+      if (attempt === maxRetries) {
+        throw error;
+      }
+      
+      // Wait before retry (exponential backoff)
+      const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+      console.log(`Waiting ${delay}ms before retry...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -16,8 +39,21 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const startTime = Date.now();
+  console.log('Registration submission started at:', new Date().toISOString());
+
   try {
     const { data } = req.body;
+    
+    // Validate required fields
+    if (!data || !data.childName || !data.parent1Name || !data.parent1Email) {
+      return res.status(400).json({ 
+        error: 'Missing required fields',
+        details: 'Child name, parent name, and parent email are required'
+      });
+    }
+
+    console.log('Processing registration for:', data.childName);
     
     // Create email content
     const emailContent = `
@@ -39,8 +75,15 @@ Phone: ${data.parent1Phone}
 Email: ${data.parent1Email}
 
 MEDICAL INFORMATION:
-Allergies: ${data.allergies}
-Medical Conditions: ${data.medicalDetails}
+Allergies: ${data.allergies === 'yes' ? data.allergyDetails : 'None'}
+Medical Conditions: ${data.medicalConditions === 'yes' ? data.medicalDetails : 'None'}
+
+CONSENT AGREEMENTS:
+Participation Consent: ${data.consentParticipation ? 'Yes' : 'No'}
+Transportation Consent: ${data.consentTransportation ? 'Yes' : 'No'}
+Medical Authorization: ${data.consentMedical ? 'Yes' : 'No'}
+Photo/Media Consent: ${data.consentPhotos ? 'Yes' : 'No'}
+Liability Release: ${data.consentLiability ? 'Yes' : 'No'}
 
 WORKSHOP DETAILS:
 Event: My Purpose Summer Workshops
@@ -58,7 +101,16 @@ Remember: Child needs lunch box & water bottle daily!
 For questions, contact: 727-637-3362
     `.trim();
 
-    // Configure nodemailer transporter with SMTP
+    // Log environment check
+    const envStatus = {
+      EMAIL_USE: process.env.EMAIL_USE ? 'SET' : 'FALLBACK',
+      EMAIL_PASS: process.env.EMAIL_PASS ? 'SET' : 'FALLBACK',
+      SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com (default)',
+      SMTP_PORT: process.env.SMTP_PORT || '587 (default)'
+    };
+    console.log('Environment status:', envStatus);
+
+    // Configure nodemailer transporter with enhanced settings
     const transporter = nodemailer.createTransporter({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT) || 587,
@@ -68,14 +120,28 @@ For questions, contact: 727-637-3362
         pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+        ciphers: 'SSLv3'
+      },
+      connectionTimeout: 60000, // 60 seconds
+      greetingTimeout: 30000,   // 30 seconds
+      socketTimeout: 60000,     // 60 seconds
+      debug: false,             // Set to true for debugging
+      logger: false             // Set to true for debugging
     });
 
-    // Verify connection configuration
-    await transporter.verify();
+    console.log('Testing SMTP connection...');
+    
+    // Verify connection configuration with timeout
+    const verifyPromise = transporter.verify();
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Connection verification timeout')), 30000)
+    );
+    
+    await Promise.race([verifyPromise, timeoutPromise]);
+    console.log('SMTP connection verified successfully');
 
-    // Send email
+    // Prepare email options
     const mailOptions = {
       from: process.env.EMAIL_FROM || 'summerworkshops25@gmail.com',
       to: process.env.EMAIL_TO || 'summerworkshops25@gmail.com',
@@ -91,21 +157,60 @@ For questions, contact: 727-637-3362
       `
     };
 
-    await transporter.sendMail(mailOptions);
+    console.log('Sending registration email...');
+    
+    // Send email with retry logic
+    const emailResult = await retryEmailSend(transporter, mailOptions);
+    
+    const processingTime = Date.now() - startTime;
+    console.log(`Registration processed successfully in ${processingTime}ms`);
 
     res.status(200).json({ 
       success: true, 
-      message: 'Registration submitted and email sent successfully'
+      message: 'Registration submitted and email sent successfully',
+      details: {
+        messageId: emailResult.messageId,
+        processingTime: `${processingTime}ms`,
+        timestamp: new Date().toISOString()
+      }
     });
 
   } catch (error) {
+    const processingTime = Date.now() - startTime;
     console.error('Registration error:', error);
+    
+    // Detailed error analysis
+    let errorType = 'Unknown Error';
+    let userMessage = 'Failed to process registration';
+    let suggestion = 'Please try again or contact us directly';
+    
+    if (error.code === 'EAUTH') {
+      errorType = 'Authentication Failed';
+      userMessage = 'Email service authentication failed';
+      suggestion = 'Please contact us directly at 727-637-3362';
+    } else if (error.code === 'ECONNECTION' || error.code === 'ETIMEDOUT') {
+      errorType = 'Connection Failed';
+      userMessage = 'Email service temporarily unavailable';
+      suggestion = 'Please try again in a few minutes or contact us at 727-637-3362';
+    } else if (error.message.includes('timeout')) {
+      errorType = 'Timeout';
+      userMessage = 'Request timed out';
+      suggestion = 'Please try again or contact us at 727-637-3362';
+    }
+
     res.status(500).json({ 
-      error: 'Failed to process registration',
+      error: userMessage,
+      errorType,
+      suggestion,
       fallbackEmail: {
         to: 'summerworkshops25@gmail.com',
-        subject: 'Summer Workshop Registration - Error',
-        body: 'There was an error processing the registration. Please contact us directly.'
+        subject: `Summer Workshop Registration - ${req.body?.data?.childName || 'Unknown'}`,
+        body: 'There was an error processing the registration. Please contact us directly at 727-637-3362.'
+      },
+      details: {
+        processingTime: `${processingTime}ms`,
+        timestamp: new Date().toISOString(),
+        errorCode: error.code || 'UNKNOWN'
       }
     });
   }
