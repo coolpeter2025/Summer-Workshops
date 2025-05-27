@@ -1,3 +1,5 @@
+import nodemailer from 'nodemailer';
+
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -48,17 +50,32 @@ Application submitted on: ${new Date().toLocaleString()}
 For questions, contact: 727-637-3362
     `.trim();
 
-    // In a real implementation, you would send this via email service
-    console.log('Volunteer application received:', emailContent);
-    
+    // Configure nodemailer transporter with SMTP
+    const transporter = nodemailer.createTransporter({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'summerworkshops25@gmail.com',
+        pass: 'sxyv pyaw bvav kulh'
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    // Send email
+    await transporter.sendMail({
+      from: 'summerworkshops25@gmail.com',
+      to: 'summerworkshops25@gmail.com',
+      subject: `Volunteer Application - ${data.volunteerName}`,
+      text: emailContent,
+      html: emailContent.replace(/\n/g, '<br>')
+    });
+
     res.status(200).json({ 
       success: true, 
-      message: 'Volunteer application received successfully',
-      fallbackEmail: {
-        to: 'summerworkshops25@gmail.com',
-        subject: `Volunteer Application - ${data.volunteerName}`,
-        body: emailContent
-      }
+      message: 'Volunteer application submitted and email sent successfully'
     });
 
   } catch (error) {

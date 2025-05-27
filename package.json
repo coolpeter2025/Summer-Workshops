@@ -1,0 +1,27 @@
+{
+  "name": "my-purpose-summer-workshop",
+  "version": "1.0.0",
+  "description": "My Purpose Kids Summer Workshop website with Vercel serverless functions",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.8"
+  },
+  "keywords": [
+    "summer-workshop",
+    "kids",
+    "vercel",
+    "serverless",
+    "email"
+  ],
+  "author": "My Purpose",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coolpeter2025/Summer-Workshop-2.git"
+  }
+}
