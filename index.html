@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,13 +117,28 @@
             }
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
             }
-            to {
-                transform: rotate(360deg);
+            50% {
+                transform: scale(1.05);
             }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
+            background-size: 400px 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
         }
 
         /* Enhanced Header */
@@ -136,6 +152,11 @@
             z-index: 1000;
             transition: var(--transition);
             backdrop-filter: blur(10px);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
         }
 
         .nav {
@@ -191,12 +212,74 @@
             transform: translateY(-2px);
         }
 
+        .nav-links a:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 2rem;
+            right: 2rem;
+            background: var(--bg-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text-gray);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        /* Hero Banner Section */
+        .hero-banner {
+            background: url('Hero Image.png') center/cover no-repeat;
+            height: 300px;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
         /* Hero Content Section */
         .hero-content-section {
             background: var(--bg-white);
-            padding: 8rem 2rem 4rem;
+            padding: 4rem 2rem;
             text-align: center;
-            margin-top: 4rem;
         }
 
         .hero-content {
@@ -272,9 +355,29 @@
             overflow: hidden;
         }
 
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-xl);
+        }
+
+        .cta-button:focus {
+            outline: 2px solid white;
+            outline-offset: 2px;
         }
 
         .cta-button.secondary {
@@ -285,7 +388,66 @@
             background: #059669;
         }
 
-        /* Features Section */
+        /* Enhanced Workshop Gallery */
+        .workshop-gallery {
+            padding: 2rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            height: 180px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* Enhanced Features Section */
         .features {
             padding: 5rem 2rem;
             max-width: 1200px;
@@ -309,10 +471,34 @@
             margin-right: auto;
         }
 
+        .age-notice {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1f2937;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .age-notice::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
@@ -407,6 +593,15 @@
             font-weight: 400;
         }
 
+        .event-details {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
         .registration-form, .volunteer-form {
             background: var(--bg-white);
             padding: 3rem;
@@ -480,6 +675,16 @@
             transform: translateY(-1px);
         }
 
+        .form-group input:invalid {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .form-group input.valid {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
         /* Enhanced checkbox and radio styles */
         .checkbox-group {
             display: flex;
@@ -528,23 +733,51 @@
             max-height: 200px;
         }
 
-        /* Important Notice */
-        .important-notice {
-            background: #fef3cd;
-            border: 2px solid var(--warning);
+        /* Enhanced message styles */
+        .form-message {
             padding: 1.5rem;
             border-radius: var(--border-radius);
-            margin: 2rem 0;
+            margin: 1.5rem 0;
+            font-weight: 500;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            border-left: 4px solid;
         }
 
-        .important-notice h3 {
-            color: #92400e;
-            margin-bottom: 0.5rem;
+        .form-message.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border-color: #dc2626;
         }
 
-        .important-notice p {
-            color: #92400e;
-            margin: 0;
+        .form-message.success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border-color: #16a34a;
+        }
+
+        .form-message.warning {
+            background: #fef3c7;
+            color: #d97706;
+            border-color: #d97706;
+        }
+
+        .form-message .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: inherit;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .form-message .close-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
         }
 
         /* Enhanced consent section */
@@ -637,6 +870,57 @@
             transform: none;
         }
 
+        .submit-button.loading::after {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced step sections */
+        .step-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 5rem 2rem;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-content {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .step-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .step-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* Enhanced Footer */
         .footer {
             background: var(--text-dark);
@@ -668,8 +952,17 @@
                 display: none;
             }
 
-            .hero-content-section {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
                 padding: 6rem 1rem 3rem;
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
             .hero-buttons {
@@ -687,6 +980,10 @@
             }
 
             .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -723,11 +1020,11 @@
                 padding: 1rem;
             }
 
-            .hero-content-section {
+            .hero {
                 padding: 5rem 0.5rem 2rem;
             }
 
-            .features {
+            .features, .workshop-gallery {
                 padding: 2rem 0.5rem;
             }
 
@@ -765,6 +1062,15 @@
         *:focus {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border: #000000;
+                --text-gray: #000000;
+                --shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
         }
     </style>
 
@@ -817,17 +1123,31 @@
         <nav class="nav" role="navigation" aria-label="Main navigation">
             <a href="#" class="logo" aria-label="My Purpose Home">My Purpose</a>
             
+            <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+            </button>
+            
             <ul class="nav-links" role="list">
                 <li><a href="#features" aria-label="Workshop Activities">Activities</a></li>
                 <li><a href="#register" aria-label="Registration Form">Register</a></li>
                 <li><a href="#volunteer" aria-label="Volunteer Opportunities">Volunteer</a></li>
                 <li><a href="tel:727-637-3362" aria-label="Call us at 727-637-3362">Contact</a></li>
             </ul>
+            
+            <div class="mobile-menu" role="menu" aria-label="Mobile navigation menu">
+                <a href="#features" role="menuitem">🎨 Activities</a>
+                <a href="#register" role="menuitem">📝 Register</a>
+                <a href="#volunteer" role="menuitem">🤝 Volunteer</a>
+                <a href="tel:727-637-3362" role="menuitem">📞 Contact</a>
+            </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Hero Banner -->
     <main id="main-content">
+        <section class="hero-banner" role="banner" aria-label="My Purpose Kids Summer Workshop Banner">
+        </section>
+
         <!-- Hero Content Section -->
         <section class="hero-content-section" aria-labelledby="hero-title">
             <div class="hero-content">
@@ -863,12 +1183,47 @@
             </div>
         </section>
 
+        <!-- Enhanced Workshop Gallery -->
+        <section class="workshop-gallery" aria-labelledby="gallery-title">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 id="gallery-title">See Our Workshop in Action</h2>
+                <p class="features-subtitle">Discover the engaging activities that make our workshop special</p>
+                
+                <div class="gallery-grid" role="list" aria-label="Workshop activity examples">
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Creative Arts and Crafts Activities">
+                        <img src="Image May 25, 2025, 10_34_15 PM.png" alt="Children engaged in creative arts and crafts activities">
+                        <div class="overlay">🎨 Creative Arts & Crafts</div>
+                    </div>
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Interactive Learning Adventures">
+                        <img src="Image May 25, 2025, 10_34_18 PM.png" alt="Kids participating in interactive learning adventures">
+                        <div class="overlay">📚 Learning Adventures</div>
+                    </div>
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Group Activities and Teamwork">
+                        <img src="Image May 25, 2025, 10_35_32 PM.png" alt="Children working together in group activities">
+                        <div class="overlay">🤝 Group Activities</div>
+                    </div>
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Workshop Fun and Engagement">
+                        <img src="Image May 25, 2025, 10_46_05 PM.png" alt="Kids having fun and engaging in workshop activities">
+                        <div class="overlay">🎭 Workshop Fun</div>
+                    </div>
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Additional Workshop Activities">
+                        <img src="Image May 25, 2025, 10_46_07 PM.png" alt="More workshop activities and engagement">
+                        <div class="overlay">🌟 More Activities</div>
+                    </div>
+                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Workshop Learning Environment">
+                        <img src="Image May 25, 2025, 10_46_08 PM.png" alt="Learning environment and educational activities">
+                        <div class="overlay">📖 Learning Environment</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section class="features" id="features" aria-labelledby="features-title">
             <h2 id="features-title">What Your Kids Will Experience</h2>
             <p class="features-subtitle">Christ-centered activities that nurture both faith and creativity</p>
             
-            <div class="features-grid" role="list" aria-label="Workshop features and activities">
+            <div class="features-grid" role="list" aria-label="Workshop features and activities" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
                 <div class="feature-card" role="listitem">
                     <div class="feature-icon" aria-hidden="true">✝️</div>
                     <h3>Faith & Learning</h3>
@@ -920,52 +1275,61 @@
                         
                         <div class="form-group">
                             <label for="childName">Full Name <span aria-label="required">*</span></label>
-                            <input type="text" id="childName" name="childName" required autocomplete="name">
+                            <input type="text" id="childName" name="childName" required aria-describedby="childName-error" autocomplete="name">
+                            <div id="childName-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="dateOfBirth">Date of Birth <span aria-label="required">*</span></label>
-                                <input type="date" id="dateOfBirth" name="dateOfBirth" required autocomplete="bday">
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required aria-describedby="dateOfBirth-error" autocomplete="bday">
+                                <div id="dateOfBirth-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="age">Age (6-12 years) <span aria-label="required">*</span></label>
-                                <input type="number" id="age" name="age" min="6" max="12" required>
+                                <input type="number" id="age" name="age" min="6" max="12" required aria-describedby="age-error age-help">
+                                <div id="age-help" class="form-help">Workshop is designed for ages 6-12</div>
+                                <div id="age-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="street">Address - Street <span aria-label="required">*</span></label>
-                            <input type="text" id="street" name="street" required autocomplete="street-address">
+                            <input type="text" id="street" name="street" required aria-describedby="street-error" autocomplete="street-address">
+                            <div id="street-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">City <span aria-label="required">*</span></label>
-                                <input type="text" id="city" name="city" required autocomplete="address-level2">
+                                <input type="text" id="city" name="city" required aria-describedby="city-error" autocomplete="address-level2">
+                                <div id="city-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="state">State/Province <span aria-label="required">*</span></label>
-                                <input type="text" id="state" name="state" required autocomplete="address-level1">
+                                <input type="text" id="state" name="state" required aria-describedby="state-error" autocomplete="address-level1">
+                                <div id="state-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="zip">Zip/Postal Code <span aria-label="required">*</span></label>
-                                <input type="text" id="zip" name="zip" required autocomplete="postal-code">
+                                <input type="text" id="zip" name="zip" required aria-describedby="zip-error" autocomplete="postal-code">
+                                <div id="zip-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="country">Country <span aria-label="required">*</span></label>
-                                <input type="text" id="country" name="country" value="USA" required autocomplete="country">
+                                <input type="text" id="country" name="country" value="USA" required aria-describedby="country-error" autocomplete="country">
+                                <div id="country-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                         </div>
 
                         <fieldset class="form-group">
                             <legend>Allergies (food, medicine, etc.)</legend>
-                            <div class="checkbox-group" role="radiogroup">
+                            <div class="checkbox-group" role="radiogroup" aria-labelledby="allergies-legend">
                                 <label class="checkbox-label">
-                                    <input type="radio" name="allergies" value="no" checked>
+                                    <input type="radio" name="allergies" value="no" checked aria-describedby="allergies-help">
                                     No
                                 </label>
                                 <label class="checkbox-label">
@@ -973,6 +1337,7 @@
                                     Yes (Please specify below)
                                 </label>
                             </div>
+                            <div id="allergies-help" class="form-help">Include any food, medicine, or environmental allergies</div>
                             <input type="text" id="allergyDetails" name="allergyDetails" placeholder="Please specify allergies..." class="conditional-input" aria-label="Allergy details">
                         </fieldset>
 
@@ -998,17 +1363,20 @@
                         
                         <div class="form-group">
                             <label for="parent1Name">Full Name <span aria-label="required">*</span></label>
-                            <input type="text" id="parent1Name" name="parent1Name" required autocomplete="name">
+                            <input type="text" id="parent1Name" name="parent1Name" required aria-describedby="parent1Name-error" autocomplete="name">
+                            <div id="parent1Name-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="parent1Email">Email Address <span aria-label="required">*</span></label>
-                            <input type="email" id="parent1Email" name="parent1Email" required autocomplete="email">
+                            <input type="email" id="parent1Email" name="parent1Email" required aria-describedby="parent1Email-error" autocomplete="email">
+                            <div id="parent1Email-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="parent1Phone">Phone Number <span aria-label="required">*</span></label>
-                            <input type="tel" id="parent1Phone" name="parent1Phone" required autocomplete="tel">
+                            <input type="tel" id="parent1Phone" name="parent1Phone" required aria-describedby="parent1Phone-error" autocomplete="tel">
+                            <div id="parent1Phone-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
                     </fieldset>
 
@@ -1081,18 +1449,20 @@
                     <!-- Enhanced Submit Section -->
                     <div class="form-submit">
                         <div class="submit-button-group">
-                            <button type="submit" class="submit-button">
+                            <button type="submit" class="submit-button" aria-describedby="submit-help">
                                 📝 Submit Registration
                             </button>
                             <a href="https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet" 
                                target="_blank" 
-                               class="payment-button">
+                               class="payment-button"
+                               aria-describedby="payment-help">
                                 💳 Pay Now - $35.00
                             </a>
                         </div>
                         
-                        <p style="color: var(--text-gray); margin: 0;">Registration will be sent to summerworkshops25@gmail.com<br>Payment ($35.00) is required for workshop participation</p>
-                        <p style="color: var(--text-dark); margin-top: 0.5rem;">For additional questions contact: <strong>727-637-3362</strong></p>
+                        <div id="submit-help" class="form-help">Registration will be sent to summerworkshops25@gmail.com</div>
+                        <div id="payment-help" class="form-help">Payment ($35.00) is required for workshop participation</div>
+                        <p class="contact-info">For additional questions contact: <strong>727-637-3362</strong></p>
                     </div>
                 </form>
             </div>
@@ -1236,6 +1606,73 @@
                 </form>
             </div>
         </section>
+
+        <!-- Step Sections (hidden by default) -->
+        <section class="step-section" id="payment-step" style="display: none;" aria-labelledby="payment-title">
+            <div class="step-content">
+                <div class="step-card">
+                    <span class="step-icon" aria-hidden="true">🎯</span>
+                    <h1 id="payment-title" class="step-title">Step 2: Complete Payment</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                        ✅ Your registration has been submitted successfully!<br>
+                        📧 Confirmation email sent to summerworkshops25@gmail.com
+                    </p>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                        <h3 style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.5rem;">Workshop Fee: $35.00</h3>
+                        <p style="margin-bottom: 1.5rem;">Secure payment processing through Square</p>
+                        <button id="payment-button" class="cta-button">
+                            💳 Pay $35.00 Now
+                        </button>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
+                        <p style="font-size: 0.9rem; opacity: 0.8;">
+                            You can also pay later by visiting our payment section<br>
+                            Payment is due before the workshop starts on June 17th
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="step-section" id="completion-step" style="display: none; background: var(--gradient-secondary);" aria-labelledby="completion-title">
+            <div class="step-content">
+                <div class="step-card">
+                    <span class="step-icon" aria-hidden="true">🎉</span>
+                    <h1 id="completion-title" class="step-title">Registration Complete!</h1>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                        <h3 style="color: #10b981; margin-bottom: 1rem;">✅ All Steps Completed</h3>
+                        <div style="text-align: left; font-size: 1.1rem;">
+                            <p>✅ Step 1: Registration submitted and emailed</p>
+                            <p>✅ Step 2: Payment processing opened</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">📅 Workshop Details</h4>
+                        <p><strong>Dates:</strong> June 17 - July 24, 2025</p>
+                        <p><strong>Time:</strong> Every Tuesday & Thursday, 9:30am - 1:00pm</p>
+                        <p><strong>Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688</p>
+                        <p style="margin-top: 1rem; font-weight: bold; color: #fbbf24;">Remember: Lunch box & water bottle daily!</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Questions or need help?</p>
+                        <a href="tel:727-637-3362" class="cta-button">
+                            📞 Call 727-637-3362
+                        </a>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">
+                            🏠 Automatically returning to home page in <span id="countdown" aria-live="polite">5</span> seconds...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Enhanced Footer -->
@@ -1249,233 +1686,518 @@
 
     <!-- Enhanced JavaScript -->
     <script>
-        // Enhanced form submission handlers
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle allergies conditional input
+        // Enhanced DOM ready function
+        function domReady(fn) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                fn();
+            }
+        }
+
+        // Enhanced smooth scrolling with offset for fixed header
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+                    
+                    if (target) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update focus for accessibility
+                        target.tabIndex = -1;
+                        target.focus();
+                    }
+                });
+            });
+        }
+
+        // Enhanced header scroll effects
+        function initHeaderEffects() {
+            const header = document.querySelector('.header');
+            let lastScrollY = 0;
+            let ticking = false;
+
+            function updateHeader() {
+                const scrollY = window.scrollY;
+                
+                if (scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScrollY = scrollY;
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            });
+        }
+
+        // Enhanced mobile menu
+        function initMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                mobileMenu.classList.toggle('active', isMenuOpen);
+                mobileMenuBtn.setAttribute('aria-expanded', isMenuOpen);
+                mobileMenuBtn.innerHTML = isMenuOpen ? '✕' : '☰';
+                
+                // Trap focus in mobile menu when open
+                if (isMenuOpen) {
+                    const firstLink = mobileMenu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    toggleMenu();
+                    mobileMenuBtn.focus();
+                }
+            });
+
+            // Close menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
+            });
+        }
+
+        // Enhanced form validation with real-time feedback
+        function initFormValidation() {
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                
+                inputs.forEach(input => {
+                    // Real-time validation
+                    input.addEventListener('blur', () => validateField(input));
+                    input.addEventListener('input', () => {
+                        if (input.classList.contains('error')) {
+                            validateField(input);
+                        }
+                    });
+                });
+
+                // Enhanced form submission
+                form.addEventListener('submit', handleFormSubmission);
+            });
+        }
+
+        function validateField(field) {
+            const errorDiv = document.getElementById(field.id + '-error');
+            let isValid = true;
+            let errorMessage = '';
+
+            // Remove previous validation classes
+            field.classList.remove('error', 'valid');
+
+            // Check if field is required and empty
+            if (field.hasAttribute('required') && !field.value.trim()) {
+                isValid = false;
+                errorMessage = 'This field is required.';
+            }
+            // Email validation
+            else if (field.type === 'email' && field.value && !isValidEmail(field.value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address.';
+            }
+            // Phone validation
+            else if (field.type === 'tel' && field.value && !isValidPhone(field.value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid phone number.';
+            }
+            // Age validation
+            else if (field.id === 'age' && field.value) {
+                const age = parseInt(field.value);
+                if (age < 6 || age > 12) {
+                    isValid = false;
+                    errorMessage = 'Workshop is designed for children ages 6-12.';
+                }
+            }
+
+            // Update field appearance and error message
+            if (isValid) {
+                field.classList.add('valid');
+                if (errorDiv) {
+                    errorDiv.textContent = '';
+                    errorDiv.style.display = 'none';
+                }
+            } else {
+                field.classList.add('error');
+                if (errorDiv) {
+                    errorDiv.textContent = errorMessage;
+                    errorDiv.style.display = 'block';
+                }
+            }
+
+            return isValid;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            const cleanPhone = phone.replace(/[\s\-\(\)\.]/g, '');
+            return phoneRegex.test(cleanPhone) && cleanPhone.length >= 10;
+        }
+
+        // Enhanced form submission with better UX
+        async function handleFormSubmission(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Clear previous messages
+            clearFormMessages(form);
+            
+            // Validate all fields
+            const allInputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+            let isFormValid = true;
+            let firstErrorField = null;
+            
+            allInputs.forEach(input => {
+                if (!validateField(input)) {
+                    isFormValid = false;
+                    if (!firstErrorField) firstErrorField = input;
+                }
+            });
+
+            // Check consent checkboxes for registration form
+            if (form.id === 'registrationForm') {
+                const consentCheckboxes = form.querySelectorAll('input[type="checkbox"][required]');
+                consentCheckboxes.forEach(checkbox => {
+                    if (!checkbox.checked) {
+                        isFormValid = false;
+                        if (!firstErrorField) firstErrorField = checkbox;
+                    }
+                });
+            }
+
+            if (!isFormValid) {
+                showFormMessage(form, 'Please fill in all required fields and check all required agreements.', 'error');
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => firstErrorField.focus(), 300);
+                }
+                return;
+            }
+
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+
+            try {
+                // Simulate form processing
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Process form based on type
+                if (form.id === 'registrationForm') {
+                    await handleRegistrationSubmission(form);
+                } else if (form.id === 'volunteerForm') {
+                    await handleVolunteerSubmission(form);
+                }
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showFormMessage(form, 'Sorry, there was an error submitting your form. Please try again or contact us at 727-637-3362', 'error');
+            } finally {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        }
+
+        async function handleRegistrationSubmission(form) {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Process conditional fields
+            const allergyRadio = form.querySelector('input[name="allergies"]:checked');
+            const medicalRadio = form.querySelector('input[name="medicalConditions"]:checked');
+            
+            data.allergies = allergyRadio?.value === 'yes' ? 
+                form.querySelector('#allergyDetails').value || 'Specified but details not provided' : 'None';
+            data.medicalDetails = medicalRadio?.value === 'yes' ? 
+                form.querySelector('#medicalDetails').value || 'Specified but details not provided' : 'None';
+
+            // Create email content
+            const childName = data.childName;
+            await sendRegistrationEmail(data);
+            
+            // Show success and proceed to payment
+            showFormMessage(form, `
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <h3 style="margin: 0 0 1rem 0;">STEP 1 COMPLETE: Registration Submitted!</h3>
+                    <p style="margin: 0 0 1rem 0;">📧 Email sent to summerworkshops25@gmail.com<br>
+                    📝 ${childName} is now registered for the workshop</p>
+                    <p style="margin: 0; font-weight: bold; color: #059669;">🔄 Proceeding to Step 2 - Payment...</p>
+                </div>
+            `, 'success');
+            
+            // Store registration data and proceed to payment
+            localStorage.setItem('registrationData', JSON.stringify(data));
+            form.reset();
+            
+            setTimeout(() => {
+                showPaymentStep('https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet');
+            }, 2000);
+        }
+
+        async function handleVolunteerSubmission(form) {
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Process form data including multiple checkboxes
+            for (let [key, value] of formData.entries()) {
+                if (key === 'availableDates') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            await sendVolunteerEmail(data);
+            
+            showFormMessage(form, `
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
+                    <p style="margin: 0 0 1rem 0;">📧 Application sent to summerworkshops25@gmail.com</p>
+                    <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
+                </div>
+            `, 'success');
+            
+            form.reset();
+            
+            // Scroll to top of volunteer section
+            setTimeout(() => {
+                document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        }
+
+        async function sendRegistrationEmail(data) {
+            const emailSubject = `Summer Workshop Registration - ${data.childName}`;
+            const emailBody = createRegistrationEmailBody(data);
+            
+            // Try server API first, fallback to mailto
+            try {
+                const response = await fetch('/api/submit-registration', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ subject: emailSubject, body: emailBody, data })
+                });
+                
+                if (!response.ok) throw new Error('Server unavailable');
+            } catch (error) {
+                // Fallback to mailto
+                const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                window.open(mailtoLink, '_blank');
+            }
+        }
+
+        async function sendVolunteerEmail(data) {
+            const emailSubject = `Volunteer Application - ${data.volunteerName}`;
+            const emailBody = createVolunteerEmailBody(data);
+            
+            const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            window.open(mailtoLink, '_blank');
+        }
+
+        function createRegistrationEmailBody(data) {
+            return `
+SUMMER WORKSHOP REGISTRATION
+============================
+
+CHILD'S INFORMATION:
+Full Name: ${data.childName}
+Date of Birth: ${data.dateOfBirth}
+Age: ${data.age} years old
+
+CONTACT INFORMATION:
+Address: ${data.street}, ${data.city}, ${data.state} ${data.zip}
+Country: ${data.country}
+
+PARENT/GUARDIAN INFORMATION:
+Name: ${data.parent1Name}
+Phone: ${data.parent1Phone}
+Email: ${data.parent1Email}
+
+MEDICAL INFORMATION:
+Allergies: ${data.allergies}
+Medical Conditions: ${data.medicalDetails}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+Fee: $35.00
+
+PAYMENT STATUS: Pending
+
+Registration submitted on: ${new Date().toLocaleString()}
+
+Remember: Child needs lunch box & water bottle daily!
+
+For questions, contact: 727-637-3362
+            `.trim();
+        }
+
+        function createVolunteerEmailBody(data) {
+            const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
+            
+            return `
+VOLUNTEER APPLICATION
+====================
+
+VOLUNTEER INFORMATION:
+Name: ${data.volunteerName}
+Phone: ${data.volunteerPhone}
+Email: ${data.volunteerEmail}
+
+AVAILABILITY:
+Available Dates: ${selectedDates}
+Preferred Time Slot: ${data.timeSlot}
+
+ADDITIONAL INFORMATION:
+Experience with Children: ${data.volunteerExperience || 'Not provided'}
+Activity Interests: ${data.volunteerInterests || 'Not provided'}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+
+Application submitted on: ${new Date().toLocaleString()}
+
+For questions, contact: 727-637-3362
+            `.trim();
+        }
+
+        function showFormMessage(form, message, type = 'info') {
+            clearFormMessages(form);
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message ${type}`;
+            messageDiv.innerHTML = message;
+            
+            // Add close button for errors
+            if (type === 'error') {
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-btn';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.type = 'button';
+                closeBtn.setAttribute('aria-label', 'Close error message');
+                closeBtn.onclick = () => messageDiv.remove();
+                messageDiv.appendChild(closeBtn);
+            }
+            
+            form.insertBefore(messageDiv, form.firstChild);
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Auto remove non-error messages
+            if (type !== 'error') {
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.style.opacity = '0';
+                        messageDiv.style.transition = 'opacity 0.5s ease-out';
+                        setTimeout(() => messageDiv.remove(), 500);
+                    }
+                }, 8000);
+            }
+        }
+
+        function clearFormMessages(form) {
+            const existingMessages = form.querySelectorAll('.form-message');
+            existingMessages.forEach(msg => msg.remove());
+        }
+
+        // Enhanced conditional inputs
+        function initConditionalInputs() {
+            // Allergies conditional input
             const allergyRadios = document.querySelectorAll('input[name="allergies"]');
             const allergyDetails = document.getElementById('allergyDetails');
             
             allergyRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.value === 'yes') {
-                        allergyDetails.style.display = 'block';
+                        allergyDetails.classList.add('show');
                         allergyDetails.required = true;
+                        allergyDetails.style.display = 'block';
                     } else {
-                        allergyDetails.style.display = 'none';
+                        allergyDetails.classList.remove('show');
                         allergyDetails.required = false;
                         allergyDetails.value = '';
+                        setTimeout(() => {
+                            if (!allergyDetails.classList.contains('show')) {
+                                allergyDetails.style.display = 'none';
+                            }
+                        }, 300);
                     }
                 });
             });
 
-            // Handle medical conditions conditional input
+            // Medical conditions conditional input
             const medicalRadios = document.querySelectorAll('input[name="medicalConditions"]');
             const medicalDetails = document.getElementById('medicalDetails');
             
             medicalRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.value === 'yes') {
-                        medicalDetails.style.display = 'block';
+                        medicalDetails.classList.add('show');
                         medicalDetails.required = true;
+                        medicalDetails.style.display = 'block';
                     } else {
-                        medicalDetails.style.display = 'none';
+                        medicalDetails.classList.remove('show');
                         medicalDetails.required = false;
                         medicalDetails.value = '';
+                        setTimeout(() => {
+                            if (!medicalDetails.classList.contains('show')) {
+                                medicalDetails.style.display = 'none';
+                            }
+                        }, 300);
                     }
                 });
             });
-
-            // Show loading state
-            function showLoading(button, originalText) {
-                button.disabled = true;
-                button.innerHTML = `
-                    <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                        <span style="width: 1rem; height: 1rem; border: 2px solid transparent; border-top: 2px solid currentColor; border-radius: 50%; animation: spin 1s linear infinite;"></span>
-                        Submitting...
-                    </span>
-                `;
-            }
-
-            // Hide loading state
-            function hideLoading(button, originalText) {
-                button.disabled = false;
-                button.innerHTML = originalText;
-            }
-
-            // Show success message
-            function showSuccess(message) {
-                const successDiv = document.createElement('div');
-                successDiv.style.cssText = `
-                    position: fixed; top: 20px; right: 20px; z-index: 10000;
-                    background: #10b981; color: white; padding: 1rem 1.5rem;
-                    border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                    font-weight: 500; max-width: 400px;
-                `;
-                successDiv.innerHTML = `✅ ${message}`;
-                document.body.appendChild(successDiv);
-                
-                setTimeout(() => {
-                    successDiv.remove();
-                }, 5000);
-            }
-
-            // Show error message
-            function showError(message, suggestion = '') {
-                const errorDiv = document.createElement('div');
-                errorDiv.style.cssText = `
-                    position: fixed; top: 20px; right: 20px; z-index: 10000;
-                    background: #ef4444; color: white; padding: 1rem 1.5rem;
-                    border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                    font-weight: 500; max-width: 400px; cursor: pointer;
-                `;
-                errorDiv.innerHTML = `
-                    <div>❌ ${message}</div>
-                    ${suggestion ? `<div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">${suggestion}</div>` : ''}
-                    <div style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Click to dismiss</div>
-                `;
-                
-                errorDiv.addEventListener('click', () => errorDiv.remove());
-                document.body.appendChild(errorDiv);
-                
-                setTimeout(() => {
-                    if (errorDiv.parentNode) errorDiv.remove();
-                }, 10000);
-            }
-
-            // Registration form submission
-            const registrationForm = document.getElementById('registrationForm');
-            registrationForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                
-                showLoading(submitButton, originalText);
-                
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData.entries());
-                
-                // Handle checkboxes
-                data.consentParticipation = formData.has('consentParticipation');
-                data.consentTransportation = formData.has('consentTransportation');
-                data.consentMedical = formData.has('consentMedical');
-                data.consentPhotos = formData.has('consentPhotos');
-                data.consentLiability = formData.has('consentLiability');
-                
-                try {
-                    const response = await fetch('/api/submit-registration', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ data })
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (response.ok && result.success) {
-                        showSuccess('Registration submitted successfully! We will contact you soon.');
-                        this.reset();
-                        // Reset conditional inputs
-                        document.getElementById('allergyDetails').style.display = 'none';
-                        document.getElementById('medicalDetails').style.display = 'none';
-                    } else {
-                        throw new Error(result.error || result.suggestion || 'Submission failed');
-                    }
-                } catch (error) {
-                    console.error('Registration error:', error);
-                    
-                    let errorMessage = 'Failed to submit registration';
-                    let suggestion = 'Please try again or contact us at 727-637-3362';
-                    
-                    if (error.message.includes('authentication') || error.message.includes('auth')) {
-                        errorMessage = 'Email service temporarily unavailable';
-                        suggestion = 'Please contact us directly at 727-637-3362';
-                    } else if (error.message.includes('timeout') || error.message.includes('connection')) {
-                        errorMessage = 'Connection timeout';
-                        suggestion = 'Please check your internet connection and try again';
-                    }
-                    
-                    showError(errorMessage, suggestion);
-                    
-                    // Fallback to mailto after showing error
-                    setTimeout(() => {
-                        const subject = encodeURIComponent(`Summer Workshop Registration - ${data.childName}`);
-                        const body = encodeURIComponent(`Registration Details:\n\nChild: ${data.childName}\nAge: ${data.age}\nParent: ${data.parent1Name}\nPhone: ${data.parent1Phone}\nEmail: ${data.parent1Email}\n\nPlease contact us to complete registration.`);
-                        window.location.href = `mailto:summerworkshops25@gmail.com?subject=${subject}&body=${body}`;
-                    }, 3000);
-                } finally {
-                    hideLoading(submitButton, originalText);
-                }
-            });
-
-            // Volunteer form submission
-            const volunteerForm = document.getElementById('volunteerForm');
-            volunteerForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                
-                showLoading(submitButton, originalText);
-                
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData.entries());
-                
-                // Handle checkbox array for available dates
-                data.availableDates = formData.getAll('availableDates');
-                
-                try {
-                    const response = await fetch('/api/submit-volunteer', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ data })
-                    });
-                    
-                    const result = await response.json();
-                    
-                    if (response.ok && result.success) {
-                        showSuccess('Volunteer application submitted successfully! We will contact you soon.');
-                        this.reset();
-                    } else {
-                        throw new Error(result.error || result.suggestion || 'Submission failed');
-                    }
-                } catch (error) {
-                    console.error('Volunteer error:', error);
-                    
-                    let errorMessage = 'Failed to submit volunteer application';
-                    let suggestion = 'Please try again or contact us at 727-637-3362';
-                    
-                    if (error.message.includes('authentication') || error.message.includes('auth')) {
-                        errorMessage = 'Email service temporarily unavailable';
-                        suggestion = 'Please contact us directly at 727-637-3362';
-                    } else if (error.message.includes('timeout') || error.message.includes('connection')) {
-                        errorMessage = 'Connection timeout';
-                        suggestion = 'Please check your internet connection and try again';
-                    }
-                    
-                    showError(errorMessage, suggestion);
-                    
-                    // Fallback to mailto after showing error
-                    setTimeout(() => {
-                        const subject = encodeURIComponent(`Volunteer Application - ${data.volunteerName}`);
-                        const body = encodeURIComponent(`Volunteer Application:\n\nName: ${data.volunteerName}\nPhone: ${data.volunteerPhone}\nEmail: ${data.volunteerEmail}\nTime Slot: ${data.timeSlot}\nAvailable Dates: ${data.availableDates.join(', ')}\n\nPlease contact us to discuss volunteer opportunities.`);
-                        window.location.href = `mailto:summerworkshops25@gmail.com?subject=${subject}&body=${body}`;
-                    }, 3000);
-                } finally {
-                    hideLoading(submitButton, originalText);
-                }
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        }
