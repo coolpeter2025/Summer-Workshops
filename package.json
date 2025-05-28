@@ -9,12 +9,20 @@
     "build": "mkdir -p public && cp -f *.html public/ && cp -f *.jpg public/ && echo 'Build completed: Static files copied to public directory'"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "nodemailer": "^6.9.7"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["registration", "summer", "workshops", "vercel"],
+  "keywords": [
+    "registration",
+    "summer",
+    "workshops",
+    "vercel"
+  ],
   "author": "Your Name",
   "license": "MIT"
 }
