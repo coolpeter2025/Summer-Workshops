@@ -934,7 +934,12 @@
                 </div>
             </div>
 
-            <form class="volunteer-form" id="volunteerForm" style="background: var(--bg-white); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+            <form class="volunteer-form" id="volunteerForm" netlify netlify-honeypot="bot-field-volunteer" style="background: var(--bg-white); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow-lg);">
+                <!-- Hidden fields for spam protection -->
+                <input type="hidden" name="form-name" value="volunteer-application">
+                <div style="display: none;">
+                    <label>Don't fill this out: <input name="bot-field-volunteer"></label>
+                </div>
                 <!-- Volunteer Information -->
                 <div class="form-section" style="margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 2px solid var(--border);">
                     <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #10b981;">👤 Volunteer Information</h3>
