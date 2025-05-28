@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
     }
     
     // Configure Gmail SMTP (simple and direct)
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: 'summerworkshops25@gmail.com',
