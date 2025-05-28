@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     
     // Configure nodemailer with Gmail
     console.log('📧 Configuring nodemailer...');
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
