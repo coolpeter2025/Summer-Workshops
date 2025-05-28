@@ -1650,35 +1650,46 @@ For questions, contact: 727-637-3362
                             }
                         }
                         
-                        // Try server API first, fallback to mailto
-                        try {
-                            const response = await fetch('/api/submit-volunteer', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(data)
-                            });
-                            
-                            const result = await response.json();
-                            
-                            if (result.success) {
-                                // Server email successful
-                                localStorage.setItem('volunteerData', JSON.stringify(data));
-                                showVolunteerSuccessMessage(false);
-                                this.reset();
-                            } else {
-                                throw new Error(result.message);
-                            }
-                        } catch (serverError) {
-                            console.log('Server unavailable, using client-side email fallback');
-                            
-                            // Fallback to client-side email
-                            sendVolunteerClientEmail(data);
+                    // Try server API first, fallback to mailto
+                    try {
+                        console.log('🚀 Volunteer Form: Starting submission...');
+                        console.log('📦 Form data being sent:', JSON.stringify(data, null, 2));
+                        
+                        console.log('📡 Making fetch request to /api/submit-volunteer...');
+                        const response = await fetch('/api/submit-volunteer', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        
+                        console.log('📥 Response status:', response.status);
+                        console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+                        
+                        const result = await response.json();
+                        console.log('📥 Response data:', JSON.stringify(result, null, 2));
+                        
+                        if (result.success) {
+                            // Server email successful
+                            console.log('✅ Server submission successful!');
                             localStorage.setItem('volunteerData', JSON.stringify(data));
-                            showVolunteerSuccessMessage(true);
+                            showVolunteerSuccessMessage(false);
                             this.reset();
+                        } else {
+                            console.log('❌ Server returned error:', result.message);
+                            throw new Error(result.message);
                         }
+                    } catch (serverError) {
+                        console.log('❌ Server error occurred:', serverError);
+                        console.log('🔄 Falling back to client-side email...');
+                        
+                        // Fallback to client-side email
+                        sendVolunteerClientEmail(data);
+                        localStorage.setItem('volunteerData', JSON.stringify(data));
+                        showVolunteerSuccessMessage(true);
+                        this.reset();
+                    }
                         
                     } catch (error) {
                         console.error('Volunteer form error:', error);
