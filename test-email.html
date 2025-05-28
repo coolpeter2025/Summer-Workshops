@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Test - Summer Workshop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #6366f1;
+            text-align: center;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        .error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        .loading {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fed7aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Email Configuration Test</h1>
+        <p>Use this page to test if the email system is working properly.</p>
+        
+        <div class="test-section">
+            <h3>📧 Test Email Sending</h3>
+            <p>Click the button below to send a test email to summerworkshops25@gmail.com</p>
+            <button id="testEmailBtn" onclick="testEmail()">Send Test Email</button>
+            <div id="emailResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Test Registration Form</h3>
+            <p>Test the registration form submission (will use test data)</p>
+            <button id="testRegistrationBtn" onclick="testRegistration()">Test Registration</button>
+            <div id="registrationResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🤝 Test Volunteer Form</h3>
+            <p>Test the volunteer form submission (will use test data)</p>
+            <button id="testVolunteerBtn" onclick="testVolunteer()">Test Volunteer Form</button>
+            <div id="volunteerResult" class="result" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        async function testEmail() {
+            const btn = document.getElementById('testEmailBtn');
+            const result = document.getElementById('emailResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            result.style.display = 'block';
+            result.className = 'result loading';
+            result.textContent = 'Sending test email...';
+            
+            try {
+                const response = await fetch('/api/test-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ test: true })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.className = 'result success';
+                    result.textContent = `✅ SUCCESS!\n\nTest email sent successfully!\nMessage ID: ${data.messageId}\nTimestamp: ${data.timestamp}\n\nCheck summerworkshops25@gmail.com for the test email.`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ FAILED!\n\nError: ${data.message}\nDetails: ${JSON.stringify(data.details || {}, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\nFailed to connect to server.\nError: ${error.message}\n\nThis might mean:\n- Server is not running\n- API endpoint doesn't exist\n- Network connectivity issues`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Test Email';
+            }
+        }
+
+        async function testRegistration() {
+            const btn = document.getElementById('testRegistrationBtn');
+            const result = document.getElementById('registrationResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result loading';
+            result.textContent = 'Testing registration form...';
+            
+            const testData = {
+                childName: 'Test Child',
+                dateOfBirth: '2018-01-01',
+                age: 7,
+                street: '123 Test Street',
+                city: 'Test City',
+                state: 'FL',
+                zip: '12345',
+                country: 'USA',
+                parent1Name: 'Test Parent',
+                parent1Email: 'test@example.com',
+                parent1Phone: '555-123-4567',
+                hasAllergies: 'no',
+                allergies: 'None',
+                hasMedical: 'no',
+                medicalConditions: 'None'
+            };
+            
+            try {
+                const response = await fetch('/api/submit-registration', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.className = 'result success';
+                    result.textContent = `✅ REGISTRATION TEST SUCCESS!\n\nRegistration email sent successfully!\nChild: ${testData.childName}\n\nCheck summerworkshops25@gmail.com for the registration email.`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ REGISTRATION TEST FAILED!\n\nError: ${data.message}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ REGISTRATION NETWORK ERROR!\n\nError: ${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Registration';
+            }
+        }
+
+        async function testVolunteer() {
+            const btn = document.getElementById('testVolunteerBtn');
+            const result = document.getElementById('volunteerResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result loading';
+            result.textContent = 'Testing volunteer form...';
+            
+            const testData = {
+                volunteerName: 'Test Volunteer',
+                volunteerPhone: '555-987-6543',
+                volunteerEmail: 'volunteer@example.com',
+                availableDates: ['June 17', 'June 19'],
+                timeSlot: '9:30 AM - 1:00 PM (Full Day)',
+                volunteerExperience: 'Test experience with children',
+                volunteerInterests: 'Arts & crafts, outdoor activities'
+            };
+            
+            try {
+                const response = await fetch('/api/submit-volunteer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.className = 'result success';
+                    result.textContent = `✅ VOLUNTEER TEST SUCCESS!\n\nVolunteer application sent successfully!\nVolunteer: ${testData.volunteerName}\n\nCheck summerworkshops25@gmail.com for the volunteer application.`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ VOLUNTEER TEST FAILED!\n\nError: ${data.message}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ VOLUNTEER NETWORK ERROR!\n\nError: ${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Volunteer Form';
+            }
+        }
+    </script>
+</body>
+</html>
