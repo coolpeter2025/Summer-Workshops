@@ -1,73 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#6366f1">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="My Purpose">
-    <meta name="language" content="en-US">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <!-- Primary Meta Tags -->
     <title>My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program</title>
-    <meta name="description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities, learning, and fun every Tuesday and Thursday from June 17 - July 24.">
-    <meta name="keywords" content="kids summer workshop, children activities, Tarpon Springs, summer camp, creative learning, kids program, educational workshop, summer activities">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.mypurpose.com">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.mypurpose.com">
-    <meta property="og:title" content="My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program">
-    <meta property="og:description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.mypurpose.com">
-    <meta property="twitter:title" content="My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program">
-    <meta property="twitter:description" content="Join our engaging Kids Summer Workshop for ages 6-12 in Tarpon Springs! Creative activities and learning every Tuesday and Thursday.">
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" as="style">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Enhanced Styles -->
     <style>
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
-            --primary-light: #a5b4fc;
             --secondary: #ec4899;
-            --secondary-dark: #db2777;
-            --accent: #f59e0b;
             --success: #10b981;
-            --warning: #f59e0b;
             --error: #ef4444;
             --bg-light: #f8fafc;
             --bg-white: #ffffff;
             --text-dark: #1e293b;
             --text-gray: #64748b;
-            --text-light: #94a3b8;
             --border: #e2e8f0;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-            --gradient-hero: linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(139, 92, 246, 0.9) 100%);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --border-radius: 0.75rem;
-            --border-radius-lg: 1rem;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -76,72 +28,13 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--bg-light);
-            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', Georgia, serif;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        /* Enhanced Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -200px 0;
-            }
-            100% {
-                background-position: calc(200px + 100%) 0;
-            }
-        }
-
-        .loading-skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
-            background-size: 400px 100%;
-            animation: shimmer 1.5s ease-in-out infinite;
-        }
-
-        /* Enhanced Header */
         .header {
             background: var(--bg-white);
             box-shadow: var(--shadow);
@@ -150,13 +43,6 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
         }
 
         .nav {
@@ -169,113 +55,38 @@
         }
 
         .logo {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo::before {
-            content: "🎯";
-            font-size: 1.5rem;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            color: var(--primary-dark);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-gray);
             font-weight: 500;
-            transition: var(--transition);
-            position: relative;
             padding: 0.5rem 1rem;
             border-radius: var(--border-radius);
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--primary);
             background: rgba(99, 102, 241, 0.1);
-            transform: translateY(-2px);
         }
 
-        .nav-links a:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-
-        .mobile-menu-btn:hover {
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 2rem;
-            right: 2rem;
-            background: var(--bg-white);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-xl);
-            padding: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .mobile-menu.active {
-            display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .mobile-menu a {
-            display: block;
-            padding: 1rem;
-            text-decoration: none;
-            color: var(--text-gray);
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-
-        .mobile-menu a:hover {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-        }
-
-        /* Hero Banner Section */
         .hero-banner {
             background: url('Hero Image.png') center/cover no-repeat;
             height: 300px;
             margin-top: 4rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Hero Content Section */
         .hero-content-section {
             background: var(--bg-white);
             padding: 4rem 2rem;
@@ -288,44 +99,23 @@
         }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
-            animation: fadeInUp 1s ease-out;
         }
 
         .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             color: var(--text-gray);
-            animation: fadeInUp 1s ease-out 0.2s both;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .hero-info {
             background: var(--bg-light);
             padding: 1.5rem;
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--border-radius);
             margin: 2rem 0;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .hero-info h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .hero-info p {
-            color: var(--text-dark);
         }
 
         .hero-buttons {
@@ -333,7 +123,6 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .cta-button {
@@ -347,76 +136,42 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            box-shadow: var(--shadow-lg);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .cta-button:focus {
-            outline: 2px solid white;
-            outline-offset: 2px;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .cta-button.secondary {
             background: var(--success);
         }
 
-        .cta-button.secondary:hover {
-            background: #059669;
-        }
-
-        /* Enhanced Workshop Gallery */
         .workshop-gallery {
-            padding: 2rem 2rem;
+            padding: 2rem;
             background: white;
-            position: relative;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .gallery-item {
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
+            box-shadow: var(--shadow);
             height: 180px;
             position: relative;
-            cursor: pointer;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
         }
 
         .gallery-item .overlay {
@@ -428,37 +183,19 @@
             color: white;
             padding: 1rem;
             font-weight: 600;
-            font-size: 0.9rem;
             text-align: center;
-            transform: translateY(100%);
-            transition: var(--transition);
         }
 
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-
-        /* Enhanced Features Section */
         .features {
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .features h2 {
             text-align: center;
-            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--text-dark);
         }
 
         .features-subtitle {
@@ -466,112 +203,34 @@
             font-size: 1.2rem;
             color: var(--text-gray);
             margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .age-notice {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #1f2937;
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .age-notice::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shimmer 3s ease-in-out infinite;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
         .feature-card {
             background: var(--bg-white);
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-light);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
+            text-align: center;
         }
 
         .feature-icon {
-            width: 4.5rem;
-            height: 4.5rem;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--text-dark);
         }
 
-        .feature-card p {
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* Enhanced Form Styles */
         .registration-section, .volunteer-section {
             background: var(--bg-light);
-            padding: 5rem 2rem;
-            position: relative;
+            padding: 4rem 2rem;
         }
 
         .registration-container, .volunteer-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -580,116 +239,64 @@
             margin-bottom: 3rem;
         }
 
-        .registration-header h1, .volunteer-header h1 {
-            color: var(--primary);
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            margin-bottom: 0.5rem;
-        }
-
-        .registration-header h2, .volunteer-header h2 {
-            color: var(--text-dark);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .event-details {
-            background: var(--bg-white);
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 2rem;
-            border: 1px solid var(--border);
-        }
-
         .registration-form, .volunteer-form {
             background: var(--bg-white);
-            padding: 3rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
         .form-section {
-            margin-bottom: 3rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 2px solid var(--border);
-            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .form-section:last-of-type {
             border-bottom: none;
-            margin-bottom: 2rem;
         }
 
         .form-section h3 {
             color: var(--primary);
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 3px solid var(--primary);
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
+            margin-bottom: 1rem;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--text-dark);
-            font-size: 1rem;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 1rem;
+            padding: 0.75rem;
             border: 2px solid var(--border);
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
-            background: var(--bg-white);
-            font-family: inherit;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-            transform: translateY(-1px);
         }
 
-        .form-group input:invalid {
-            border-color: var(--error);
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
-        .form-group input.valid {
-            border-color: var(--success);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        /* Enhanced checkbox and radio styles */
         .checkbox-group {
             display: flex;
-            gap: 2rem;
-            margin-bottom: 1rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
@@ -697,635 +304,249 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            font-weight: 500;
-            position: relative;
-            padding: 0.75rem 1rem;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
             border-radius: var(--border-radius);
-            transition: var(--transition);
-            border: 2px solid var(--border);
-            background: var(--bg-white);
         }
 
-        .checkbox-label:hover {
-            background: rgba(99, 102, 241, 0.05);
-            border-color: var(--primary-light);
+        .checkbox-label input {
+            margin-right: 0.5rem;
         }
 
-        .checkbox-label input[type="radio"],
-        .checkbox-label input[type="checkbox"] {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-right: 0.75rem;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-
-        .conditional-input {
-            margin-top: 1rem;
-            transition: var(--transition);
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        .conditional-input.show {
-            opacity: 1;
-            max-height: 200px;
-        }
-
-        /* Enhanced message styles */
-        .form-message {
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin: 1.5rem 0;
-            font-weight: 500;
-            position: relative;
-            animation: slideIn 0.3s ease-out;
-            border-left: 4px solid;
-        }
-
-        .form-message.error {
-            background: #fef2f2;
-            color: #dc2626;
-            border-color: #dc2626;
-        }
-
-        .form-message.success {
-            background: #f0fdf4;
-            color: #16a34a;
-            border-color: #16a34a;
-        }
-
-        .form-message.warning {
-            background: #fef3c7;
-            color: #d97706;
-            border-color: #d97706;
-        }
-
-        .form-message .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: inherit;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-
-        .form-message .close-btn:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        /* Enhanced consent section */
         .consent-section {
             background: #f8fafc;
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
-            border: 2px solid #e5e7eb;
+            padding: 2rem;
+            border-radius: var(--border-radius);
             margin: 2rem 0;
         }
 
-        .consent-content {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .consent-agreements {
-            background: #fff3cd;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--warning);
-        }
-
         .consent-agreements .agreement-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
-        .consent-agreements input[type="checkbox"] {
-            margin-top: 0.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
-            accent-color: var(--primary);
-        }
-
-        /* Enhanced submit button */
-        .form-submit {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .submit-button-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .submit-button, .payment-button {
-            flex: 1;
-            min-width: 200px;
-            background: var(--gradient-primary);
+        .submit-button {
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 1.25rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: var(--border-radius);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
+            width: 100%;
         }
 
-        .payment-button {
-            background: var(--gradient-secondary);
-        }
-
-        .submit-button:hover, .payment-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+        .submit-button:hover {
+            background: var(--primary-dark);
         }
 
         .submit-button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
 
-        .submit-button.loading::after {
-            content: '';
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .form-message {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .form-message.success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #16a34a;
         }
 
-        /* Enhanced step sections */
-        .step-section {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 5rem 2rem;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .form-message.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #dc2626;
         }
 
-        .step-content {
-            max-width: 700px;
-            text-align: center;
-        }
-
-        .step-card {
-            background: rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .step-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .step-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Enhanced Footer */
         .footer {
             background: var(--text-dark);
             color: white;
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .footer p {
-            opacity: 0.8;
-            font-size: 1.1rem;
-        }
-
-        /* Enhanced Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
-            .mobile-menu-btn {
-                display: block;
+            
+            .hero-content h1 {
+                font-size: 2rem;
             }
-
-            .hero {
-                padding: 6rem 1rem 3rem;
-                min-height: 80vh;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .features {
-                padding: 3rem 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .registration-section, .volunteer-section {
-                padding: 3rem 1rem;
-            }
-
-            .registration-form, .volunteer-form {
-                padding: 2rem;
-            }
-
+            
             .form-row {
                 grid-template-columns: 1fr;
-                gap: 1rem;
             }
-
+            
             .checkbox-group {
                 flex-direction: column;
-                gap: 1rem;
-            }
-
-            .submit-button-group {
-                flex-direction: column;
-            }
-
-            .submit-button, .payment-button {
-                min-width: auto;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 5rem 0.5rem 2rem;
-            }
-
-            .features, .workshop-gallery {
-                padding: 2rem 0.5rem;
-            }
-
-            .registration-section, .volunteer-section {
-                padding: 2rem 0.5rem;
-            }
-
-            .registration-form, .volunteer-form {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Accessibility enhancements */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Focus indicators */
-        *:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --border: #000000;
-                --text-gray: #000000;
-                --shadow: 0 2px 4px rgba(0,0,0,0.3);
             }
         }
     </style>
-
-    <!-- Schema.org JSON-LD structured data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Event",
-      "name": "My Purpose Kids Summer Workshop",
-      "description": "Creative learning and fun activities for kids ages 6-12 in Tarpon Springs, Florida",
-      "startDate": "2025-06-17T09:30:00-04:00",
-      "endDate": "2025-07-24T13:00:00-04:00",
-      "location": {
-        "@type": "Place",
-        "name": "Slavic Full Gospel Church",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "300 N Highland Ave",
-          "addressLocality": "Tarpon Springs",
-          "addressRegion": "FL",
-          "postalCode": "34688",
-          "addressCountry": "US"
-        }
-      },
-      "organizer": {
-        "@type": "Organization",
-        "name": "My Purpose",
-        "telephone": "727-637-3362",
-        "email": "summerworkshops25@gmail.com"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "35.00",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Children ages 6-12"
-      }
-    }
-    </script>
 </head>
 <body>
-    <!-- Skip Link -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
-
-    <!-- Enhanced Header -->
-    <header class="header" role="banner">
-        <nav class="nav" role="navigation" aria-label="Main navigation">
-            <a href="#" class="logo" aria-label="My Purpose Home">My Purpose</a>
-            
-            <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
-                <span aria-hidden="true">☰</span>
-            </button>
-            
-            <ul class="nav-links" role="list">
-                <li><a href="#features" aria-label="Workshop Activities">Activities</a></li>
-                <li><a href="#register" aria-label="Registration Form">Register</a></li>
-                <li><a href="#volunteer" aria-label="Volunteer Opportunities">Volunteer</a></li>
-                <li><a href="tel:727-637-3362" aria-label="Call us at 727-637-3362">Contact</a></li>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">🎯 My Purpose</a>
+            <ul class="nav-links">
+                <li><a href="#features">Activities</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
+                <li><a href="tel:727-637-3362">Contact</a></li>
             </ul>
-            
-            <div class="mobile-menu" role="menu" aria-label="Mobile navigation menu">
-                <a href="#features" role="menuitem">🎨 Activities</a>
-                <a href="#register" role="menuitem">📝 Register</a>
-                <a href="#volunteer" role="menuitem">🤝 Volunteer</a>
-                <a href="tel:727-637-3362" role="menuitem">📞 Contact</a>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Banner -->
-    <main id="main-content">
-        <section class="hero-banner" role="banner" aria-label="My Purpose Kids Summer Workshop Banner">
-        </section>
+    <main>
+        <section class="hero-banner"></section>
 
-        <!-- Hero Content Section -->
-        <section class="hero-content-section" aria-labelledby="hero-title">
+        <section class="hero-content-section">
             <div class="hero-content">
-                <h1 id="hero-title">My Purpose Kids Summer Workshop</h1>
+                <h1>My Purpose Kids Summer Workshop</h1>
                 <p><strong>Christ-Centered</strong> creative learning and fun activities for kids ages 6-12! Join us every Tuesday and Thursday from 9:30am to 1:00pm in beautiful Tarpon Springs for faith-based education and fellowship.</p>
                 
-                <div class="hero-info" role="complementary" aria-labelledby="age-requirements">
-                    <p id="age-requirements">
-                        <strong>Age Requirements:</strong> This workshop is designed for children ages 6-12.<br>
-                        <strong>Younger children?</strong> Please contact us at <strong>727-637-3362</strong> to discuss options.
-                    </p>
+                <div class="hero-info">
+                    <p><strong>Age Requirements:</strong> This workshop is designed for children ages 6-12.<br>
+                    <strong>Younger children?</strong> Please contact us at <strong>727-637-3362</strong> to discuss options.</p>
                 </div>
                 
-                <div class="hero-info" aria-labelledby="workshop-details">
-                    <h3 id="workshop-details">📅 June 17 - July 24, 2025</h3>
+                <div class="hero-info">
+                    <h3>📅 June 17 - July 24, 2025</h3>
                     <p>📍 300 N Highland Ave, Tarpon Springs, FL 34688</p>
                     <p>🕘 Every Tuesday & Thursday • 9:30am - 1:00pm</p>
                 </div>
                 
                 <div class="hero-buttons">
-                    <a href="#register" class="cta-button" aria-describedby="register-desc">
-                        📝 Register Now
-                    </a>
-                    <a href="#volunteer" class="cta-button secondary" aria-describedby="volunteer-desc">
-                        🤝 Volunteer
-                    </a>
-                </div>
-                
-                <div class="sr-only">
-                    <p id="register-desc">Navigate to registration form to sign up your child</p>
-                    <p id="volunteer-desc">Navigate to volunteer section to help with the workshop</p>
+                    <a href="#register" class="cta-button">📝 Register Now</a>
+                    <a href="#volunteer" class="cta-button secondary">🤝 Volunteer</a>
                 </div>
             </div>
         </section>
 
-        <!-- Enhanced Workshop Gallery -->
-        <section class="workshop-gallery" aria-labelledby="gallery-title">
+        <section class="workshop-gallery">
             <div style="max-width: 1200px; margin: 0 auto;">
-                <h2 id="gallery-title">See Our Workshop in Action</h2>
-                <p class="features-subtitle">Discover the engaging activities that make our workshop special</p>
-                
-                <div class="gallery-grid" role="list" aria-label="Workshop activity examples">
-                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Creative Arts and Crafts Activities">
-                        <img src="Image May 25, 2025, 10_34_15 PM.png" alt="Children engaged in creative arts and crafts activities">
+                <h2 style="text-align: center; margin-bottom: 2rem;">See Our Workshop in Action</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="Image May 25, 2025, 10_34_15 PM.png" alt="Creative Arts and Crafts">
                         <div class="overlay">🎨 Creative Arts & Crafts</div>
                     </div>
-                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Interactive Learning Adventures">
-                        <img src="Image May 25, 2025, 10_34_18 PM.png" alt="Kids participating in interactive learning adventures">
+                    <div class="gallery-item">
+                        <img src="Image May 25, 2025, 10_34_18 PM.png" alt="Learning Adventures">
                         <div class="overlay">📚 Learning Adventures</div>
                     </div>
-                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Group Activities and Teamwork">
-                        <img src="Image May 25, 2025, 10_35_32 PM.png" alt="Children working together in group activities">
+                    <div class="gallery-item">
+                        <img src="Image May 25, 2025, 10_35_32 PM.png" alt="Group Activities">
                         <div class="overlay">🤝 Group Activities</div>
                     </div>
-                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Workshop Fun and Engagement">
-                        <img src="Image May 25, 2025, 10_46_05 PM.png" alt="Kids having fun and engaging in workshop activities">
+                    <div class="gallery-item">
+                        <img src="Image May 25, 2025, 10_46_05 PM.png" alt="Workshop Fun">
                         <div class="overlay">🎭 Workshop Fun</div>
                     </div>
-                    <div class="gallery-item" role="listitem" tabindex="0" aria-label="Workshop Learning Environment">
-                        <img src="Image May 25, 2025, 10_46_08 PM.png" alt="Learning environment and educational activities">
+                    <div class="gallery-item">
+                        <img src="Image May 25, 2025, 10_46_08 PM.png" alt="Learning Environment">
                         <div class="overlay">📖 Learning Environment</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features" id="features" aria-labelledby="features-title">
-            <h2 id="features-title">What Your Kids Will Experience</h2>
+        <section class="features" id="features">
+            <h2>What Your Kids Will Experience</h2>
             <p class="features-subtitle">Christ-centered activities that nurture both faith and creativity</p>
             
-            <div class="features-grid" role="list" aria-label="Workshop features and activities" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-                <div class="feature-card" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">✝️</div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✝️</div>
                     <h3>Faith & Learning</h3>
                     <p>Bible stories and Christian values that strengthen faith while promoting learning.</p>
                 </div>
-                
-                <div class="feature-card" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🎨</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
                     <h3>Creative Arts & Crafts</h3>
                     <p>Hands-on art projects that spark imagination and develop creativity.</p>
                 </div>
-                
-                <div class="feature-card" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🤝</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
                     <h3>Social Skills & Teamwork</h3>
                     <p>Group activities that help children develop friendships and cooperation.</p>
                 </div>
-                
-                <div class="feature-card" role="listitem">
-                    <div class="feature-icon" aria-hidden="true">🏃</div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏃</div>
                     <h3>Active Play & Movement</h3>
                     <p>Physical activities and games to keep kids active and energized.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Enhanced Registration Form Section -->
-        <section class="registration-section" id="register" aria-labelledby="registration-title">
+        <section class="registration-section" id="register">
             <div class="registration-container">
                 <div class="registration-header">
-                    <h1 id="registration-title">Registration Form</h1>
+                    <h1>Registration Form</h1>
                     <h2>My Purpose Kids Summer Workshop</h2>
                 </div>
 
-                <form class="registration-form" id="registrationForm" novalidate aria-describedby="form-description">
-                    <div class="sr-only" id="form-description">
-                        Registration form for My Purpose Summer Workshop. Please fill out all required fields marked with an asterisk.
-                    </div>
-                    
-                    <!-- Hidden fields for spam protection -->
-                    <input type="hidden" name="form-name" value="summer-workshop-registration">
-                    <div style="display: none;">
-                        <label>Don't fill this out: <input name="bot-field" tabindex="-1"></label>
-                    </div>
-                    
-                    <!-- Child's Information -->
+                <form class="registration-form" id="registrationForm">
                     <fieldset class="form-section">
-                        <legend><h3>👶 Child's Information</h3></legend>
+                        <h3>👶 Child's Information</h3>
                         
                         <div class="form-group">
-                            <label for="childName">Full Name <span aria-label="required">*</span></label>
-                            <input type="text" id="childName" name="childName" required aria-describedby="childName-error" autocomplete="name">
-                            <div id="childName-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <label for="childName">Full Name *</label>
+                            <input type="text" id="childName" name="childName" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="dateOfBirth">Date of Birth <span aria-label="required">*</span></label>
-                                <input type="date" id="dateOfBirth" name="dateOfBirth" required aria-describedby="dateOfBirth-error" autocomplete="bday">
-                                <div id="dateOfBirth-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="dateOfBirth">Date of Birth *</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
                             </div>
                             <div class="form-group">
-                                <label for="age">Age (6-12 years) <span aria-label="required">*</span></label>
-                                <input type="number" id="age" name="age" min="6" max="12" required aria-describedby="age-error age-help">
-                                <div id="age-help" class="form-help">Workshop is designed for ages 6-12</div>
-                                <div id="age-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="age">Age (6-12 years) *</label>
+                                <input type="number" id="age" name="age" min="6" max="12" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="street">Address - Street <span aria-label="required">*</span></label>
-                            <input type="text" id="street" name="street" required aria-describedby="street-error" autocomplete="street-address">
-                            <div id="street-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <label for="street">Address - Street *</label>
+                            <input type="text" id="street" name="street" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="city">City <span aria-label="required">*</span></label>
-                                <input type="text" id="city" name="city" required aria-describedby="city-error" autocomplete="address-level2">
-                                <div id="city-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
                             </div>
                             <div class="form-group">
-                                <label for="state">State/Province <span aria-label="required">*</span></label>
-                                <input type="text" id="state" name="state" required aria-describedby="state-error" autocomplete="address-level1">
-                                <div id="state-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="state">State/Province *</label>
+                                <input type="text" id="state" name="state" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="zip">Zip/Postal Code <span aria-label="required">*</span></label>
-                                <input type="text" id="zip" name="zip" required aria-describedby="zip-error" autocomplete="postal-code">
-                                <div id="zip-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="zip">Zip/Postal Code *</label>
+                                <input type="text" id="zip" name="zip" required>
                             </div>
                             <div class="form-group">
-                                <label for="country">Country <span aria-label="required">*</span></label>
-                                <input type="text" id="country" name="country" value="USA" required aria-describedby="country-error" autocomplete="country">
-                                <div id="country-error" class="error-message" role="alert" aria-live="polite"></div>
+                                <label for="country">Country *</label>
+                                <input type="text" id="country" name="country" value="USA" required>
                             </div>
                         </div>
 
-                        <fieldset class="form-group">
-                            <legend>Allergies (food, medicine, etc.)</legend>
-                            <div class="checkbox-group" role="radiogroup" aria-labelledby="allergies-legend">
+                        <div class="form-group">
+                            <label>Allergies (food, medicine, etc.)</label>
+                            <div class="checkbox-group">
                                 <label class="checkbox-label">
-                                    <input type="radio" name="allergies" value="no" checked aria-describedby="allergies-help">
+                                    <input type="radio" name="allergies" value="no" checked>
                                     No
                                 </label>
                                 <label class="checkbox-label">
@@ -1333,13 +554,12 @@
                                     Yes (Please specify below)
                                 </label>
                             </div>
-                            <div id="allergies-help" class="form-help">Include any food, medicine, or environmental allergies</div>
-                            <input type="text" id="allergyDetails" name="allergyDetails" placeholder="Please specify allergies..." class="conditional-input" aria-label="Allergy details">
-                        </fieldset>
+                            <input type="text" id="allergyDetails" name="allergyDetails" placeholder="Please specify allergies..." style="display: none; margin-top: 0.5rem;">
+                        </div>
 
-                        <fieldset class="form-group">
-                            <legend>Medical Conditions or Special Needs</legend>
-                            <div class="checkbox-group" role="radiogroup">
+                        <div class="form-group">
+                            <label>Medical Conditions or Special Needs</label>
+                            <div class="checkbox-group">
                                 <label class="checkbox-label">
                                     <input type="radio" name="medicalConditions" value="no" checked>
                                     No
@@ -1349,71 +569,44 @@
                                     Yes (Please specify below)
                                 </label>
                             </div>
-                            <input type="text" id="medicalDetails" name="medicalDetails" placeholder="Please specify medical conditions or special needs..." class="conditional-input" aria-label="Medical condition details">
-                        </fieldset>
+                            <input type="text" id="medicalDetails" name="medicalDetails" placeholder="Please specify medical conditions..." style="display: none; margin-top: 0.5rem;">
+                        </div>
                     </fieldset>
 
-                    <!-- Parent/Guardian Information -->
                     <fieldset class="form-section">
-                        <legend><h3>👨‍👩‍👧‍👦 Parent's/Legal Guardian's Information</h3></legend>
+                        <h3>👨‍👩‍👧‍👦 Parent's/Legal Guardian's Information</h3>
                         
                         <div class="form-group">
-                            <label for="parent1Name">Full Name <span aria-label="required">*</span></label>
-                            <input type="text" id="parent1Name" name="parent1Name" required aria-describedby="parent1Name-error" autocomplete="name">
-                            <div id="parent1Name-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <label for="parent1Name">Full Name *</label>
+                            <input type="text" id="parent1Name" name="parent1Name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="parent1Email">Email Address <span aria-label="required">*</span></label>
-                            <input type="email" id="parent1Email" name="parent1Email" required aria-describedby="parent1Email-error" autocomplete="email">
-                            <div id="parent1Email-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <label for="parent1Email">Email Address *</label>
+                            <input type="email" id="parent1Email" name="parent1Email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="parent1Phone">Phone Number <span aria-label="required">*</span></label>
-                            <input type="tel" id="parent1Phone" name="parent1Phone" required aria-describedby="parent1Phone-error" autocomplete="tel">
-                            <div id="parent1Phone-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <label for="parent1Phone">Phone Number *</label>
+                            <input type="tel" id="parent1Phone" name="parent1Phone" required>
                         </div>
                     </fieldset>
 
-                    <!-- Important Notice -->
-                    <div class="important-notice" role="alert" aria-labelledby="important-notice-title">
-                        <h3 id="important-notice-title">🚨 Very Important Notice</h3>
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <h3>🚨 Very Important Notice</h3>
                         <p>Please make sure your child has a <strong>lunch box</strong> and a <strong>water bottle</strong> every day at camp.</p>
                     </div>
 
-                    <!-- Enhanced Parental Consent Section -->
                     <fieldset class="consent-section">
-                        <legend><h3>📋 Parental Consent and Medical Authorization</h3></legend>
+                        <h3>📋 Parental Consent and Medical Authorization</h3>
                         
-                        <div class="consent-content">
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
                             <p><strong>SFGC - 300 N Highland Ave, Tarpon Springs, FL 34688</strong></p>
-                            
                             <p>As the parent (or legal guardian) of the above-named student, I understand that my student will be participating in a number of activities conducted by SFGC, which carry a degree of risk. I consent for my student to participate in these activities.</p>
-                            
-                            <div style="margin: 1.5rem 0;">
-                                <h4 style="color: #6366f1; margin-bottom: 0.5rem;">I understand and agree to the following:</h4>
-                                <ul style="margin-left: 1.5rem; line-height: 1.7;">
-                                    <li>My child/youth is physically fit and has the necessary skills to safely participate in these activities</li>
-                                    <li>I give consent for my student to travel to and from events in transportation provided by volunteer drivers</li>
-                                    <li>As parent and/or legal guardian, I remain legally responsible for any personal actions taken by my child</li>
-                                    <li>I agree to release, indemnify, and hold harmless SFGC, its directors, officers, representatives, members, agents, guests, volunteers, and employees from any and all claims</li>
-                                </ul>
-                            </div>
-                            
-                            <div style="margin: 1.5rem 0;">
-                                <h4 style="color: #6366f1; margin-bottom: 0.5rem;">PHOTOS & MEDIA:</h4>
-                                <p>All participants may be photographed or recorded for promotional or social media use, including but not limited to Facebook, Instagram, program websites, and other similar outlets.</p>
-                            </div>
-                            
-                            <div style="margin: 1.5rem 0;">
-                                <h4 style="color: #6366f1; margin-bottom: 0.5rem;">MEDICAL AUTHORIZATION:</h4>
-                                <p>I understand that SFGC will attempt to notify me in case of a medical emergency involving my student. If the church cannot reach me, I authorize the staff to hire a doctor or healthcare professional to provide necessary treatment. I will pay for any medical expenses incurred.</p>
-                            </div>
                         </div>
                         
                         <div class="consent-agreements">
-                            <h4 style="margin: 0 0 1rem 0; color: #92400e;">Required Agreements:</h4>
+                            <h4>Required Agreements:</h4>
                             
                             <div class="agreement-item">
                                 <input type="checkbox" id="consent-participation" name="consentParticipation" required>
@@ -1442,67 +635,50 @@
                         </div>
                     </fieldset>
 
-                    <!-- Enhanced Submit Section -->
-                    <div class="form-submit">
-                        <div class="submit-button-group">
-                            <button type="submit" class="submit-button" aria-describedby="submit-help">
-                                📝 Submit Registration
-                            </button>
-                            <a href="https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet" 
-                               target="_blank" 
-                               class="payment-button"
-                               aria-describedby="payment-help">
-                                💳 Pay Now - $35.00
-                            </a>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="submit-button">📝 Submit Registration</button>
+                        <div style="margin-top: 1rem;">
+                            <p>Registration will be sent to summerworkshops25@gmail.com</p>
+                            <p>Payment ($35.00) is required for workshop participation</p>
+                            <p>For questions contact: <strong>727-637-3362</strong></p>
                         </div>
-                        
-                        <div id="submit-help" class="form-help">Registration will be sent to summerworkshops25@gmail.com</div>
-                        <div id="payment-help" class="form-help">Payment ($35.00) is required for workshop participation</div>
-                        <p class="contact-info">For additional questions contact: <strong>727-637-3362</strong></p>
                     </div>
                 </form>
             </div>
         </section>
 
-        <!-- Enhanced Volunteer Section -->
-        <section class="volunteer-section" id="volunteer" aria-labelledby="volunteer-title">
+        <section class="volunteer-section" id="volunteer">
             <div class="volunteer-container">
                 <div class="volunteer-header">
-                    <h1 id="volunteer-title">🤝 Volunteer with Us</h1>
+                    <h1>🤝 Volunteer with Us</h1>
                     <h2>Help Make a Difference in Children's Lives</h2>
                 </div>
 
-                <form class="volunteer-form" id="volunteerForm" aria-describedby="volunteer-form-description">
-                    <div class="sr-only" id="volunteer-form-description">
-                        Volunteer application form for My Purpose Summer Workshop. Fill out your information and availability.
-                    </div>
-                    
-                    <!-- Volunteer Information -->
+                <form class="volunteer-form" id="volunteerForm">
                     <fieldset class="form-section">
-                        <legend><h3>👤 Volunteer Information</h3></legend>
+                        <h3>👤 Volunteer Information</h3>
                         
                         <div class="form-group">
-                            <label for="volunteerName">Full Name <span aria-label="required">*</span></label>
-                            <input type="text" id="volunteerName" name="volunteerName" required autocomplete="name">
+                            <label for="volunteerName">Full Name *</label>
+                            <input type="text" id="volunteerName" name="volunteerName" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="volunteerPhone">Phone Number <span aria-label="required">*</span></label>
-                            <input type="tel" id="volunteerPhone" name="volunteerPhone" required autocomplete="tel">
+                            <label for="volunteerPhone">Phone Number *</label>
+                            <input type="tel" id="volunteerPhone" name="volunteerPhone" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="volunteerEmail">Email Address <span aria-label="required">*</span></label>
-                            <input type="email" id="volunteerEmail" name="volunteerEmail" required autocomplete="email">
+                            <label for="volunteerEmail">Email Address *</label>
+                            <input type="email" id="volunteerEmail" name="volunteerEmail" required>
                         </div>
                     </fieldset>
 
-                    <!-- Availability Section -->
                     <fieldset class="form-section">
-                        <legend><h3>📅 Availability</h3></legend>
+                        <h3>📅 Availability</h3>
                         
-                        <fieldset class="form-group">
-                            <legend>Which dates are you available? (Check all that apply)</legend>
+                        <div class="form-group">
+                            <label>Which dates are you available? (Check all that apply)</label>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
                                 <label class="checkbox-label">
                                     <input type="checkbox" name="availableDates" value="June 17">
@@ -1553,11 +729,11 @@
                                     Thursday, July 24
                                 </label>
                             </div>
-                        </fieldset>
+                        </div>
 
-                        <fieldset class="form-group">
-                            <legend>Preferred Time Slots <span aria-label="required">*</span></legend>
-                            <div class="checkbox-group" role="radiogroup">
+                        <div class="form-group">
+                            <label>Preferred Time Slots *</label>
+                            <div class="checkbox-group">
                                 <label class="checkbox-label">
                                     <input type="radio" name="timeSlot" value="9:30 AM - 1:00 PM (Full Day)" required>
                                     9:30 AM - 1:00 PM (Full Day)
@@ -1571,12 +747,11 @@
                                     11:15 AM - 1:00 PM (Late Morning)
                                 </label>
                             </div>
-                        </fieldset>
+                        </div>
                     </fieldset>
 
-                    <!-- Additional Information -->
                     <fieldset class="form-section">
-                        <legend><h3>📝 Additional Information</h3></legend>
+                        <h3>📝 Additional Information</h3>
                         
                         <div class="form-group">
                             <label for="volunteerExperience">Do you have experience working with children? (Optional)</label>
@@ -1589,611 +764,26 @@
                         </div>
                     </fieldset>
 
-                    <!-- Submit Button -->
-                    <div class="form-submit" style="text-align: center; margin: 2rem auto;">
-                        <button type="submit" class="submit-button" style="width: auto; min-width: 300px; margin: 0 auto 1.5rem auto; display: block;">
-                            🤝 Submit Volunteer Application
-                        </button>
-                        <div style="text-align: center; max-width: 500px; margin: 0 auto;">
-                            <p style="margin: 0 0 0.5rem 0; color: var(--text-gray);">Application will be sent to summerworkshops25@gmail.com</p>
-                            <p style="margin: 0; color: var(--text-dark);">For questions contact: <strong>727-637-3362</strong></p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="submit-button">🤝 Submit Volunteer Application</button>
+                        <div style="margin-top: 1rem;">
+                            <p>Application will be sent to summerworkshops25@gmail.com</p>
+                            <p>For questions contact: <strong>727-637-3362</strong></p>
                         </div>
                     </div>
                 </form>
             </div>
         </section>
-
-        <!-- Step Sections (hidden by default) -->
-        <section class="step-section" id="payment-step" style="display: none;" aria-labelledby="payment-title">
-            <div class="step-content">
-                <div class="step-card">
-                    <span class="step-icon" aria-hidden="true">🎯</span>
-                    <h1 id="payment-title" class="step-title">Step 2: Complete Payment</h1>
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
-                        ✅ Your registration has been submitted successfully!<br>
-                        📧 Confirmation email sent to summerworkshops25@gmail.com
-                    </p>
-                    
-                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                        <h3 style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.5rem;">Workshop Fee: $35.00</h3>
-                        <p style="margin-bottom: 1.5rem;">Secure payment processing through Square</p>
-                        <button id="payment-button" class="cta-button">
-                            💳 Pay $35.00 Now
-                        </button>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px;">
-                        <p style="font-size: 0.9rem; opacity: 0.8;">
-                            You can also pay later by visiting our payment section<br>
-                            Payment is due before the workshop starts on June 17th
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="step-section" id="completion-step" style="display: none; background: var(--gradient-secondary);" aria-labelledby="completion-title">
-            <div class="step-content">
-                <div class="step-card">
-                    <span class="step-icon" aria-hidden="true">🎉</span>
-                    <h1 id="completion-title" class="step-title">Registration Complete!</h1>
-                    
-                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                        <h3 style="color: #10b981; margin-bottom: 1rem;">✅ All Steps Completed</h3>
-                        <div style="text-align: left; font-size: 1.1rem;">
-                            <p>✅ Step 1: Registration submitted and emailed</p>
-                            <p>✅ Step 2: Payment processing opened</p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
-                        <h4 style="margin-bottom: 1rem;">📅 Workshop Details</h4>
-                        <p><strong>Dates:</strong> June 17 - July 24, 2025</p>
-                        <p><strong>Time:</strong> Every Tuesday & Thursday, 9:30am - 1:00pm</p>
-                        <p><strong>Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688</p>
-                        <p style="margin-top: 1rem; font-weight: bold; color: #fbbf24;">Remember: Lunch box & water bottle daily!</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 2rem;">
-                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">Questions or need help?</p>
-                        <a href="tel:727-637-3362" class="cta-button">
-                            📞 Call 727-637-3362
-                        </a>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
-                        <p style="font-size: 0.9rem; opacity: 0.8; margin: 0;">
-                            🏠 Automatically returning to home page in <span id="countdown" aria-live="polite">5</span> seconds...
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- Enhanced Footer -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer">
         <p>&copy; 2025 My Purpose. Built with intention and purpose. 🌟</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            <a href="tel:727-637-3362" style="color: white; text-decoration: none;">📞 727-637-3362</a> | 
-            <a href="mailto:summerworkshops25@gmail.com" style="color: white; text-decoration: none;">📧 summerworkshops25@gmail.com</a>
+        <p style="margin-top: 0.5rem;">
+            <a href="tel:727-637-3362" style="color: white;">📞 727-637-3362</a> | 
+            <a href="mailto:summerworkshops25@gmail.com" style="color: white;">📧 summerworkshops25@gmail.com</a>
         </p>
     </footer>
 
-    <!-- Enhanced JavaScript -->
-    <script>
-        // Enhanced DOM ready function
-        function domReady(fn) {
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', fn);
-            } else {
-                fn();
-            }
-        }
-
-        // Enhanced smooth scrolling with offset for fixed header
-        function initSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const target = document.getElementById(targetId);
-                    
-                    if (target) {
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update focus for accessibility
-                        target.tabIndex = -1;
-                        target.focus();
-                    }
-                });
-            });
-        }
-
-        // Enhanced header scroll effects
-        function initHeaderEffects() {
-            const header = document.querySelector('.header');
-            let lastScrollY = 0;
-            let ticking = false;
-
-            function updateHeader() {
-                const scrollY = window.scrollY;
-                
-                if (scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                
-                lastScrollY = scrollY;
-                ticking = false;
-            }
-
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateHeader);
-                    ticking = true;
-                }
-            });
-        }
-
-        // Enhanced mobile menu
-        function initMobileMenu() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            let isMenuOpen = false;
-
-            function toggleMenu() {
-                isMenuOpen = !isMenuOpen;
-                mobileMenu.classList.toggle('active', isMenuOpen);
-                mobileMenuBtn.setAttribute('aria-expanded', isMenuOpen);
-                mobileMenuBtn.innerHTML = isMenuOpen ? '✕' : '☰';
-                
-                // Trap focus in mobile menu when open
-                if (isMenuOpen) {
-                    const firstLink = mobileMenu.querySelector('a');
-                    if (firstLink) firstLink.focus();
-                }
-            }
-
-            mobileMenuBtn.addEventListener('click', toggleMenu);
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                    toggleMenu();
-                }
-            });
-            
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && isMenuOpen) {
-                    toggleMenu();
-                    mobileMenuBtn.focus();
-                }
-            });
-
-            // Close menu when clicking on a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (isMenuOpen) toggleMenu();
-                });
-            });
-        }
-
-        // Enhanced form validation with real-time feedback
-        function initFormValidation() {
-            const forms = document.querySelectorAll('form');
-            
-            forms.forEach(form => {
-                const inputs = form.querySelectorAll('input, textarea, select');
-                
-                inputs.forEach(input => {
-                    // Real-time validation
-                    input.addEventListener('blur', () => validateField(input));
-                    input.addEventListener('input', () => {
-                        if (input.classList.contains('error')) {
-                            validateField(input);
-                        }
-                    });
-                });
-
-                // Enhanced form submission
-                form.addEventListener('submit', handleFormSubmission);
-            });
-        }
-
-        function validateField(field) {
-            const errorDiv = document.getElementById(field.id + '-error');
-            let isValid = true;
-            let errorMessage = '';
-
-            // Remove previous validation classes
-            field.classList.remove('error', 'valid');
-
-            // Check if field is required and empty
-            if (field.hasAttribute('required') && !field.value.trim()) {
-                isValid = false;
-                errorMessage = 'This field is required.';
-            }
-            // Email validation
-            else if (field.type === 'email' && field.value && !isValidEmail(field.value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid email address.';
-            }
-            // Phone validation
-            else if (field.type === 'tel' && field.value && !isValidPhone(field.value)) {
-                isValid = false;
-                errorMessage = 'Please enter a valid phone number.';
-            }
-            // Age validation
-            else if (field.id === 'age' && field.value) {
-                const age = parseInt(field.value);
-                if (age < 6 || age > 12) {
-                    isValid = false;
-                    errorMessage = 'Workshop is designed for children ages 6-12.';
-                }
-            }
-
-            // Update field appearance and error message
-            if (isValid) {
-                field.classList.add('valid');
-                if (errorDiv) {
-                    errorDiv.textContent = '';
-                    errorDiv.style.display = 'none';
-                }
-            } else {
-                field.classList.add('error');
-                if (errorDiv) {
-                    errorDiv.textContent = errorMessage;
-                    errorDiv.style.display = 'block';
-                }
-            }
-
-            return isValid;
-        }
-
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function isValidPhone(phone) {
-            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-            const cleanPhone = phone.replace(/[\s\-\(\)\.]/g, '');
-            return phoneRegex.test(cleanPhone) && cleanPhone.length >= 10;
-        }
-
-        // Enhanced form submission with better UX
-        async function handleFormSubmission(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            
-            // Clear previous messages
-            clearFormMessages(form);
-            
-            // Validate all fields
-            const allInputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-            let isFormValid = true;
-            let firstErrorField = null;
-            
-            allInputs.forEach(input => {
-                if (!validateField(input)) {
-                    isFormValid = false;
-                    if (!firstErrorField) firstErrorField = input;
-                }
-            });
-
-            // Check consent checkboxes for registration form
-            if (form.id === 'registrationForm') {
-                const consentCheckboxes = form.querySelectorAll('input[type="checkbox"][required]');
-                consentCheckboxes.forEach(checkbox => {
-                    if (!checkbox.checked) {
-                        isFormValid = false;
-                        if (!firstErrorField) firstErrorField = checkbox;
-                    }
-                });
-            }
-
-            if (!isFormValid) {
-                showFormMessage(form, 'Please fill in all required fields and check all required agreements.', 'error');
-                if (firstErrorField) {
-                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    setTimeout(() => firstErrorField.focus(), 300);
-                }
-                return;
-            }
-
-            // Show loading state
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
-            submitBtn.classList.add('loading');
-
-            try {
-                // Simulate form processing
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Process form based on type
-                if (form.id === 'registrationForm') {
-                    await handleRegistrationSubmission(form);
-                } else if (form.id === 'volunteerForm') {
-                    await handleVolunteerSubmission(form);
-                }
-                
-            } catch (error) {
-                console.error('Form submission error:', error);
-                showFormMessage(form, 'Sorry, there was an error submitting your form. Please try again or contact us at 727-637-3362', 'error');
-            } finally {
-                // Reset button
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('loading');
-            }
-        }
-
-        async function handleRegistrationSubmission(form) {
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Process conditional fields
-            const allergyRadio = form.querySelector('input[name="allergies"]:checked');
-            const medicalRadio = form.querySelector('input[name="medicalConditions"]:checked');
-            
-            data.allergies = allergyRadio?.value === 'yes' ? 
-                form.querySelector('#allergyDetails').value || 'Specified but details not provided' : 'None';
-            data.medicalDetails = medicalRadio?.value === 'yes' ? 
-                form.querySelector('#medicalDetails').value || 'Specified but details not provided' : 'None';
-
-            // Create email content
-            const childName = data.childName;
-            await sendRegistrationEmail(data);
-            
-            // Show success and proceed to payment
-            showFormMessage(form, `
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <h3 style="margin: 0 0 1rem 0;">STEP 1 COMPLETE: Registration Submitted!</h3>
-                    <p style="margin: 0 0 1rem 0;">📧 Email sent to summerworkshops25@gmail.com<br>
-                    📝 ${childName} is now registered for the workshop</p>
-                    <p style="margin: 0; font-weight: bold; color: #059669;">🔄 Proceeding to Step 2 - Payment...</p>
-                </div>
-            `, 'success');
-            
-            // Store registration data and proceed to payment
-            localStorage.setItem('registrationData', JSON.stringify(data));
-            form.reset();
-            
-            setTimeout(() => {
-                showPaymentStep('https://checkout.square.site/merchant/DB6RWNMMZ1ZZ6/checkout/VW35TFNYJLVMFXN4D5STESZQ?src=sheet');
-            }, 2000);
-        }
-
-        async function handleVolunteerSubmission(form) {
-            const formData = new FormData(form);
-            const data = {};
-            
-            // Process form data including multiple checkboxes
-            for (let [key, value] of formData.entries()) {
-                if (key === 'availableDates') {
-                    if (!data[key]) data[key] = [];
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
-            }
-
-            await sendVolunteerEmail(data);
-            
-            showFormMessage(form, `
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
-                    <p style="margin: 0 0 1rem 0;">📧 Application sent to summerworkshops25@gmail.com</p>
-                    <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
-                </div>
-            `, 'success');
-            
-            form.reset();
-            
-            // Scroll to top of volunteer section
-            setTimeout(() => {
-                document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth' });
-            }, 1000);
-        }
-
-        async function sendRegistrationEmail(data) {
-            const emailSubject = `Summer Workshop Registration - ${data.childName}`;
-            const emailBody = createRegistrationEmailBody(data);
-            
-            // Try server API first, fallback to mailto
-            try {
-                const response = await fetch('/api/submit-registration', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ subject: emailSubject, body: emailBody, data })
-                });
-                
-                if (!response.ok) throw new Error('Server unavailable');
-            } catch (error) {
-                // Fallback to mailto
-                const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                window.open(mailtoLink, '_blank');
-            }
-        }
-
-        async function sendVolunteerEmail(data) {
-            const emailSubject = `Volunteer Application - ${data.volunteerName}`;
-            const emailBody = createVolunteerEmailBody(data);
-            
-            const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            window.open(mailtoLink, '_blank');
-        }
-
-        function createRegistrationEmailBody(data) {
-            return `
-SUMMER WORKSHOP REGISTRATION
-============================
-
-CHILD'S INFORMATION:
-Full Name: ${data.childName}
-Date of Birth: ${data.dateOfBirth}
-Age: ${data.age} years old
-
-CONTACT INFORMATION:
-Address: ${data.street}, ${data.city}, ${data.state} ${data.zip}
-Country: ${data.country}
-
-PARENT/GUARDIAN INFORMATION:
-Name: ${data.parent1Name}
-Phone: ${data.parent1Phone}
-Email: ${data.parent1Email}
-
-MEDICAL INFORMATION:
-Allergies: ${data.allergies}
-Medical Conditions: ${data.medicalDetails}
-
-WORKSHOP DETAILS:
-Event: My Purpose Summer Workshops
-Dates: June 17 - July 24, 2025
-Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
-Location: 300 N Highland Ave, Tarpon Springs, FL 34688
-Fee: $35.00
-
-PAYMENT STATUS: Pending
-
-Registration submitted on: ${new Date().toLocaleString()}
-
-Remember: Child needs lunch box & water bottle daily!
-
-For questions, contact: 727-637-3362
-            `.trim();
-        }
-
-        function createVolunteerEmailBody(data) {
-            const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
-            
-            return `
-VOLUNTEER APPLICATION
-====================
-
-VOLUNTEER INFORMATION:
-Name: ${data.volunteerName}
-Phone: ${data.volunteerPhone}
-Email: ${data.volunteerEmail}
-
-AVAILABILITY:
-Available Dates: ${selectedDates}
-Preferred Time Slot: ${data.timeSlot}
-
-ADDITIONAL INFORMATION:
-Experience with Children: ${data.volunteerExperience || 'Not provided'}
-Activity Interests: ${data.volunteerInterests || 'Not provided'}
-
-WORKSHOP DETAILS:
-Event: My Purpose Summer Workshops
-Dates: June 17 - July 24, 2025
-Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
-Location: 300 N Highland Ave, Tarpon Springs, FL 34688
-
-Application submitted on: ${new Date().toLocaleString()}
-
-For questions, contact: 727-637-3362
-            `.trim();
-        }
-
-        function showFormMessage(form, message, type = 'info') {
-            clearFormMessages(form);
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `form-message ${type}`;
-            messageDiv.innerHTML = message;
-            
-            // Add close button for errors
-            if (type === 'error') {
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'close-btn';
-                closeBtn.innerHTML = '&times;';
-                closeBtn.type = 'button';
-                closeBtn.setAttribute('aria-label', 'Close error message');
-                closeBtn.onclick = () => messageDiv.remove();
-                messageDiv.appendChild(closeBtn);
-            }
-            
-            form.insertBefore(messageDiv, form.firstChild);
-            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Auto remove non-error messages
-            if (type !== 'error') {
-                setTimeout(() => {
-                    if (messageDiv.parentNode) {
-                        messageDiv.style.opacity = '0';
-                        messageDiv.style.transition = 'opacity 0.5s ease-out';
-                        setTimeout(() => messageDiv.remove(), 500);
-                    }
-                }, 8000);
-            }
-        }
-
-        function clearFormMessages(form) {
-            const existingMessages = form.querySelectorAll('.form-message');
-            existingMessages.forEach(msg => msg.remove());
-        }
-
-        // Enhanced conditional inputs
-        function initConditionalInputs() {
-            // Allergies conditional input
-            const allergyRadios = document.querySelectorAll('input[name="allergies"]');
-            const allergyDetails = document.getElementById('allergyDetails');
-            
-            allergyRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'yes') {
-                        allergyDetails.classList.add('show');
-                        allergyDetails.required = true;
-                        allergyDetails.style.display = 'block';
-                    } else {
-                        allergyDetails.classList.remove('show');
-                        allergyDetails.required = false;
-                        allergyDetails.value = '';
-                        setTimeout(() => {
-                            if (!allergyDetails.classList.contains('show')) {
-                                allergyDetails.style.display = 'none';
-                            }
-                        }, 300);
-                    }
-                });
-            });
-
-            // Medical conditions conditional input
-            const medicalRadios = document.querySelectorAll('input[name="medicalConditions"]');
-            const medicalDetails = document.getElementById('medicalDetails');
-            
-            medicalRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'yes') {
-                        medicalDetails.classList.add('show');
-                        medicalDetails.required = true;
-                        medicalDetails.style.display = 'block';
-                    } else {
-                        medicalDetails.classList.remove('show');
-                        medicalDetails.required = false;
-                        medicalDetails.value = '';
-                        setTimeout(() => {
-                            if (!medicalDetails.classList.contains('show')) {
-                                medicalDetails.style.display = 'none';
-                            }
-                        }, 300);
-                    }
-                });
-            });
-        }
+    <script src="forms.js"></script>
+</body>
+</html>

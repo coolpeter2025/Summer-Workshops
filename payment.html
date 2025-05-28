@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - My Purpose Kids Summer Workshop</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --error: #ef4444;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.75rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .main-content {
+            margin-top: 5rem;
+            padding: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .payment-container {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .payment-header h1 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .payment-header p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-details {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .payment-details h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .payment-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .payment-methods {
+            margin: 2rem 0;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-option {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+            display: block;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .payment-option .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .payment-option h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .payment-option p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .contact-info {
+            background: #fff3cd;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        .contact-info h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            color: #856404;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--text-gray);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .back-button:hover {
+            background: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .payment-container {
+                padding: 2rem;
+            }
+            
+            .payment-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎯 My Purpose</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="payment-container">
+            <div class="success-icon">✅</div>
+            
+            <div class="payment-header">
+                <h1>Registration Submitted Successfully!</h1>
+                <p>Thank you for registering for the My Purpose Kids Summer Workshop. Your registration has been received and emailed to our team.</p>
+            </div>
+
+            <div class="payment-details">
+                <h3>💰 Payment Information</h3>
+                <div class="payment-item">
+                    <span>Summer Workshop Registration</span>
+                    <span>$35.00</span>
+                </div>
+                <div class="payment-item">
+                    <span>Processing Fee</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="payment-item">
+                    <strong>Total Amount Due</strong>
+                    <strong>$35.00</strong>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h3>Choose Your Payment Method</h3>
+                
+                <div class="payment-options">
+                    <a href="tel:727-637-3362" class="payment-option">
+                        <span class="icon">📞</span>
+                        <h4>Pay by Phone</h4>
+                        <p>Call us at 727-637-3362 to complete your payment securely over the phone.</p>
+                    </a>
+                    
+                    <a href="mailto:summerworkshops25@gmail.com?subject=Payment for Summer Workshop Registration&body=Hello, I would like to complete payment for my child's summer workshop registration. Please let me know the payment options available. Thank you!" class="payment-option">
+                        <span class="icon">📧</span>
+                        <h4>Pay by Email</h4>
+                        <p>Email us to receive payment instructions and available payment methods.</p>
+                    </a>
+                    
+                    <div class="payment-option" style="opacity: 0.7; cursor: not-allowed;">
+                        <span class="icon">💳</span>
+                        <h4>Online Payment</h4>
+                        <p>Online payment system coming soon. Please use phone or email for now.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h4>🚨 Important Reminders</h4>
+                <p><strong>Payment is required to secure your child's spot.</strong> Please complete payment within 48 hours of registration. Don't forget to bring a lunch box and water bottle every day!</p>
+            </div>
+
+            <a href="index.html" class="back-button">
+                ← Back to Home
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // Get registration data from URL parameters if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const childName = urlParams.get('childName');
+        
+        if (childName) {
+            document.querySelector('.payment-header p').innerHTML = 
+                `Thank you for registering <strong>${childName}</strong> for the My Purpose Kids Summer Workshop. Your registration has been received and emailed to our team.`;
+        }
+    </script>
+</body>
+</html>
