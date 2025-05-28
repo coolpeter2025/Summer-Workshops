@@ -134,7 +134,7 @@
             <p style="margin: 0;"><strong>Age Group:</strong> Children ages 6-12</p>
         </div>
 
-        <form id="volunteerForm" action="/api/volunteer-submit" method="POST">
+        <form id="volunteerForm" action="http://localhost:3001/api/volunteer-submit" method="POST">
             <div class="form-group">
                 <label for="name">Full Name <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
@@ -263,7 +263,7 @@
             
             try {
                 const formData = new FormData(this);
-                const response = await fetch('/api/volunteer-submit', {
+                const response = await fetch('http://localhost:3001/api/volunteer-submit', {
                     method: 'POST',
                     body: formData
                 });
