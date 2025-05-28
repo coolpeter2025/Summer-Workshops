@@ -17,8 +17,8 @@ app.use(express.static('.'));
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER || 'your-email@gmail.com',
-    pass: process.env.EMAIL_PASS || 'your-app-password'
+    user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+    pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
   }
 });
 
@@ -100,6 +100,89 @@ Registration submitted on: ${new Date().toLocaleString()}
     res.status(500).json({ 
       success: false, 
       message: 'Failed to submit registration. Please try again.' 
+    });
+  }
+});
+
+// Handle volunteer form submission
+app.post('/api/volunteer-submit', async (req, res) => {
+  try {
+    const data = req.body;
+    
+    console.log('Volunteer form data received:', data);
+    
+    // Validate required fields
+    if (!data.name || !data.phone || !data.email || !data.timeSlot) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required fields: name, phone, email, or timeSlot'
+      });
+    }
+    
+    // Validate at least one date is selected
+    if (!data.dates || data.dates.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please select at least one available date'
+      });
+    }
+    
+    // Format selected dates
+    const selectedDates = Array.isArray(data.dates) ? data.dates.join(', ') : data.dates;
+    
+    // Create email content
+    const emailSubject = `Volunteer Application - ${data.name}`;
+    const emailBody = `
+NEW VOLUNTEER APPLICATION
+========================
+
+VOLUNTEER INFORMATION:
+Name: ${data.name}
+Phone: ${data.phone}
+Email: ${data.email}
+
+AVAILABILITY:
+Available Dates: ${selectedDates}
+Preferred Time: ${data.timeSlot}
+
+ADDITIONAL INFORMATION:
+Experience with Children: ${data.experience || 'Not provided'}
+Activity Interests: ${data.interests || 'Not provided'}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+
+Submitted: ${new Date().toLocaleString()}
+Contact: 727-637-3362
+    `;
+    
+    // Email options
+    const mailOptions = {
+      from: 'summerworkshops25@gmail.com',
+      to: 'summerworkshops25@gmail.com',
+      subject: emailSubject,
+      text: emailBody
+    };
+    
+    // Send email
+    console.log('Sending volunteer email...');
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Volunteer email sent:', info.messageId);
+    
+    res.json({ 
+      success: true, 
+      message: 'Volunteer application submitted successfully!',
+      volunteer: data.name
+    });
+    
+  } catch (error) {
+    console.error('Volunteer form error:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to submit application. Please try again or call 727-637-3362'
     });
   }
 });
