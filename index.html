@@ -620,7 +620,7 @@
             </div>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#register" class="cta-button">Register Now</a>
-                <a href="#volunteer" class="cta-button" style="background: #10b981;">🤝 Volunteer</a>
+                <a href="volunteer.html" class="cta-button" style="background: #10b981;">🤝 Volunteer</a>
             </div>
         </div>
     </section>
@@ -1652,7 +1652,7 @@ For questions, contact: 727-637-3362
                         
                         // Try server API first, fallback to mailto
                         try {
-                            const response = await fetch('contact-form/send-email', {
+                            const response = await fetch('/submit-volunteer', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',

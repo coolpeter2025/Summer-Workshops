@@ -104,6 +104,73 @@ Registration submitted on: ${new Date().toLocaleString()}
   }
 });
 
+// Handle volunteer form submission
+app.post('/submit-volunteer', async (req, res) => {
+  try {
+    const data = req.body;
+    
+    // Format availability dates
+    const availabilityDates = Array.isArray(data.availability) 
+      ? data.availability.join(', ') 
+      : (data.availability || 'None selected');
+    
+    // Create email content
+    const emailSubject = 'Volunteer Application - My Purpose Summer Workshop';
+    const emailBody = `
+VOLUNTEER APPLICATION
+====================
+
+VOLUNTEER INFORMATION:
+- Full Name: ${data.name}
+- Phone Number: ${data.phone}
+- Email Address: ${data.email}
+
+AVAILABILITY:
+- Available Dates: ${availabilityDates}
+- Preferred Time Slot: ${data.timeSlot}
+
+ADDITIONAL INFORMATION:
+- Experience with Children: ${data.experience || 'Not provided'}
+- Activity Interests: ${data.activities || 'Not provided'}
+
+WORKSHOP DETAILS:
+- Event: My Purpose Summer Workshops
+- Dates: June 17 - July 24, 2025
+- Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+- Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+
+Application submitted on: ${new Date().toLocaleString()}
+
+For questions, contact: 727-637-3362
+    `;
+
+    // Email options
+    const mailOptions = {
+      from: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+      to: 'summerworkshops25@gmail.com',
+      subject: emailSubject,
+      text: emailBody,
+      html: emailBody.replace(/\n/g, '<br>'),
+      replyTo: data.email // Allow direct replies to volunteer
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    
+    res.json({ 
+      success: true, 
+      message: 'Volunteer application submitted successfully! We will contact you soon.'
+    });
+    
+  } catch (error) {
+    console.error('Error sending volunteer email:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to submit volunteer application. Please try again or contact us at 727-637-3362.' 
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
