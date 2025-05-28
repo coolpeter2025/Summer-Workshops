@@ -1676,80 +1676,35 @@ For questions, contact: 727-637-3362
                             }
                         }
                         
-                        // Create email content
-                        const emailSubject = `Volunteer Application - ${data.volunteerName}`;
-                        const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
-                        
-                        const emailBody = `
-VOLUNTEER APPLICATION
-====================
-
-VOLUNTEER INFORMATION:
-Name: ${data.volunteerName}
-Phone: ${data.volunteerPhone}
-Email: ${data.volunteerEmail}
-
-AVAILABILITY:
-Available Dates: ${selectedDates}
-Preferred Time Slot: ${data.timeSlot}
-
-ADDITIONAL INFORMATION:
-Experience with Children: ${data.volunteerExperience || 'Not provided'}
-Activity Interests: ${data.volunteerInterests || 'Not provided'}
-
-WORKSHOP DETAILS:
-Event: My Purpose Summer Workshops
-Dates: June 17 - July 24, 2025
-Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
-Location: 300 N Highland Ave, Tarpon Springs, FL 34688
-
-Application submitted on: ${new Date().toLocaleString()}
-
-For questions, contact: 727-637-3362
-                        `.trim();
-                        
-                        // Create mailto link
-                        const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                        
-                        // Open email client
-                        window.location.href = mailtoLink;
-                        
-                        // Show success message with countdown
-                        showVolunteerMessage(`
-                            <div style="text-align: center;">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                                <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
-                                <p style="margin: 0 0 1rem 0;">📧 Email client opened to send application to summerworkshops25@gmail.com</p>
-                                <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
-                                <p style="margin: 1rem 0 0 0; font-size: 0.9rem; opacity: 0.8;">🏠 Redirecting to home page in <span id="volunteer-countdown">5</span> seconds...</p>
-                            </div>
-                        `, 'success');
-                        
-                        // Reset form
-                        this.reset();
-                        
-                        // Scroll to top of volunteer section
-                        document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth' });
-                        
-                        // Start countdown and redirect
-                        let timeLeft = 5;
-                        const countdownElement = document.getElementById('volunteer-countdown');
-                        
-                        const redirectTimer = setInterval(() => {
-                            timeLeft--;
-                            if (countdownElement) {
-                                countdownElement.textContent = timeLeft;
-                            }
+                        // Try server API first, fallback to mailto
+                        try {
+                            const response = await fetch('/api/submit-volunteer', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data)
+                            });
                             
-                            if (timeLeft <= 0) {
-                                clearInterval(redirectTimer);
-                                // Redirect to home page (hero section)
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                                // Remove any existing messages
-                                const existingMessages = document.querySelectorAll('.volunteer-message');
-                                existingMessages.forEach(msg => msg.remove());
+                            const result = await response.json();
+                            
+                            if (result.success) {
+                                // Server email successful
+                                localStorage.setItem('volunteerData', JSON.stringify(data));
+                                showVolunteerSuccessMessage(false);
+                                this.reset();
+                            } else {
+                                throw new Error(result.message);
                             }
-                        }, 1000);
+                        } catch (serverError) {
+                            console.log('Server unavailable, using client-side email fallback');
+                            
+                            // Fallback to client-side email
+                            sendVolunteerClientEmail(data);
+                            localStorage.setItem('volunteerData', JSON.stringify(data));
+                            showVolunteerSuccessMessage(true);
+                            this.reset();
+                        }
                         
                     } catch (error) {
                         console.error('Volunteer form error:', error);
@@ -1798,6 +1753,89 @@ For questions, contact: 727-637-3362
                         }
                     }, 8000);
                 }
+            }
+
+            // Volunteer success message function
+            function showVolunteerSuccessMessage(isClientEmail = false) {
+                const emailMessage = isClientEmail 
+                    ? '📧 Email client will open to send application to summerworkshops25@gmail.com'
+                    : '📧 Email sent automatically to summerworkshops25@gmail.com';
+                    
+                showVolunteerMessage(`
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                        <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
+                        <p style="margin: 0 0 1rem 0;">${emailMessage}</p>
+                        <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
+                        <p style="margin: 1rem 0 0 0; font-size: 0.9rem; opacity: 0.8;">🏠 Redirecting to home page in <span id="volunteer-countdown">5</span> seconds...</p>
+                        ${isClientEmail ? '<p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.8;">Please send the email that will open to complete application</p>' : ''}
+                    </div>
+                `, 'success');
+                
+                // Start countdown and redirect
+                let timeLeft = 5;
+                const countdownElement = document.getElementById('volunteer-countdown');
+                
+                const redirectTimer = setInterval(() => {
+                    timeLeft--;
+                    if (countdownElement) {
+                        countdownElement.textContent = timeLeft;
+                    }
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(redirectTimer);
+                        // Redirect to home page (hero section)
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // Remove any existing messages
+                        const existingMessages = document.querySelectorAll('.volunteer-message');
+                        existingMessages.forEach(msg => msg.remove());
+                    }
+                }, 1000);
+            }
+
+            // Client-side email function for volunteer form
+            function sendVolunteerClientEmail(data) {
+                // Create email content
+                const emailSubject = `Volunteer Application - ${data.volunteerName}`;
+                const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
+                
+                const emailBody = `
+VOLUNTEER APPLICATION
+====================
+
+VOLUNTEER INFORMATION:
+Name: ${data.volunteerName}
+Phone: ${data.volunteerPhone}
+Email: ${data.volunteerEmail}
+
+AVAILABILITY:
+Available Dates: ${selectedDates}
+Preferred Time Slot: ${data.timeSlot}
+
+ADDITIONAL INFORMATION:
+Experience with Children: ${data.volunteerExperience || 'Not provided'}
+Activity Interests: ${data.volunteerInterests || 'Not provided'}
+
+WORKSHOP DETAILS:
+Event: My Purpose Summer Workshops
+Dates: June 17 - July 24, 2025
+Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Location: 300 N Highland Ave, Tarpon Springs, FL 34688
+
+Application submitted on: ${new Date().toLocaleString()}
+
+For questions, contact: 727-637-3362
+                `.trim();
+                
+                // Create mailto link
+                const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                // Open email client
+                setTimeout(() => {
+                    window.location.href = mailtoLink;
+                }, 1000);
+                
+                console.log('Volunteer client-side email prepared for:', data.volunteerName);
             }
         });
     </script>
