@@ -620,7 +620,7 @@
             </div>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#register" class="cta-button">Register Now</a>
-                <a href="contact-form/public/index.html" class="cta-button" style="background: #10b981;">🤝 Volunteer</a>
+                <a href="#volunteer" class="cta-button" style="background: #10b981;">🤝 Volunteer</a>
             </div>
         </div>
     </section>
@@ -983,6 +983,152 @@
                     </p>
                 </div>
                 
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section class="volunteer-section" id="volunteer" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 2rem;">
+        <div style="max-width: 700px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; text-align: center;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 10px; font-weight: 300;">Volunteer with Us</h1>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Help Make a Difference in Children's Lives</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 30px; border-bottom: 1px solid #e9ecef;">
+                <h2 style="color: #333; margin-bottom: 20px; font-size: 1.5rem;">📚 Workshop Information</h2>
+                <div style="display: grid; gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">Event:</strong> My Purpose Summer Workshops
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">Dates:</strong> June 17 - July 24, 2025
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">Schedule:</strong> Every Tuesday and Thursday, 9:30 AM - 1:00 PM
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">Location:</strong> 300 N Highland Ave, Tarpon Springs, FL 34688
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">Age Group:</strong> Children ages 6-12
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 40px 30px;">
+                <form id="volunteerForm">
+                    <div style="margin: 30px 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #f1f3f4;">
+                        <h3 style="color: #333; font-size: 1.3rem; font-weight: 600;">👤 Volunteer Information</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Full Name <span style="color: #e74c3c;">*</span></label>
+                        <input type="text" name="name" required style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit;">
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Phone Number <span style="color: #e74c3c;">*</span></label>
+                        <input type="tel" name="phone" required style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit;">
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Email Address <span style="color: #e74c3c;">*</span></label>
+                        <input type="email" name="email" required style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit;">
+                    </div>
+                    
+                    <div style="margin: 30px 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #f1f3f4;">
+                        <h3 style="color: #333; font-size: 1.3rem; font-weight: 600;">📅 Availability</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Which dates are you available? (Check all that apply)</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px;">
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, June 17" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, June 17</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, June 19" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, June 19</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, June 24" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, June 24</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, June 26" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, June 26</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, July 1" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, July 1</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, July 3" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, July 3</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, July 8" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, July 8</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, July 10" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, July 10</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, July 15" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, July 15</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, July 17" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, July 17</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Tuesday, July 22" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Tuesday, July 22</span>
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 10px; background: #f8f9fa; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: normal;">
+                                <input type="checkbox" name="availability" value="Thursday, July 24" style="margin-right: 10px; transform: scale(1.2);">
+                                <span>Thursday, July 24</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Preferred Time Slots <span style="color: #e74c3c;">*</span></label>
+                        <select name="timeSlot" required style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit; cursor: pointer;">
+                            <option value="">Select your preferred time slot</option>
+                            <option value="9:30 AM - 1:00 PM (Full Day)">9:30 AM - 1:00 PM (Full Day)</option>
+                            <option value="9:30 AM - 11:15 AM (Morning)">9:30 AM - 11:15 AM (Morning)</option>
+                            <option value="11:15 AM - 1:00 PM (Late Morning)">11:15 AM - 1:00 PM (Late Morning)</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin: 30px 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #f1f3f4;">
+                        <h3 style="color: #333; font-size: 1.3rem; font-weight: 600;">📝 Additional Information</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">Do you have experience working with children? (Optional)</label>
+                        <textarea name="experience" placeholder="Please describe any relevant experience..." style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.95rem;">What activities are you most interested in helping with? (Optional)</label>
+                        <textarea name="activities" placeholder="Arts & crafts, outdoor activities, reading, games, etc..." style="width: 100%; padding: 15px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; position: relative; overflow: hidden;">
+                        🤝 Submit Volunteer Application
+                    </button>
+                </form>
+                
+                <div id="volunteerResponseMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: 500; text-align: center; display: none;"></div>
+            </div>
+            
+            <div style="text-align: center; padding: 20px; background: #f8f9fa; color: #6c757d; font-size: 0.9rem;">
+                <p>Thank you for your interest in volunteering! Your application will be reviewed and we'll contact you soon.</p>
             </div>
         </div>
     </section>
@@ -1481,15 +1627,15 @@ For questions, contact: 727-637-3362
                     requiredFields.forEach(field => {
                         if (!field.value.trim()) {
                             isValid = false;
-                            field.style.borderColor = 'var(--error)';
+                            field.style.borderColor = '#ef4444';
                             if (!firstInvalidField) firstInvalidField = field;
                         } else {
-                            field.style.borderColor = 'var(--border)';
+                            field.style.borderColor = '#e1e5e9';
                         }
                     });
                     
                     // Check if at least one date is selected
-                    const dateCheckboxes = this.querySelectorAll('input[name="availableDates"]:checked');
+                    const dateCheckboxes = this.querySelectorAll('input[name="availability"]:checked');
                     if (dateCheckboxes.length === 0) {
                         isValid = false;
                         showVolunteerMessage('Please select at least one available date.', 'error');
@@ -1516,7 +1662,7 @@ For questions, contact: 727-637-3362
                         const formData = new FormData(this);
                         const data = {};
                         for (let [key, value] of formData.entries()) {
-                            if (key === 'availableDates') {
+                            if (key === 'availability') {
                                 if (!data[key]) data[key] = [];
                                 data[key].push(value);
                             } else {
@@ -1526,7 +1672,7 @@ For questions, contact: 727-637-3362
                         
                         // Try server API first, fallback to mailto
                         try {
-                            const response = await fetch('/api/submit-volunteer', {
+                            const response = await fetch('contact-form/send-email', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
