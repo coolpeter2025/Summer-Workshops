@@ -1676,28 +1676,28 @@ For questions, contact: 727-637-3362
                             }
                         }
                         
-                        // Try server API first, fallback to mailto
+                        // Submit directly via Netlify form handling
+                        // The form has netlify attribute, so it will be processed by Netlify
+                        // If Netlify is not available, fall back to client-side email
+                        
                         try {
-                            const response = await fetch('/api/submit-volunteer', {
+                            // Try to submit via Netlify
+                            const response = await fetch('/', {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(data)
+                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                                body: new URLSearchParams(new FormData(this)).toString()
                             });
                             
-                            const result = await response.json();
-                            
-                            if (result.success) {
-                                // Server email successful
+                            if (response.ok) {
+                                // Netlify submission successful
                                 localStorage.setItem('volunteerData', JSON.stringify(data));
                                 showVolunteerSuccessMessage(false);
                                 this.reset();
                             } else {
-                                throw new Error(result.message);
+                                throw new Error('Netlify submission failed');
                             }
                         } catch (serverError) {
-                            console.log('Server unavailable, using client-side email fallback');
+                            console.log('Netlify unavailable, using client-side email fallback');
                             
                             // Fallback to client-side email
                             sendVolunteerClientEmail(data);
