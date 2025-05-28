@@ -1714,13 +1714,14 @@ For questions, contact: 727-637-3362
                         // Open email client
                         window.location.href = mailtoLink;
                         
-                        // Show success message
+                        // Show success message with countdown
                         showVolunteerMessage(`
                             <div style="text-align: center;">
                                 <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
                                 <h3 style="margin: 0 0 1rem 0;">Volunteer Application Submitted!</h3>
                                 <p style="margin: 0 0 1rem 0;">📧 Email client opened to send application to summerworkshops25@gmail.com</p>
                                 <p style="margin: 0; font-weight: bold; color: #059669;">Thank you for volunteering! We'll contact you soon.</p>
+                                <p style="margin: 1rem 0 0 0; font-size: 0.9rem; opacity: 0.8;">🏠 Redirecting to home page in <span id="volunteer-countdown">5</span> seconds...</p>
                             </div>
                         `, 'success');
                         
@@ -1729,6 +1730,26 @@ For questions, contact: 727-637-3362
                         
                         // Scroll to top of volunteer section
                         document.getElementById('volunteer').scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Start countdown and redirect
+                        let timeLeft = 5;
+                        const countdownElement = document.getElementById('volunteer-countdown');
+                        
+                        const redirectTimer = setInterval(() => {
+                            timeLeft--;
+                            if (countdownElement) {
+                                countdownElement.textContent = timeLeft;
+                            }
+                            
+                            if (timeLeft <= 0) {
+                                clearInterval(redirectTimer);
+                                // Redirect to home page (hero section)
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                // Remove any existing messages
+                                const existingMessages = document.querySelectorAll('.volunteer-message');
+                                existingMessages.forEach(msg => msg.remove());
+                            }
+                        }, 1000);
                         
                     } catch (error) {
                         console.error('Volunteer form error:', error);
