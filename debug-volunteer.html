@@ -138,8 +138,8 @@
             </div>
             
             <div class="form-group">
-                <label for="timeSlot">Preferred Time Slot *</label>
-                <select id="timeSlot" name="timeSlot" required>
+                <label for="timeSlot">Preferred Time Slot (Optional for testing)</label>
+                <select id="timeSlot" name="timeSlot">
                     <option value="">Select time slot</option>
                     <option value="9:30 AM - 1:00 PM (Full Day)">9:30 AM - 1:00 PM (Full Day)</option>
                     <option value="9:30 AM - 11:15 AM (Morning)">9:30 AM - 11:15 AM (Morning)</option>
@@ -206,7 +206,7 @@
             
             // Validate required fields
             log('🔍 Validating required fields...');
-            const requiredFields = ['name', 'email', 'phone', 'timeSlot'];
+            const requiredFields = ['name', 'email', 'phone'];
             let isValid = true;
             
             for (const field of requiredFields) {
@@ -216,6 +216,14 @@
                 } else {
                     log(`✅ Field ${field}: OK`);
                 }
+            }
+            
+            // Check timeSlot (optional for testing)
+            if (data.timeSlot && data.timeSlot.trim() !== '') {
+                log(`✅ Time slot selected: ${data.timeSlot}`);
+            } else {
+                log(`⚠️ Time slot not selected (optional for testing)`);
+                data.timeSlot = 'Not specified (testing)';
             }
             
             if (!data.availability || data.availability.length === 0) {
