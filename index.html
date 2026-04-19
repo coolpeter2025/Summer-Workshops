@@ -1498,7 +1498,7 @@ let squareReady = false;
 async function initSquare(){
   if(squareReady) return;
   if(!window.Square){
-    showPayError('Square SDK failed to load. Please check your connection.');
+    showPayError('Payment system failed to load. Please refresh the page and try again.');
     return;
   }
   try{
@@ -1517,19 +1517,9 @@ async function initSquare(){
     await card.attach('#card-container');
     squareReady = true;
   }catch(err){
-    console.warn('Square init failed — falling back to demo mode.', err);
-    // Fallback UI: replicate card fields so the flow still works in preview.
-    document.getElementById('card-container').innerHTML = `
-      <div style="display:grid; gap:10px">
-        <input id="fakeCard" placeholder="Card number" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="4111 1111 1111 1111">
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px">
-          <input id="fakeExp" placeholder="MM/YY" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="12/28">
-          <input id="fakeCvv" placeholder="CVV" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="123">
-          <input id="fakeZip" placeholder="ZIP" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="34688">
-        </div>
-      </div>
-    `;
-    squareReady = 'fallback';
+    console.error('Square init error:', err);
+    showPayError('Payment system could not load (Error: ' + (err.message || err) + '). Please refresh and try again or call (727) 637-3362.');
+    squareReady = false;
   }
 }
 
@@ -1546,12 +1536,16 @@ function openPayModal(){
   document.body.style.overflow = 'hidden';
   document.getElementById('payForm').style.display = 'block';
   document.getElementById('paySuccess').style.display = 'none';
+  document.getElementById('card-container').innerHTML = '';
   clearPayError();
+  squareReady = false;
+  card = null;
   if(regData && regData.childName){
     document.getElementById('paySub').textContent =
       `Enter a card to reserve ${regData.childName}'s spot.`;
   }
-  initSquare();
+  // Wait for modal to be visible before attaching Square card widget
+  requestAnimationFrame(()=> requestAnimationFrame(()=> initSquare()));
 }
 function closePayModal(){
   const m = document.getElementById('payModal');
