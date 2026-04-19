@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Square Web Payments SDK (sandbox) -->
-<script src="https://web.squarecdn.com/v1/square.js"></script>
+<script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
 
 <style>
 /* ── Tokens (Titan design system) ───────────────────────────── */
@@ -1492,34 +1492,43 @@ document.getElementById('volunteerForm').addEventListener('submit', e=>{
 const SQUARE_APP_ID = 'sq0idp-OTurwSS-m1--L0g9pSPhxA';
 const SQUARE_LOCATION_ID = 'W367P5RXB7QQS';
 
+let squarePayments = null;
 let card = null;
-let squareReady = false;
 
-async function initSquare(){
-  if(squareReady) return;
-  if(!window.Square){
-    showPayError('Payment system failed to load. Please refresh the page and try again.');
+// Initialize the payments object once at page load
+async function loadSquare(){
+  if(!window.Square){ return; }
+  try{
+    squarePayments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+  }catch(err){
+    console.error('Square.payments() failed:', err);
+  }
+}
+loadSquare();
+
+// Attach the card widget each time the modal opens
+async function attachCard(){
+  if(!squarePayments){
+    showPayError('Payment system unavailable. Please refresh the page or call (727) 637-3362.');
     return;
   }
   try{
-    const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
-    card = await payments.card({
-      style: {
-        '.input-container': { borderColor: '#e5e7eb', borderRadius: '6px' },
-        '.input-container.is-focus': { borderColor: '#333d7a' },
-        '.input-container.is-error': { borderColor: '#b91c1c' },
-        '.message-text': { color: '#6b7280' },
-        '.message-icon': { color: '#6b7280' },
-        'input': { fontFamily: 'Gantari, sans-serif', fontSize: '15px', color: '#1a1f3a' },
-        'input::placeholder': { color: '#9ca3af' },
+    if(card){ await card.destroy(); card = null; }
+    card = await squarePayments.card({
+      style:{
+        '.input-container':{ borderColor:'#e5e7eb', borderRadius:'6px' },
+        '.input-container.is-focus':{ borderColor:'#333d7a' },
+        '.input-container.is-error':{ borderColor:'#b91c1c' },
+        '.message-text':{ color:'#6b7280' },
+        '.message-icon':{ color:'#6b7280' },
+        'input':{ fontFamily:'Gantari, sans-serif', fontSize:'15px', color:'#1a1f3a' },
+        'input::placeholder':{ color:'#9ca3af' },
       }
     });
     await card.attach('#card-container');
-    squareReady = true;
   }catch(err){
-    console.error('Square init error:', err);
-    showPayError('Payment system could not load (Error: ' + (err.message || err) + '). Please refresh and try again or call (727) 637-3362.');
-    squareReady = false;
+    console.error('Square card attach error:', err);
+    showPayError('Card form could not load: ' + (err.message || err) + '. Please refresh or call (727) 637-3362.');
   }
 }
 
@@ -1538,14 +1547,13 @@ function openPayModal(){
   document.getElementById('paySuccess').style.display = 'none';
   document.getElementById('card-container').innerHTML = '';
   clearPayError();
-  squareReady = false;
   card = null;
   if(regData && regData.childName){
     document.getElementById('paySub').textContent =
       `Enter a card to reserve ${regData.childName}'s spot.`;
   }
-  // Wait for modal to be visible before attaching Square card widget
-  requestAnimationFrame(()=> requestAnimationFrame(()=> initSquare()));
+  // Attach card widget after modal is painted
+  requestAnimationFrame(() => requestAnimationFrame(() => attachCard()));
 }
 function closePayModal(){
   const m = document.getElementById('payModal');
@@ -1565,7 +1573,7 @@ document.getElementById('payBtn').addEventListener('click', async ()=>{
   try{
     let token, brand = 'Card', last4 = '••••';
 
-    if(squareReady === true && card){
+    if(card){
       const result = await card.tokenize();
       if(result.status === 'OK'){
         token = result.token;
