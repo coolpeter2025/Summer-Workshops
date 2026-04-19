@@ -1,789 +1,1682 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Purpose Kids Summer Workshop | Ages 6-12 | Creative Learning Program</title>
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --success: #10b981;
-            --error: #ef4444;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --text-dark: #1e293b;
-            --text-gray: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --border-radius: 0.75rem;
-            --transition: all 0.3s ease;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Purpose Kids Summer Workshop · Ages 6–12 · Tarpon Springs, FL</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- Gantari -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-        }
+<!-- Square Web Payments SDK (sandbox) -->
+<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 
-        .header {
-            background: var(--bg-white);
-            box-shadow: var(--shadow);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
+<style>
+/* ── Tokens (Titan design system) ───────────────────────────── */
+:root{
+  --navy:#333d7a; --navy-deep:#2a315b; --navy-darker:#1f2547;
+  --lavender:#ebeeff; --lavender-hover:#d9defc; --ink:#1a1f3a;
+  --muted:#6b7280; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db; --gray-700:#374151;
+  --white:#fff;
 
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  --font:'Gantari', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
+  --radius:6px; --radius-md:8px; --radius-sm:4px;
+  --shadow-sm:0 1px 2px 0 rgba(26,31,58,.05);
+  --shadow-md:0 10px 15px -3px rgba(26,31,58,.10), 0 4px 6px -4px rgba(26,31,58,.06);
+  --shadow-lg:0 20px 25px -5px rgba(26,31,58,.12), 0 8px 10px -6px rgba(26,31,58,.08);
+  --shadow-2xl:0 25px 50px -12px rgba(26,31,58,.25);
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+  --container:1280px;
+  --pad:24px;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-tap-highlight-color:transparent}
+body{
+  font-family:var(--font);
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,h4{letter-spacing:-0.01em;font-weight:600;line-height:1.15}
+h1{font-size:clamp(36px, 5.5vw, 56px); line-height:1.1}
+h2{font-size:clamp(28px, 3.5vw, 40px)}
+h3{font-size:20px}
+h4{font-size:18px}
 
-        .nav-links a:hover {
-            color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
+.container{max-width:var(--container); margin:0 auto; padding:0 var(--pad)}
 
-        .hero-banner {
-            background: url('Hero Image.png') center/cover no-repeat;
-            height: 300px;
-            margin-top: 4rem;
-        }
+.eyebrow{
+  font-size:13px; font-weight:700; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--navy);
+}
+.eyebrow.on-navy{color:rgba(255,255,255,0.55)}
 
-        .hero-content-section {
-            background: var(--bg-white);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:48px; padding:14px 28px; border-radius:var(--radius);
+  font-weight:700; font-size:16px; border:0;
+  transition:background-color .15s ease, color .15s ease, transform .15s ease;
+  white-space:nowrap;
+}
+.btn-primary{ background:var(--lavender); color:var(--navy) }
+.btn-primary:hover{ background:var(--lavender-hover) }
+.btn-navy{ background:var(--navy); color:#fff }
+.btn-navy:hover{ background:var(--navy-deep) }
+.btn-outline{ background:transparent; color:var(--navy); border:2px solid var(--navy); min-height:44px; padding:10px 24px }
+.btn-outline:hover{ background:var(--navy); color:#fff }
+.btn-outline-white{
+  background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.7);
+  min-height:48px; padding:12px 26px;
+}
+.btn-outline-white:hover{ background:#fff; color:var(--navy) }
+.btn:disabled{opacity:.55; cursor:not-allowed}
 
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+/* ── Utility bar ────────────────────────────────────────────── */
+.util-bar{
+  background:var(--navy-darker); color:rgba(255,255,255,0.75);
+  font-size:13px; padding:8px 0;
+}
+.util-bar .container{
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+}
+.util-bar a{color:#fff; font-weight:600}
+.util-bar .pipe{opacity:.35; margin:0 8px}
+.util-bar .right{display:flex; gap:16px; align-items:center}
+@media(max-width:720px){ .util-bar .right .hide-mob{display:none} }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
+/* ── Header ─────────────────────────────────────────────────── */
+.header{
+  background:var(--navy); color:#fff;
+  position:sticky; top:0; z-index:50;
+  box-shadow:var(--shadow-sm);
+}
+.header .nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 0; gap:24px;
+}
+.logo-lockup{display:flex; align-items:center; gap:12px}
+.logo-mark{
+  width:44px; height:44px; background:#fff; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--navy); font-weight:800; font-size:11px; letter-spacing:0.05em;
+  line-height:1;
+}
+.logo-mark svg{width:22px;height:22px}
+.logo-text{display:flex; flex-direction:column}
+.logo-text .brand{font-weight:700; font-size:17px; line-height:1.1}
+.logo-text .kicker{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.65); font-weight:700}
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-gray);
-        }
+.nav-links{display:flex; gap:4px; align-items:center}
+.nav-links a{
+  color:rgba(255,255,255,0.85); font-weight:500; font-size:15px;
+  padding:10px 14px; border-radius:var(--radius); transition:color .15s ease;
+}
+.nav-links a:hover{color:#fff}
+.nav-cta{margin-left:8px}
+@media(max-width:860px){
+  .nav-links .hide-mob{display:none}
+}
 
-        .hero-info {
-            background: var(--bg-light);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
-            border: 1px solid var(--border);
-        }
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero{
+  position:relative; color:#fff;
+  background:#0c1024;
+  overflow:hidden;
+}
+.hero-img{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(90deg, rgba(42,49,91,0.92) 0%, rgba(42,49,91,0.78) 40%, rgba(42,49,91,0.45) 100%),
+    url('https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=2000&q=80');
+  background-size:cover; background-position:center;
+}
+.hero-inner{
+  position:relative; z-index:1;
+  padding:96px 0 112px; max-width:780px;
+}
+.hero .eyebrow{color:#d9defc; margin-bottom:20px}
+.hero h1{margin-bottom:20px}
+.hero .lede{
+  font-size:clamp(17px, 1.6vw, 19px); color:rgba(255,255,255,0.9);
+  max-width:620px; margin-bottom:32px;
+}
+.hero-meta{
+  display:flex; gap:28px; flex-wrap:wrap; margin-bottom:36px;
+  padding:20px 24px; background:rgba(31,37,71,0.55); backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius-md);
+  max-width:620px;
+}
+.hero-meta .item{display:flex; align-items:flex-start; gap:12px}
+.hero-meta .item svg{flex-shrink:0; margin-top:2px; color:#d9defc}
+.hero-meta .item .label{font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.55); font-weight:700}
+.hero-meta .item .value{font-size:15px; color:#fff; font-weight:500; line-height:1.35; margin-top:2px}
+.hero-actions{display:flex; gap:12px; flex-wrap:wrap}
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+/* ── Trust bar ──────────────────────────────────────────────── */
+.trust{
+  background:var(--navy-darker); color:rgba(255,255,255,0.9);
+  padding:20px 0;
+}
+.trust .row{
+  display:flex; gap:24px; flex-wrap:wrap; justify-content:center; align-items:center;
+  font-size:14px; font-weight:500;
+}
+.trust .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.35)}
+.trust .item{display:flex; align-items:center; gap:10px}
+.trust .item svg{color:#d9defc}
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--secondary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
+/* ── Section ────────────────────────────────────────────────── */
+section.block{padding:80px 0}
+.block.alt{background:var(--lavender)}
+.block.navy{background:var(--navy); color:#fff}
+.block.deep{background:var(--navy-deep); color:#fff}
+.section-head{text-align:center; max-width:720px; margin:0 auto 48px}
+.section-head .eyebrow{margin-bottom:14px}
+.section-head h2{margin-bottom:14px}
+.section-head p{color:var(--muted); font-size:17px}
+.block.navy .section-head p, .block.deep .section-head p{color:rgba(255,255,255,0.75)}
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
+/* ── About split ────────────────────────────────────────────── */
+.split{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr; gap:32px}}
+.split .copy h2{margin-bottom:16px}
+.split .copy .eyebrow{margin-bottom:14px}
+.split .copy p{color:var(--muted); font-size:16px; margin-bottom:16px}
+.split .image{
+  border-radius:var(--radius-md); overflow:hidden; aspect-ratio:4/5;
+  background:var(--lavender);
+  box-shadow:var(--shadow-md);
+}
+.split .image img{width:100%; height:100%; object-fit:cover}
 
-        .cta-button.secondary {
-            background: var(--success);
-        }
+/* ── Stats strip ────────────────────────────────────────────── */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  margin-top:36px;
+}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{
+  background:var(--lavender); border:1px solid var(--lavender-hover);
+  border-radius:var(--radius-md); padding:24px;
+}
+.block.alt .stat{background:#fff; border-color:#fff}
+.stat .num{font-size:32px; font-weight:700; color:var(--navy); line-height:1}
+.stat .label{font-size:13px; color:var(--muted); margin-top:8px; font-weight:500}
 
-        .workshop-gallery {
-            padding: 2rem;
-            background: white;
-        }
+/* ── Activity cards (navy) ──────────────────────────────────── */
+.grid-4{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px}
+@media(max-width:1000px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid-4{grid-template-columns:1fr}}
+.act-card{
+  background:var(--navy); color:#fff; border-radius:var(--radius-md);
+  padding:28px; transition:transform .15s ease, box-shadow .15s ease;
+}
+.block.navy .act-card{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1) }
+.act-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2xl)}
+.act-icon{
+  width:48px; height:48px; border-radius:var(--radius-md);
+  background:rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; margin-bottom:20px;
+}
+.act-icon svg{width:24px;height:24px; stroke-width:2}
+.act-card h3{margin-bottom:10px; color:#fff; font-size:19px}
+.act-card p{color:rgba(255,255,255,0.72); font-size:14px; line-height:1.55}
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* ── Gallery ────────────────────────────────────────────────── */
+.gallery{
+  display:grid; gap:16px;
+  grid-template-columns:repeat(6, 1fr);
+  grid-auto-rows:160px;
+}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(3,1fr); grid-auto-rows:140px}}
+@media(max-width:560px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gallery .tile{
+  position:relative; border-radius:var(--radius-md); overflow:hidden;
+  background:var(--lavender); box-shadow:var(--shadow-sm);
+}
+.gallery .tile img{width:100%;height:100%;object-fit:cover; transition:transform .4s ease}
+.gallery .tile:hover img{transform:scale(1.04)}
+.gallery .tile .label{
+  position:absolute; left:14px; bottom:14px; color:#fff;
+  font-weight:600; font-size:14px; letter-spacing:-0.01em;
+  text-shadow:0 2px 8px rgba(0,0,0,0.6);
+}
+/* masonry-ish spans */
+.gallery .t1{grid-column:span 3; grid-row:span 2}
+.gallery .t2{grid-column:span 2; grid-row:span 1}
+.gallery .t3{grid-column:span 1; grid-row:span 2}
+.gallery .t4{grid-column:span 2; grid-row:span 1}
+.gallery .t5{grid-column:span 3; grid-row:span 1}
+.gallery .t6{grid-column:span 3; grid-row:span 1}
+@media(max-width:900px){.gallery .tile{grid-column:auto !important; grid-row:auto !important}}
 
-        .gallery-item {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 180px;
-            position: relative;
-        }
+/* ── Schedule / day table ───────────────────────────────────── */
+.day-card{
+  background:#fff; border:1px solid var(--lavender-hover);
+  border-radius:var(--radius-md); overflow:hidden;
+  display:grid; grid-template-columns:1.2fr 2fr;
+}
+@media(max-width:720px){.day-card{grid-template-columns:1fr}}
+.day-card .left{
+  background:var(--navy); color:#fff; padding:32px;
+}
+.day-card .left .eyebrow{color:rgba(255,255,255,0.55)}
+.day-card .left h3{font-size:26px; margin:10px 0 12px}
+.day-card .left p{color:rgba(255,255,255,0.78); font-size:14px}
+.day-card .right{padding:24px 32px}
+.day-row{
+  display:grid; grid-template-columns:110px 1fr; gap:20px; align-items:center;
+  padding:16px 0; border-bottom:1px dashed var(--lavender-hover);
+}
+.day-row:last-child{border-bottom:0}
+.day-row .time{font-weight:700; color:var(--navy); font-size:14px; font-variant-numeric:tabular-nums}
+.day-row .name{font-weight:600; font-size:15px}
+.day-row .desc{font-size:13px; color:var(--muted); margin-top:2px}
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* ── Form ───────────────────────────────────────────────────── */
+.form-wrap{
+  display:grid; grid-template-columns:1fr 380px; gap:40px; align-items:flex-start;
+}
+@media(max-width:1000px){.form-wrap{grid-template-columns:1fr}}
+.form-card{
+  background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-md);
+  padding:40px;
+}
+@media(max-width:560px){.form-card{padding:24px}}
+.form-section{ padding-bottom:28px; margin-bottom:28px; border-bottom:1px solid var(--lavender-hover) }
+.form-section:last-of-type{border-bottom:0; margin-bottom:0; padding-bottom:0}
+.form-section h3{
+  font-size:17px; color:var(--navy); margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+}
+.form-section h3 .num{
+  width:26px; height:26px; border-radius:50%; background:var(--lavender); color:var(--navy);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; flex-shrink:0;
+}
 
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 1rem;
-            font-weight: 600;
-            text-align: center;
-        }
+.field{margin-bottom:16px}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}}
+.field label{
+  display:block; margin-bottom:6px; font-size:13px; font-weight:600; color:var(--ink);
+}
+.field label .req{color:#c2410c}
+.field input[type="text"], .field input[type="email"], .field input[type="tel"],
+.field input[type="number"], .field input[type="date"], .field select, .field textarea{
+  width:100%; padding:12px 14px; font-size:15px; font-family:inherit;
+  border:1.5px solid var(--gray-200); border-radius:var(--radius);
+  color:var(--ink); background:#fff;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(51,61,122,0.12);
+}
+.field textarea{resize:vertical; min-height:88px}
 
-        .features {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Pill selects (radio + checkbox) */
+.pill-group{display:flex; gap:8px; flex-wrap:wrap}
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border:1.5px solid var(--gray-200); border-radius:var(--radius);
+  font-size:14px; cursor:pointer; background:#fff;
+  transition:all .15s ease; user-select:none;
+}
+.pill input{ position:absolute; opacity:0; pointer-events:none }
+.pill:hover{border-color:var(--navy)}
+.pill.checked{ background:var(--lavender); border-color:var(--navy); color:var(--navy); font-weight:600 }
 
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+/* Date grid */
+.date-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+@media(max-width:560px){.date-grid{grid-template-columns:repeat(2,1fr)}}
+.date-pill{
+  display:flex; flex-direction:column; gap:2px; align-items:center; justify-content:center;
+  padding:10px; border:1.5px solid var(--gray-200); border-radius:var(--radius);
+  font-size:13px; cursor:pointer; background:#fff; transition:all .15s ease;
+  text-align:center;
+}
+.date-pill input{position:absolute; opacity:0; pointer-events:none}
+.date-pill .dow{font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-weight:700}
+.date-pill .d{font-weight:600; color:var(--ink)}
+.date-pill:hover{border-color:var(--navy)}
+.date-pill.checked{background:var(--lavender); border-color:var(--navy)}
+.date-pill.checked .dow{color:var(--navy)}
 
-        .features-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 3rem;
-        }
+/* Consent */
+.consent-block{
+  background:var(--lavender); border-radius:var(--radius-md); padding:22px 24px;
+  border:1px solid var(--lavender-hover);
+}
+.consent-block .intro{font-size:14px; color:var(--navy-deep); margin-bottom:16px; line-height:1.6}
+.consent-item{
+  display:flex; gap:12px; align-items:flex-start;
+  padding:12px 0; border-top:1px solid var(--lavender-hover);
+}
+.consent-item:first-of-type{border-top:0; padding-top:4px}
+.consent-item input[type="checkbox"]{
+  width:18px; height:18px; margin-top:2px; accent-color:var(--navy); flex-shrink:0; cursor:pointer;
+}
+.consent-item label{font-size:13.5px; color:var(--ink); line-height:1.55; cursor:pointer}
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+/* Sidebar summary */
+.summary{
+  position:sticky; top:96px;
+  background:var(--navy); color:#fff; border-radius:var(--radius-md);
+  padding:28px; box-shadow:var(--shadow-md);
+}
+.summary .eyebrow{color:rgba(255,255,255,0.55); margin-bottom:12px}
+.summary h3{font-size:22px; margin-bottom:14px; color:#fff}
+.summary .lede{font-size:14px; color:rgba(255,255,255,0.75); margin-bottom:20px}
+.summary .line{
+  display:flex; justify-content:space-between; padding:10px 0;
+  border-top:1px solid rgba(255,255,255,0.1); font-size:14px;
+}
+.summary .line .k{color:rgba(255,255,255,0.75)}
+.summary .line .v{font-weight:600; color:#fff}
+.summary .line.total{border-top:1px solid rgba(255,255,255,0.3); padding-top:16px; margin-top:4px; font-size:17px}
+.summary .line.total .v{color:#d9defc; font-size:22px; font-weight:700}
+.summary .badge{
+  display:inline-flex; gap:6px; align-items:center;
+  background:rgba(217,222,252,0.15); color:#d9defc; font-size:12px; font-weight:600;
+  padding:6px 10px; border-radius:999px; margin-top:12px;
+}
+.summary .incl{list-style:none; margin-top:20px}
+.summary .incl li{
+  padding:8px 0; font-size:13.5px; color:rgba(255,255,255,0.85);
+  display:flex; gap:10px; align-items:flex-start;
+}
+.summary .incl li svg{color:#d9defc; flex-shrink:0; margin-top:2px}
 
-        .feature-card {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
+/* Submit zone */
+.submit-zone{margin-top:32px; text-align:center}
+.submit-zone .btn{min-width:280px}
+.submit-zone .small{color:var(--muted); font-size:13px; margin-top:14px}
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+/* Form message */
+.form-msg{
+  padding:14px 16px; border-radius:var(--radius); margin-bottom:20px;
+  font-size:14px; font-weight:500;
+  display:flex; gap:10px; align-items:flex-start;
+}
+.form-msg.success{background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0}
+.form-msg.error{background:#fef2f2; color:#b91c1c; border:1px solid #fecaca}
+.form-msg svg{flex-shrink:0; margin-top:2px}
 
-        .registration-section, .volunteer-section {
-            background: var(--bg-light);
-            padding: 4rem 2rem;
-        }
+/* ── Tabs (Register / Volunteer) ────────────────────────────── */
+.tabs{
+  display:inline-flex; background:var(--lavender); padding:4px;
+  border-radius:var(--radius-md); margin:0 auto 32px; gap:4px;
+}
+.tab{
+  padding:10px 22px; border-radius:var(--radius); font-size:14px; font-weight:700;
+  color:var(--navy); background:transparent; border:0; cursor:pointer;
+  transition:background-color .15s ease;
+}
+.tab.active{background:#fff; box-shadow:var(--shadow-sm)}
 
-        .registration-container, .volunteer-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+/* ── Square Payment modal ───────────────────────────────────── */
+.modal-backdrop{
+  position:fixed; inset:0; background:rgba(26,31,58,0.7); backdrop-filter:blur(6px);
+  z-index:100; display:none; align-items:center; justify-content:center; padding:20px;
+}
+.modal-backdrop.open{display:flex}
+.modal{
+  background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-2xl);
+  max-width:480px; width:100%; max-height:90vh; overflow-y:auto;
+  padding:32px;
+}
+.modal h2{font-size:24px; margin-bottom:4px}
+.modal .sub{color:var(--muted); font-size:14px; margin-bottom:24px}
+.modal .close{
+  position:absolute; top:16px; right:20px; background:none; border:0;
+  color:var(--muted); font-size:24px; line-height:1; cursor:pointer;
+}
+.modal-wrap{position:relative}
+.pay-total{
+  background:var(--lavender); border-radius:var(--radius); padding:16px 20px;
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;
+}
+.pay-total .label{font-size:13px; color:var(--navy-deep); font-weight:600}
+.pay-total .amount{font-size:28px; font-weight:700; color:var(--navy)}
+#card-container{
+  padding:14px; border:1.5px solid var(--gray-200); border-radius:var(--radius);
+  background:#fff; min-height:90px;
+}
+.sandbox-note{
+  font-size:11.5px; color:var(--muted); background:var(--gray-100);
+  padding:10px 12px; border-radius:var(--radius-sm); margin-top:12px; line-height:1.5;
+}
+.sandbox-note code{background:#fff; padding:1px 5px; border-radius:3px; font-size:11px}
 
-        .registration-header, .volunteer-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+.pay-success{
+  text-align:center; padding:20px 0;
+}
+.pay-success .check{
+  width:72px; height:72px; border-radius:50%; background:var(--lavender);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 20px;
+  color:var(--navy);
+}
+.pay-success h2{margin-bottom:8px}
+.pay-success p{color:var(--muted); margin-bottom:24px}
+.pay-success .receipt{
+  background:var(--lavender); border-radius:var(--radius); padding:14px 18px;
+  text-align:left; margin-bottom:24px; font-size:13px;
+}
+.pay-success .receipt .row{display:flex; justify-content:space-between; padding:4px 0}
+.pay-success .receipt .row .k{color:var(--navy-deep)}
+.pay-success .receipt .row .v{font-weight:600; color:var(--navy); font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px}
 
-        .registration-form, .volunteer-form {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
+/* ── CTA band ───────────────────────────────────────────────── */
+.cta-band{
+  background:var(--navy-deep); color:#fff; padding:64px 0;
+  text-align:center;
+}
+.cta-band .eyebrow{color:rgba(255,255,255,0.55); margin-bottom:12px}
+.cta-band h2{margin-bottom:12px; color:#fff}
+.cta-band p{color:rgba(255,255,255,0.78); font-size:17px; max-width:560px; margin:0 auto 28px}
+.cta-band .actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 
-        .form-section {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer{ background:var(--navy-darker); color:rgba(255,255,255,0.75); padding:56px 0 32px }
+.footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr; gap:32px}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr}}
+.footer h4{color:#fff; font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:16px}
+.footer ul{list-style:none}
+.footer li{padding:6px 0; font-size:14px}
+.footer a:hover{color:#fff}
+.footer .brand-block .blurb{font-size:14px; color:rgba(255,255,255,0.65); margin-top:12px; max-width:280px}
+.footer .bottom{
+  padding-top:24px; border-top:1px solid rgba(255,255,255,0.1);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font-size:13px; color:rgba(255,255,255,0.55);
+}
 
-        .form-section:last-of-type {
-            border-bottom: none;
-        }
+/* ── Tweaks panel ───────────────────────────────────────────── */
+.tweaks{
+  position:fixed; bottom:20px; right:20px; z-index:200;
+  background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-lg);
+  padding:18px 20px; width:260px; display:none;
+  border:1px solid var(--lavender-hover);
+}
+.tweaks.on{display:block}
+.tweaks h5{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--navy); margin-bottom:10px; font-weight:700}
+.tweaks label{display:block; font-size:12px; color:var(--ink); font-weight:600; margin-bottom:4px; margin-top:10px}
+.tweaks input[type="number"], .tweaks select{
+  width:100%; padding:8px 10px; border:1.5px solid var(--gray-200); border-radius:var(--radius-sm);
+  font-size:13px; font-family:inherit;
+}
+.tweaks .row{display:flex; gap:8px; align-items:center; margin-top:8px}
+.tweaks .swatches{display:flex; gap:6px; margin-top:4px}
+.tweaks .sw{width:28px;height:28px; border-radius:6px; cursor:pointer; border:2px solid transparent; transition:transform .15s ease}
+.tweaks .sw.sel{border-color:var(--ink); transform:scale(1.08)}
 
-        .form-section h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+/* ──────────────────────────────────────────────────────────────
+   MOBILE POLISH — consolidated responsive overrides
+   ────────────────────────────────────────────────────────────── */
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
+/* Mobile nav toggle (shown <860px) */
+.nav-toggle{
+  display:none; background:transparent; border:0; color:#fff;
+  width:44px; height:44px; border-radius:6px;
+  align-items:center; justify-content:center;
+}
+.nav-toggle:hover{background:rgba(255,255,255,0.08)}
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
+@media (max-width: 860px){
+  .nav-toggle{display:inline-flex}
+  .header .nav{padding:12px 0; gap:12px}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
+  .nav-links{
+    position:absolute; left:0; right:0; top:100%;
+    flex-direction:column; align-items:stretch;
+    background:var(--navy); padding:8px 16px 20px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    box-shadow:var(--shadow-md);
+    gap:0;
+    display:none;
+  }
+  .nav-links.open{display:flex}
+  .nav-links .nav-link{
+    padding:14px 12px; font-size:16px; color:rgba(255,255,255,0.9);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-radius:0;
+  }
+  .nav-links .nav-cta{
+    margin-top:12px; margin-left:0;
+    width:100%; min-height:48px;
+  }
+  .header{position:relative} /* allow mobile menu to anchor */
+  .header .container{position:relative}
+}
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
+/* Tighter container padding on small screens */
+@media (max-width: 560px){
+  :root{ --pad:16px; }
+  .util-bar{font-size:12px; padding:6px 0}
+  .util-bar .container{justify-content:center}
+  .util-bar .left{display:none}
+}
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+/* Hero — readable on narrow screens */
+@media (max-width: 720px){
+  .hero-inner{padding:56px 0 72px}
+  .hero h1{font-size:clamp(30px, 8vw, 40px); line-height:1.12}
+  .hero h1 br{display:none}
+  .hero .lede{font-size:16px}
+  .hero-meta{
+    padding:16px; gap:14px; flex-direction:column;
+    max-width:100%;
+  }
+  .hero-meta .item{gap:10px}
+  .hero-meta .item .value{font-size:14px}
+  .hero-actions{flex-direction:column; align-items:stretch}
+  .hero-actions .btn{width:100%}
+}
 
-        .checkbox-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+/* Logo on tight screens */
+@media (max-width: 420px){
+  .logo-text .kicker{display:none}
+  .logo-text .brand{font-size:15px}
+  .logo-mark{width:38px; height:38px}
+  .logo-mark svg{width:18px; height:18px}
+}
 
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 0.5rem;
-            border: 1px solid var(--border);
-            border-radius: var(--border-radius);
-        }
+/* Trust bar: wrap gracefully */
+@media (max-width: 720px){
+  .trust{padding:16px 0}
+  .trust .row{gap:10px 16px; font-size:13px; justify-content:flex-start}
+  .trust .dot{display:none}
+}
 
-        .checkbox-label input {
-            margin-right: 0.5rem;
-        }
+/* Sections: tighter vertical rhythm */
+@media (max-width: 720px){
+  section.block{padding:56px 0}
+  .section-head{margin-bottom:32px}
+  .section-head p{font-size:15px}
+}
 
-        .consent-section {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
-        }
+/* About split + stats */
+@media (max-width: 900px){
+  .split .image{aspect-ratio:16/10; max-height:320px}
+}
 
-        .consent-agreements .agreement-item {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
+/* Activity cards: give them breathing room */
+@media (max-width: 560px){
+  .act-card{padding:24px 22px}
+  .grid-4{gap:14px}
+}
 
-        .submit-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-        }
+/* Gallery: two-col on phones, taller tiles */
+@media (max-width: 560px){
+  .gallery{grid-auto-rows:120px; gap:10px}
+}
 
-        .submit-button:hover {
-            background: var(--primary-dark);
-        }
+/* Day schedule */
+@media (max-width: 720px){
+  .day-card .left{padding:24px}
+  .day-card .right{padding:16px 24px}
+  .day-row{grid-template-columns:86px 1fr; gap:14px; padding:14px 0}
+  .day-row .time{font-size:13px}
+  .day-row .name{font-size:14.5px}
+  .day-row .desc{font-size:12.5px}
+}
 
-        .submit-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+/* Tabs: full width on phones, readable */
+@media (max-width: 560px){
+  .tabs{display:flex; width:100%; margin-bottom:24px}
+  .tab{flex:1; padding:12px 10px; font-size:13px}
+}
 
-        .form-message {
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin: 1rem 0;
-        }
+/* Form: kill the sidebar pinning; stack gracefully */
+@media (max-width: 1000px){
+  .summary{position:static}
+}
+@media (max-width: 560px){
+  .form-card{padding:22px 18px; border-radius:8px}
+  .form-section{padding-bottom:22px; margin-bottom:22px}
+  .form-section h3{font-size:15px; gap:8px}
+  .field label{font-size:12.5px}
+  .field input[type="text"], .field input[type="email"], .field input[type="tel"],
+  .field input[type="number"], .field input[type="date"], .field select, .field textarea{
+    padding:12px; font-size:16px; /* 16px prevents iOS auto-zoom */
+  }
+  .pill{padding:10px 12px; font-size:13.5px}
+  .pill-group{gap:6px}
+  .date-grid{gap:6px}
+  .date-pill{padding:8px 6px}
+  .date-pill .dow{font-size:10px}
+  .date-pill .d{font-size:13px}
+  .consent-block{padding:18px}
+  .consent-item label{font-size:13px}
+  .submit-zone .btn{min-width:0; width:100%}
+}
 
-        .form-message.success {
-            background: #f0fdf4;
-            color: #16a34a;
-            border: 1px solid #16a34a;
-        }
+/* Summary card: more compact on mobile */
+@media (max-width: 560px){
+  .summary{padding:22px}
+  .summary h3{font-size:19px}
+  .summary .line.total .v{font-size:20px}
+}
 
-        .form-message.error {
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #dc2626;
-        }
+/* CTA band + footer */
+@media (max-width: 560px){
+  .cta-band{padding:48px 0}
+  .cta-band p{font-size:15px}
+  .cta-band .actions{flex-direction:column; align-items:stretch}
+  .cta-band .actions .btn{width:100%}
+  .footer{padding:40px 0 24px}
+  .footer-grid{gap:28px; margin-bottom:28px}
+  .footer .bottom{flex-direction:column; gap:8px; text-align:center}
+}
 
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
+/* Payment modal: full-screen sheet on phones */
+@media (max-width: 560px){
+  .modal-backdrop{padding:0; align-items:flex-end}
+  .modal-wrap{width:100%}
+  .modal{
+    max-height:92vh; border-radius:16px 16px 0 0;
+    padding:26px 20px 24px; width:100%;
+  }
+  .modal h2{font-size:20px}
+  .pay-total{padding:14px 16px}
+  .pay-total .amount{font-size:24px}
+  #card-container{padding:10px}
+}
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .checkbox-group {
-                flex-direction: column;
-            }
-        }
-    </style>
+/* Tweaks panel: don't overlap sticky CTAs on small screens */
+@media (max-width: 560px){
+  .tweaks{
+    left:16px; right:16px; bottom:16px; width:auto;
+    padding:14px 16px;
+  }
+}
+
+/* Keyboard-friendly focus outlines (accessibility) */
+:focus-visible{outline:3px solid rgba(51,61,122,0.35); outline-offset:2px; border-radius:4px}
+.btn:focus-visible{outline-offset:3px}
+
+/* Smooth body scroll lock when nav is open */
+body.nav-open{overflow:hidden}
+</style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">🎯 My Purpose</a>
-            <ul class="nav-links">
-                <li><a href="#features">Activities</a></li>
-                <li><a href="#register">Register</a></li>
-                <li><a href="#volunteer">Volunteer</a></li>
-                <li><a href="tel:727-637-3362">Contact</a></li>
+
+<!-- ──────────────── Utility Bar ──────────────── -->
+<div class="util-bar">
+  <div class="container">
+    <div class="left"><span>300 N Highland Ave · Tarpon Springs, FL</span></div>
+    <div class="right">
+      <span class="hide-mob">Questions? Call <a href="tel:727-637-3362">(727) 637-3362</a></span>
+      <span class="pipe">|</span>
+      <a href="#register">Register</a>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── Header ──────────────── -->
+<header class="header">
+  <div class="container">
+    <div class="nav">
+      <a href="#" class="logo-lockup">
+        <span class="logo-mark">
+          <!-- compass/target -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-3.5 7.5L8 12l7.5-3.5L16 8z"/></svg>
+        </span>
+        <span class="logo-text">
+          <span class="brand">My Purpose Kids</span>
+          <span class="kicker">Summer Workshop · 2026</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#activities" class="nav-link">Activities</a>
+        <a href="#schedule" class="nav-link">Schedule</a>
+        <a href="#volunteer" class="nav-link">Volunteer</a>
+        <a href="#register" class="btn btn-primary nav-cta">Register</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ──────────────── Hero ──────────────── -->
+<section class="hero">
+  <div class="hero-img" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="eyebrow">Summer 2026 · Ages 6–12</div>
+      <h1>A Christ-centered summer your kids<br>will actually look forward to.</h1>
+      <p class="lede">Six weeks of creative arts, Bible-rooted stories, and small-group fellowship in Tarpon Springs. Every Tuesday and Thursday — bring a lunchbox, leave with a memory.</p>
+
+      <div class="hero-meta">
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div><div class="label">Dates</div><div class="value">June 16 – July 23, 2026</div></div>
+        </div>
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><div class="label">Schedule</div><div class="value">Tue &amp; Thu · 9:30 AM – 1:00 PM</div></div>
+        </div>
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="label">Location</div><div class="value">300 N Highland Ave · Tarpon Springs</div></div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#register" class="btn btn-primary">Register your child — $35</a>
+        <a href="#volunteer" class="btn btn-outline-white">Volunteer with us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── Trust bar ──────────────── -->
+<div class="trust">
+  <div class="container">
+    <div class="row">
+      <span class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 4.84L20 7.75l-4 3.9.94 5.49L12 14.77l-4.94 2.37L8 11.65 4 7.75l5.61-.91L12 2z"/></svg>
+        10+ years serving Tarpon families
+      </span>
+      <span class="dot"></span>
+      <span class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        12 vetted volunteer leaders
+      </span>
+      <span class="dot"></span>
+      <span class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        5:1 child-to-adult ratio
+      </span>
+      <span class="dot"></span>
+      <span class="item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Secure payments via Square
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── About ──────────────── -->
+<section class="block" id="about">
+  <div class="container">
+    <div class="split">
+      <div class="copy">
+        <div class="eyebrow">About the Workshop</div>
+        <h2>Twelve mornings that make a summer.</h2>
+        <p>My Purpose Kids Summer Workshop is a six-week day program for children ages 6–12, held at South Florida Gospel Center in Tarpon Springs. Mornings start with a short Bible story, break into craft and activity rotations, and close with a group snack and game.</p>
+        <p>We keep groups small on purpose — every child gets eye contact, their name remembered, and a leader who knows what they made last Thursday.</p>
+
+        <div class="stats">
+          <div class="stat"><div class="num">12</div><div class="label">Workshop days</div></div>
+          <div class="stat"><div class="num">6:1</div><div class="label">Kids per leader</div></div>
+          <div class="stat"><div class="num">$35</div><div class="label">All six weeks</div></div>
+          <div class="stat"><div class="num">100%</div><div class="label">Background-checked</div></div>
+        </div>
+      </div>
+
+      <div class="image">
+        <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1000&q=80" alt="Children working on a craft project together">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── Activities (navy) ──────────────── -->
+<section class="block navy" id="activities">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow on-navy">What Your Kids Will Do</div>
+      <h2>Four pillars, twelve mornings, one great summer.</h2>
+      <p>Every session rotates through these four areas — so kids stay engaged, bodies get moving, and nobody sits at a table for three hours.</p>
+    </div>
+
+    <div class="grid-4">
+      <div class="act-card">
+        <div class="act-icon">
+          <!-- book -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Faith &amp; Learning</h3>
+        <p>Short, age-appropriate Bible lessons led by trained leaders — stories kids can actually retell over dinner.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">
+          <!-- palette -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.6 1.5-1.5 0-.4-.1-.7-.4-1-.3-.3-.4-.6-.4-1 0-.9.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-5-4.5-9-10-9z"/></svg>
+        </div>
+        <h3>Creative Arts &amp; Crafts</h3>
+        <p>Hands-on projects kids take home — paint, paper, clay, and the occasional glitter explosion.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">
+          <!-- users -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Teamwork &amp; Games</h3>
+        <p>Cooperative games and group challenges that build real friendships — the kind that last past July.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">
+          <!-- activity -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Active Play</h3>
+        <p>Outdoor time, movement breaks, and plenty of running — kids arrive home tired in the best possible way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── Gallery (alt) ──────────────── -->
+<section class="block alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Last Summer</div>
+      <h2>A look inside the workshop.</h2>
+      <p>Photos from our 2025 sessions — courtesy of parents and our volunteer team.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="tile t1">
+        <img src="https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1200&q=80" alt="Kids painting">
+        <div class="label">Craft rotation · Week 2</div>
+      </div>
+      <div class="tile t2">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=80" alt="Small group learning">
+        <div class="label">Bible story circle</div>
+      </div>
+      <div class="tile t3">
+        <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80" alt="Kid with a painting">
+        <div class="label">Take-home projects</div>
+      </div>
+      <div class="tile t4">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80" alt="Kids in a classroom">
+        <div class="label">Morning check-in</div>
+      </div>
+      <div class="tile t5">
+        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1200&q=80" alt="Outdoor play">
+        <div class="label">Active play · outdoor</div>
+      </div>
+      <div class="tile t6">
+        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1200&q=80" alt="Craft supplies">
+        <div class="label">Supplies &amp; setup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── A typical day ──────────────── -->
+<section class="block" id="schedule">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">A Typical Day</div>
+      <h2>What a Tuesday or Thursday looks like.</h2>
+      <p>Three and a half hours, four rotations, one snack break. Parents pick up at 1:00 PM sharp.</p>
+    </div>
+
+    <div class="day-card">
+      <div class="left">
+        <div class="eyebrow">9:30 AM – 1:00 PM</div>
+        <h3>Every Tuesday &amp; Thursday</h3>
+        <p>Drop-off opens at 9:15. Please bring a labeled lunchbox and a refillable water bottle — we don't sell snacks on-site.</p>
+      </div>
+      <div class="right">
+        <div class="day-row">
+          <div class="time">9:30 AM</div>
+          <div><div class="name">Welcome &amp; Opening Circle</div><div class="desc">Name tags, worship song, prayer, theme intro</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">9:50 AM</div>
+          <div><div class="name">Bible Story &amp; Discussion</div><div class="desc">Age-grouped — a story + three questions</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">10:30 AM</div>
+          <div><div class="name">Creative Craft Rotation</div><div class="desc">Take-home project tied to the day's theme</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">11:30 AM</div>
+          <div><div class="name">Snack &amp; Lunch</div><div class="desc">Kids eat what you packed — water refills on us</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">12:00 PM</div>
+          <div><div class="name">Active Play &amp; Games</div><div class="desc">Outdoor when weather permits, indoor if not</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">12:45 PM</div>
+          <div><div class="name">Closing Circle &amp; Pickup</div><div class="desc">Recap, prayer, handoff to parents at 1:00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── Register / Volunteer (tabs) ──────────────── -->
+<section class="block alt" id="register">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Register &amp; Volunteer</div>
+      <h2 id="formHeading">Reserve your child's spot.</h2>
+      <p id="formSub">Registration is $35 for the full six-week session. Limited spots — we cap each session to protect the ratio.</p>
+    </div>
+
+    <div style="text-align:center">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="register" role="tab">Register a child</button>
+        <button class="tab" data-tab="volunteer" role="tab">Volunteer</button>
+      </div>
+    </div>
+
+    <!-- ─── Register form ─── -->
+    <div id="panel-register">
+      <div class="form-wrap">
+        <form class="form-card" id="registrationForm" novalidate>
+          <div id="regMsg"></div>
+
+          <div class="form-section">
+            <h3><span class="num">1</span>Child's information</h3>
+            <div class="field">
+              <label>Full name <span class="req">*</span></label>
+              <input type="text" name="childName" required />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Date of birth <span class="req">*</span></label>
+                <input type="date" name="dateOfBirth" required />
+              </div>
+              <div class="field">
+                <label>Age (6–12) <span class="req">*</span></label>
+                <input type="number" name="age" min="6" max="12" required />
+              </div>
+            </div>
+            <div class="field">
+              <label>Street address <span class="req">*</span></label>
+              <input type="text" name="street" required />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>City <span class="req">*</span></label>
+                <input type="text" name="city" required />
+              </div>
+              <div class="field">
+                <label>State <span class="req">*</span></label>
+                <input type="text" name="state" value="FL" required />
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>ZIP <span class="req">*</span></label>
+                <input type="text" name="zip" required />
+              </div>
+              <div class="field">
+                <label>Shirt size</label>
+                <select name="shirtSize">
+                  <option value="YS">Youth Small</option>
+                  <option value="YM" selected>Youth Medium</option>
+                  <option value="YL">Youth Large</option>
+                  <option value="AS">Adult Small</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Any allergies? (food, medicine, environmental)</label>
+              <div class="pill-group" data-toggle="allergies">
+                <label class="pill checked"><input type="radio" name="allergies" value="no" checked><span>No allergies</span></label>
+                <label class="pill"><input type="radio" name="allergies" value="yes"><span>Yes — specify</span></label>
+              </div>
+              <input type="text" name="allergyDetails" id="allergyDetails" placeholder="Please list allergies…" style="margin-top:10px; display:none" />
+            </div>
+
+            <div class="field">
+              <label>Medical conditions or special needs?</label>
+              <div class="pill-group" data-toggle="medical">
+                <label class="pill checked"><input type="radio" name="medicalConditions" value="no" checked><span>None</span></label>
+                <label class="pill"><input type="radio" name="medicalConditions" value="yes"><span>Yes — specify</span></label>
+              </div>
+              <input type="text" name="medicalDetails" id="medicalDetails" placeholder="Please describe…" style="margin-top:10px; display:none" />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3><span class="num">2</span>Parent / guardian</h3>
+            <div class="field">
+              <label>Full name <span class="req">*</span></label>
+              <input type="text" name="parentName" required />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="parentEmail" required />
+              </div>
+              <div class="field">
+                <label>Phone <span class="req">*</span></label>
+                <input type="tel" name="parentPhone" placeholder="(727) 555-1234" required />
+              </div>
+            </div>
+            <div class="field">
+              <label>Emergency contact (name &amp; phone) <span class="req">*</span></label>
+              <input type="text" name="emergencyContact" placeholder="Jane Doe · (727) 555-5678" required />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3><span class="num">3</span>Consent &amp; agreements</h3>
+            <div class="consent-block">
+              <p class="intro">As the parent or legal guardian of the above child, I understand that my child will be participating in activities at South Florida Gospel Center that carry a degree of risk, and I consent to their participation.</p>
+              <div class="consent-item">
+                <input type="checkbox" id="c1" name="consentParticipation" required />
+                <label for="c1">I consent for my child to participate in workshop activities and understand the risks involved.</label>
+              </div>
+              <div class="consent-item">
+                <input type="checkbox" id="c2" name="consentMedical" required />
+                <label for="c2">I authorize workshop staff to seek emergency medical treatment if I cannot be reached.</label>
+              </div>
+              <div class="consent-item">
+                <input type="checkbox" id="c3" name="consentPhotos" required />
+                <label for="c3">I consent to my child being photographed for workshop social media and promotional use.</label>
+              </div>
+              <div class="consent-item">
+                <input type="checkbox" id="c4" name="consentLiability" required />
+                <label for="c4">I agree to release and hold harmless South Florida Gospel Center from claims arising from participation.</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="submit-zone">
+            <button type="submit" class="btn btn-navy" id="regSubmit">
+              Continue to payment · $35
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="small">Secure checkout powered by Square · No hidden fees · Refunds up to 7 days before start</p>
+          </div>
+        </form>
+
+        <aside>
+          <div class="summary">
+            <div class="eyebrow">Your registration</div>
+            <h3>Summer Workshop 2026</h3>
+            <p class="lede">Six-week day program · Ages 6–12 · Tarpon Springs</p>
+            <div class="line"><span class="k">12 workshop days</span><span class="v">Included</span></div>
+            <div class="line"><span class="k">Craft supplies</span><span class="v">Included</span></div>
+            <div class="line"><span class="k">Workshop t-shirt</span><span class="v">Included</span></div>
+            <div class="line"><span class="k">Processing fee</span><span class="v">$0.00</span></div>
+            <div class="line total"><span class="k">Total today</span><span class="v">$35.00</span></div>
+            <span class="badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Encrypted via Square
+            </span>
+            <ul class="incl">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Small group ratio</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Background-checked leaders</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Weekly parent update emails</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full refund up to 7 days before</li>
             </ul>
-        </nav>
-    </header>
+          </div>
+        </aside>
+      </div>
+    </div>
 
-    <main>
-        <section class="hero-banner"></section>
+    <!-- ─── Volunteer form ─── -->
+    <div id="panel-volunteer" style="display:none">
+      <div class="form-wrap" style="grid-template-columns:1fr">
+        <form class="form-card" id="volunteerForm" novalidate>
+          <div id="volMsg"></div>
 
-        <section class="hero-content-section">
-            <div class="hero-content">
-                <h1>My Purpose Kids Summer Workshop</h1>
-                <p><strong>Christ-Centered</strong> creative learning and fun activities for kids ages 6-12! Join us every Tuesday and Thursday from 9:30am to 1:00pm in beautiful Tarpon Springs for faith-based education and fellowship.</p>
-                
-                <div class="hero-info">
-                    <p><strong>Age Requirements:</strong> This workshop is designed for children ages 6-12.<br>
-                    <strong>Younger children?</strong> Please contact us at <strong>727-637-3362</strong> to discuss options.</p>
-                </div>
-                
-                <div class="hero-info">
-                    <h3>📅 June 17 - July 24, 2025</h3>
-                    <p>📍 300 N Highland Ave, Tarpon Springs, FL 34688</p>
-                    <p>🕘 Every Tuesday & Thursday • 9:30am - 1:00pm</p>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="#register" class="cta-button">📝 Register Now</a>
-                    <a href="#volunteer" class="cta-button secondary">🤝 Volunteer</a>
-                </div>
+          <div class="form-section">
+            <h3><span class="num">1</span>About you</h3>
+            <div class="field">
+              <label>Full name <span class="req">*</span></label>
+              <input type="text" name="volunteerName" required />
             </div>
-        </section>
-
-        <section class="workshop-gallery">
-            <div style="max-width: 1200px; margin: 0 auto;">
-                <h2 style="text-align: center; margin-bottom: 2rem;">See Our Workshop in Action</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="Image May 25, 2025, 10_34_15 PM.png" alt="Creative Arts and Crafts">
-                        <div class="overlay">🎨 Creative Arts & Crafts</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="Image May 25, 2025, 10_34_18 PM.png" alt="Learning Adventures">
-                        <div class="overlay">📚 Learning Adventures</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="Image May 25, 2025, 10_35_32 PM.png" alt="Group Activities">
-                        <div class="overlay">🤝 Group Activities</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="Image May 25, 2025, 10_46_05 PM.png" alt="Workshop Fun">
-                        <div class="overlay">🎭 Workshop Fun</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="Image May 25, 2025, 10_46_08 PM.png" alt="Learning Environment">
-                        <div class="overlay">📖 Learning Environment</div>
-                    </div>
-                </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="volunteerEmail" required />
+              </div>
+              <div class="field">
+                <label>Phone <span class="req">*</span></label>
+                <input type="tel" name="volunteerPhone" required />
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="features" id="features">
-            <h2>What Your Kids Will Experience</h2>
-            <p class="features-subtitle">Christ-centered activities that nurture both faith and creativity</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">✝️</div>
-                    <h3>Faith & Learning</h3>
-                    <p>Bible stories and Christian values that strengthen faith while promoting learning.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Creative Arts & Crafts</h3>
-                    <p>Hands-on art projects that spark imagination and develop creativity.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3>Social Skills & Teamwork</h3>
-                    <p>Group activities that help children develop friendships and cooperation.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏃</div>
-                    <h3>Active Play & Movement</h3>
-                    <p>Physical activities and games to keep kids active and energized.</p>
-                </div>
+          <div class="form-section">
+            <h3><span class="num">2</span>Availability</h3>
+            <label style="font-size:13px;font-weight:600;margin-bottom:10px;display:block;color:var(--ink)">Which dates can you help? (select all that apply)</label>
+            <div class="date-grid" id="dateGrid"></div>
+
+            <label style="font-size:13px;font-weight:600;margin:20px 0 8px;display:block;color:var(--ink)">Preferred time slot <span class="req">*</span></label>
+            <div class="pill-group">
+              <label class="pill checked"><input type="radio" name="timeSlot" value="full" checked><span>Full morning (9:30–1:00)</span></label>
+              <label class="pill"><input type="radio" name="timeSlot" value="early"><span>Early (9:30–11:15)</span></label>
+              <label class="pill"><input type="radio" name="timeSlot" value="late"><span>Late (11:15–1:00)</span></label>
             </div>
-        </section>
+          </div>
 
-        <section class="registration-section" id="register">
-            <div class="registration-container">
-                <div class="registration-header">
-                    <h1>Registration Form</h1>
-                    <h2>My Purpose Kids Summer Workshop</h2>
-                </div>
-
-                <form class="registration-form" id="registrationForm">
-                    <fieldset class="form-section">
-                        <h3>👶 Child's Information</h3>
-                        
-                        <div class="form-group">
-                            <label for="childName">Full Name *</label>
-                            <input type="text" id="childName" name="childName" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="dateOfBirth">Date of Birth *</label>
-                                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="age">Age (6-12 years) *</label>
-                                <input type="number" id="age" name="age" min="6" max="12" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="street">Address - Street *</label>
-                            <input type="text" id="street" name="street" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">City *</label>
-                                <input type="text" id="city" name="city" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="state">State/Province *</label>
-                                <input type="text" id="state" name="state" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="zip">Zip/Postal Code *</label>
-                                <input type="text" id="zip" name="zip" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Country *</label>
-                                <input type="text" id="country" name="country" value="USA" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Allergies (food, medicine, etc.)</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="radio" name="allergies" value="no" checked>
-                                    No
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="radio" name="allergies" value="yes">
-                                    Yes (Please specify below)
-                                </label>
-                            </div>
-                            <input type="text" id="allergyDetails" name="allergyDetails" placeholder="Please specify allergies..." style="display: none; margin-top: 0.5rem;">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Medical Conditions or Special Needs</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="radio" name="medicalConditions" value="no" checked>
-                                    No
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="radio" name="medicalConditions" value="yes">
-                                    Yes (Please specify below)
-                                </label>
-                            </div>
-                            <input type="text" id="medicalDetails" name="medicalDetails" placeholder="Please specify medical conditions..." style="display: none; margin-top: 0.5rem;">
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section">
-                        <h3>👨‍👩‍👧‍👦 Parent's/Legal Guardian's Information</h3>
-                        
-                        <div class="form-group">
-                            <label for="parent1Name">Full Name *</label>
-                            <input type="text" id="parent1Name" name="parent1Name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="parent1Email">Email Address *</label>
-                            <input type="email" id="parent1Email" name="parent1Email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="parent1Phone">Phone Number *</label>
-                            <input type="tel" id="parent1Phone" name="parent1Phone" required>
-                        </div>
-                    </fieldset>
-
-                    <div style="background: #fff3cd; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                        <h3>🚨 Very Important Notice</h3>
-                        <p>Please make sure your child has a <strong>lunch box</strong> and a <strong>water bottle</strong> every day at camp.</p>
-                    </div>
-
-                    <fieldset class="consent-section">
-                        <h3>📋 Parental Consent and Medical Authorization</h3>
-                        
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p><strong>SFGC - 300 N Highland Ave, Tarpon Springs, FL 34688</strong></p>
-                            <p>As the parent (or legal guardian) of the above-named student, I understand that my student will be participating in a number of activities conducted by SFGC, which carry a degree of risk. I consent for my student to participate in these activities.</p>
-                        </div>
-                        
-                        <div class="consent-agreements">
-                            <h4>Required Agreements:</h4>
-                            
-                            <div class="agreement-item">
-                                <input type="checkbox" id="consent-participation" name="consentParticipation" required>
-                                <label for="consent-participation">I consent for my child to participate in SFGC summer workshop activities and understand the associated risks.</label>
-                            </div>
-                            
-                            <div class="agreement-item">
-                                <input type="checkbox" id="consent-transportation" name="consentTransportation" required>
-                                <label for="consent-transportation">I give consent for transportation provided by volunteer drivers if applicable.</label>
-                            </div>
-                            
-                            <div class="agreement-item">
-                                <input type="checkbox" id="consent-medical" name="consentMedical" required>
-                                <label for="consent-medical">I authorize SFGC staff to seek medical treatment for my child in case of emergency if I cannot be reached.</label>
-                            </div>
-                            
-                            <div class="agreement-item">
-                                <input type="checkbox" id="consent-photos" name="consentPhotos" required>
-                                <label for="consent-photos">I consent to my child being photographed/recorded for promotional and social media use.</label>
-                            </div>
-                            
-                            <div class="agreement-item">
-                                <input type="checkbox" id="consent-liability" name="consentLiability" required>
-                                <label for="consent-liability">I agree to release and hold harmless SFGC from any claims arising from participation in the program.</label>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button type="submit" class="submit-button">📝 Submit Registration</button>
-                        <div style="margin-top: 1rem;">
-                            <p>Registration will be sent to summerworkshops25@gmail.com</p>
-                            <p>Payment ($35.00) is required for workshop participation</p>
-                            <p>For questions contact: <strong>727-637-3362</strong></p>
-                        </div>
-                    </div>
-                </form>
+          <div class="form-section">
+            <h3><span class="num">3</span>A little more</h3>
+            <div class="field">
+              <label>Experience working with children (optional)</label>
+              <textarea name="experience" placeholder="Teaching, coaching, church programs…"></textarea>
             </div>
-        </section>
-
-        <section class="volunteer-section" id="volunteer">
-            <div class="volunteer-container">
-                <div class="volunteer-header">
-                    <h1>🤝 Volunteer with Us</h1>
-                    <h2>Help Make a Difference in Children's Lives</h2>
-                </div>
-
-                <form class="volunteer-form" id="volunteerForm">
-                    <fieldset class="form-section">
-                        <h3>👤 Volunteer Information</h3>
-                        
-                        <div class="form-group">
-                            <label for="volunteerName">Full Name *</label>
-                            <input type="text" id="volunteerName" name="volunteerName" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="volunteerPhone">Phone Number *</label>
-                            <input type="tel" id="volunteerPhone" name="volunteerPhone" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="volunteerEmail">Email Address *</label>
-                            <input type="email" id="volunteerEmail" name="volunteerEmail" required>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section">
-                        <h3>📅 Availability</h3>
-                        
-                        <div class="form-group">
-                            <label>Which dates are you available? (Check all that apply)</label>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="June 17">
-                                    Tuesday, June 17
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="June 19">
-                                    Thursday, June 19
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="June 24">
-                                    Tuesday, June 24
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="June 26">
-                                    Thursday, June 26
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 1">
-                                    Tuesday, July 1
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 3">
-                                    Thursday, July 3
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 8">
-                                    Tuesday, July 8
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 10">
-                                    Thursday, July 10
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 15">
-                                    Tuesday, July 15
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 17">
-                                    Thursday, July 17
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 22">
-                                    Tuesday, July 22
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="availableDates" value="July 24">
-                                    Thursday, July 24
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Preferred Time Slots *</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="radio" name="timeSlot" value="9:30 AM - 1:00 PM (Full Day)" required>
-                                    9:30 AM - 1:00 PM (Full Day)
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="radio" name="timeSlot" value="9:30 AM - 11:15 AM (Morning)">
-                                    9:30 AM - 11:15 AM (Morning)
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="radio" name="timeSlot" value="11:15 AM - 1:00 PM (Late Morning)">
-                                    11:15 AM - 1:00 PM (Late Morning)
-                                </label>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="form-section">
-                        <h3>📝 Additional Information</h3>
-                        
-                        <div class="form-group">
-                            <label for="volunteerExperience">Do you have experience working with children? (Optional)</label>
-                            <textarea id="volunteerExperience" name="volunteerExperience" rows="3" placeholder="Please describe any relevant experience..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="volunteerInterests">What activities are you most interested in helping with? (Optional)</label>
-                            <textarea id="volunteerInterests" name="volunteerInterests" rows="3" placeholder="Arts & crafts, outdoor activities, reading, games, etc..."></textarea>
-                        </div>
-                    </fieldset>
-
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button type="submit" class="submit-button">🤝 Submit Volunteer Application</button>
-                        <div style="margin-top: 1rem;">
-                            <p>Application will be sent to summerworkshops25@gmail.com</p>
-                            <p>For questions contact: <strong>727-637-3362</strong></p>
-                        </div>
-                    </div>
-                </form>
+            <div class="field">
+              <label>What would you love to help with?</label>
+              <div class="pill-group">
+                <label class="pill"><input type="checkbox" name="interest" value="crafts"><span>Arts &amp; crafts</span></label>
+                <label class="pill"><input type="checkbox" name="interest" value="bible"><span>Bible lessons</span></label>
+                <label class="pill"><input type="checkbox" name="interest" value="games"><span>Games &amp; play</span></label>
+                <label class="pill"><input type="checkbox" name="interest" value="music"><span>Music / worship</span></label>
+                <label class="pill"><input type="checkbox" name="interest" value="logistics"><span>Setup &amp; logistics</span></label>
+              </div>
             </div>
-        </section>
-    </main>
+          </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 My Purpose. Built with intention and purpose. 🌟</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="tel:727-637-3362" style="color: white;">📞 727-637-3362</a> | 
-            <a href="mailto:summerworkshops25@gmail.com" style="color: white;">📧 summerworkshops25@gmail.com</a>
-        </p>
-    </footer>
+          <div class="submit-zone">
+            <button type="submit" class="btn btn-navy" id="volSubmit">Submit volunteer application</button>
+            <p class="small">We'll follow up with a background-check form within 3 business days.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="forms.js"></script>
+<!-- ──────────────── CTA band ──────────────── -->
+<div class="cta-band">
+  <div class="container">
+    <div class="eyebrow">Questions? We're Local.</div>
+    <h2>Talk to a human before you register.</h2>
+    <p>Call us at the number below — we'll answer on the first or second ring during business hours, and a real person will walk you through anything you need.</p>
+    <div class="actions">
+      <a href="tel:727-637-3362" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (727) 637-3362
+      </a>
+      <a href="mailto:summerworkshops25@gmail.com" class="btn btn-outline-white">Email us</a>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── Footer ──────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="brand-block">
+        <div class="logo-lockup">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-3.5 7.5L8 12l7.5-3.5L16 8z"/></svg>
+          </span>
+          <span class="logo-text">
+            <span class="brand" style="color:#fff">My Purpose Kids</span>
+            <span class="kicker">Summer Workshop</span>
+          </span>
+        </div>
+        <p class="blurb">A Christ-centered summer day program for kids ages 6–12. Tarpon Springs, FL. Small groups, big summers.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About the workshop</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#schedule">A typical day</a></li>
+          <li><a href="#register">Register</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>South Florida Gospel Center</li>
+          <li>300 N Highland Ave</li>
+          <li>Tarpon Springs, FL 34688</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:727-637-3362">(727) 637-3362</a></li>
+          <li><a href="mailto:summerworkshops25@gmail.com">summerworkshops25@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>&copy; 2026 My Purpose Kids Summer Workshop. All rights reserved.</div>
+      <div>Secure payments by Square · Built with purpose</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ──────────────── Square Payment Modal ──────────────── -->
+<div class="modal-backdrop" id="payModal" aria-hidden="true">
+  <div class="modal-wrap">
+    <div class="modal" id="payBody">
+      <button class="close" id="payClose" aria-label="Close">×</button>
+
+      <div id="payForm">
+        <h2>Complete your registration</h2>
+        <p class="sub" id="paySub">Enter a card to reserve your child's spot.</p>
+
+        <div class="pay-total">
+          <div class="label">Summer Workshop 2026</div>
+          <div class="amount">$35.00</div>
+        </div>
+
+        <label style="font-size:12px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:8px">Card details</label>
+        <div id="card-container"></div>
+        <div id="payError" style="display:none; color:#b91c1c; font-size:13px; margin-top:10px"></div>
+
+        <button id="payBtn" class="btn btn-navy" style="width:100%; margin-top:18px">
+          Pay $35.00 securely
+        </button>
+
+        <div class="sandbox-note">
+          <strong>Demo / sandbox mode.</strong> Use Square's test card: <code>4111 1111 1111 1111</code> · any future date · any CVV · any ZIP.
+        </div>
+      </div>
+
+      <div id="paySuccess" class="pay-success" style="display:none">
+        <div class="check">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>You're registered!</h2>
+        <p id="successText">Payment received. A confirmation is on its way to your inbox.</p>
+        <div class="receipt">
+          <div class="row"><span class="k">Amount</span><span class="v">$35.00 USD</span></div>
+          <div class="row"><span class="k">Method</span><span class="v" id="rcpBrand">Visa •••• 1111</span></div>
+          <div class="row"><span class="k">Reference</span><span class="v" id="rcpRef">—</span></div>
+        </div>
+        <button class="btn btn-navy" id="payDone" style="width:100%">Done</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── Tweaks panel ──────────────── -->
+<div class="tweaks" id="tweaksPanel">
+  <h5>Tweaks</h5>
+  <label>Hero photo</label>
+  <select id="twHero">
+    <option value="kitchen">Summer field (default)</option>
+    <option value="classroom">Classroom</option>
+    <option value="crafts">Crafts closeup</option>
+    <option value="outdoors">Outdoor play</option>
+  </select>
+  <label>Accent color</label>
+  <div class="swatches" id="twSwatches">
+    <div class="sw sel" data-c="#333d7a" style="background:#333d7a"></div>
+    <div class="sw" data-c="#1e6091" style="background:#1e6091"></div>
+    <div class="sw" data-c="#2d6a4f" style="background:#2d6a4f"></div>
+    <div class="sw" data-c="#9a3f50" style="background:#9a3f50"></div>
+  </div>
+  <label>Registration price</label>
+  <input type="number" id="twPrice" value="35" min="0" max="500" />
+</div>
+
+<!-- ──────────────── Scripts ──────────────── -->
+<script>
+/* EDITMODE state */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "heroImage": "outdoors",
+  "accent": "#1e6091",
+  "price": 35
+}/*EDITMODE-END*/;
+let tweaks = {...TWEAK_DEFAULTS};
+
+/* ── Mobile nav toggle ─────────────────────────────────────── */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if(navToggle && navLinks){
+  navToggle.addEventListener('click', ()=>{
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+      document.body.classList.remove('nav-open');
+    });
+  });
+}
+
+/* ── Pill-group checked state (radio/checkbox) ─────────────── */
+document.querySelectorAll('.pill-group').forEach(g=>{
+  g.addEventListener('change', e=>{
+    const t = e.target;
+    if(t.type === 'radio'){
+      g.querySelectorAll('.pill').forEach(p=>p.classList.remove('checked'));
+      t.closest('.pill').classList.add('checked');
+    } else if(t.type === 'checkbox'){
+      t.closest('.pill').classList.toggle('checked', t.checked);
+    }
+  });
+});
+document.querySelectorAll('.date-pill').forEach(p=>{
+  p.addEventListener('change', e=>{
+    p.classList.toggle('checked', e.target.checked);
+  });
+});
+
+/* ── Conditional detail fields ─────────────────────────────── */
+function bindDetail(groupName, detailId){
+  document.querySelectorAll(`input[name="${groupName}"]`).forEach(r=>{
+    r.addEventListener('change', ()=>{
+      const el = document.getElementById(detailId);
+      const show = r.value === 'yes' && r.checked;
+      el.style.display = show ? 'block' : 'none';
+      if(!show) el.value = '';
+    });
+  });
+}
+bindDetail('allergies','allergyDetails');
+bindDetail('medicalConditions','medicalDetails');
+
+/* ── Date grid (volunteer) ─────────────────────────────────── */
+const DATES = [
+  ['Tue','Jun 16'], ['Thu','Jun 18'], ['Tue','Jun 23'],
+  ['Thu','Jun 25'], ['Tue','Jun 30'], ['Thu','Jul 2'],
+  ['Tue','Jul 7'],  ['Thu','Jul 9'],  ['Tue','Jul 14'],
+  ['Thu','Jul 16'], ['Tue','Jul 21'], ['Thu','Jul 23'],
+];
+const dateGrid = document.getElementById('dateGrid');
+DATES.forEach(([dow,d])=>{
+  const lbl = document.createElement('label');
+  lbl.className = 'date-pill';
+  lbl.innerHTML = `<input type="checkbox" name="availableDates" value="${d}"><span class="dow">${dow}</span><span class="d">${d}</span>`;
+  dateGrid.appendChild(lbl);
+});
+dateGrid.addEventListener('change', e=>{
+  e.target.closest('.date-pill').classList.toggle('checked', e.target.checked);
+});
+
+/* ── Tabs ──────────────────────────────────────────────────── */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.tab;
+    document.getElementById('panel-register').style.display = target==='register' ? 'block' : 'none';
+    document.getElementById('panel-volunteer').style.display = target==='volunteer' ? 'block' : 'none';
+    document.getElementById('formHeading').textContent = target==='register' ? "Reserve your child's spot." : "Join the volunteer team.";
+    document.getElementById('formSub').textContent = target==='register'
+      ? "Registration is $35 for the full six-week session. Limited spots — we cap each session to protect the ratio."
+      : "We need about 12 leaders to run a session. Sign up for the dates you can make — we'll match you to a role.";
+  });
+});
+
+/* ── Form messaging helper ─────────────────────────────────── */
+function showMsg(containerId, type, html){
+  const c = document.getElementById(containerId);
+  const ok = type==='success';
+  c.innerHTML = `<div class="form-msg ${type}">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      ${ok ? '<polyline points="20 6 9 17 4 12"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>'}
+    </svg>
+    <span>${html}</span>
+  </div>`;
+  c.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* ── Registration form submit (opens Square modal) ─────────── */
+const regForm = document.getElementById('registrationForm');
+let regData = null;
+regForm.addEventListener('submit', e=>{
+  e.preventDefault();
+  // Validate required fields & consent
+  const missingConsent = ['consentParticipation','consentMedical','consentPhotos','consentLiability']
+    .some(n => !regForm.querySelector(`[name="${n}"]`).checked);
+  if(missingConsent){
+    showMsg('regMsg','error','Please check all four consent agreements to continue.');
+    return;
+  }
+  if(!regForm.checkValidity()){
+    regForm.reportValidity();
+    return;
+  }
+  // Collect data, open modal
+  const fd = new FormData(regForm);
+  regData = Object.fromEntries(fd.entries());
+  openPayModal();
+});
+
+/* ── Volunteer form submit (email fallback) ────────────────── */
+document.getElementById('volunteerForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const f = e.target;
+  if(!f.checkValidity()){ f.reportValidity(); return; }
+  const btn = document.getElementById('volSubmit');
+  btn.disabled = true; btn.textContent = 'Submitting…';
+  setTimeout(()=>{
+    showMsg('volMsg','success','Thanks! Your volunteer application is in — we\'ll be in touch within 3 business days.');
+    f.reset();
+    document.querySelectorAll('.date-pill').forEach(p=>p.classList.remove('checked'));
+    document.querySelectorAll('#panel-volunteer .pill').forEach(p=>{
+      const inp = p.querySelector('input');
+      if(inp.type==='radio') p.classList.toggle('checked', inp.checked);
+      if(inp.type==='checkbox') p.classList.toggle('checked', inp.checked);
+    });
+    btn.disabled = false; btn.textContent = 'Submit volunteer application';
+  }, 600);
+});
+
+/* ── Square Web Payments SDK integration ───────────────────── */
+const SQUARE_APP_ID = 'sandbox-sq0idb-demo-application-id';  // demo placeholder
+const SQUARE_LOCATION_ID = 'LDEMO123LOCATION';
+
+let card = null;
+let squareReady = false;
+
+async function initSquare(){
+  if(squareReady) return;
+  if(!window.Square){
+    showPayError('Square SDK failed to load. Please check your connection.');
+    return;
+  }
+  try{
+    const payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+    card = await payments.card({
+      style: {
+        '.input-container': { borderColor: '#e5e7eb', borderRadius: '6px' },
+        '.input-container.is-focus': { borderColor: '#333d7a' },
+        '.input-container.is-error': { borderColor: '#b91c1c' },
+        '.message-text': { color: '#6b7280' },
+        '.message-icon': { color: '#6b7280' },
+        'input': { fontFamily: 'Gantari, sans-serif', fontSize: '15px', color: '#1a1f3a' },
+        'input::placeholder': { color: '#9ca3af' },
+      }
+    });
+    await card.attach('#card-container');
+    squareReady = true;
+  }catch(err){
+    console.warn('Square init failed — falling back to demo mode.', err);
+    // Fallback UI: replicate card fields so the flow still works in preview.
+    document.getElementById('card-container').innerHTML = `
+      <div style="display:grid; gap:10px">
+        <input id="fakeCard" placeholder="Card number" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="4111 1111 1111 1111">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px">
+          <input id="fakeExp" placeholder="MM/YY" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="12/28">
+          <input id="fakeCvv" placeholder="CVV" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="123">
+          <input id="fakeZip" placeholder="ZIP" style="padding:12px; border:1.5px solid #e5e7eb; border-radius:6px; font-size:15px; font-family:inherit" value="34688">
+        </div>
+      </div>
+    `;
+    squareReady = 'fallback';
+  }
+}
+
+function showPayError(msg){
+  const e = document.getElementById('payError');
+  e.textContent = msg; e.style.display = 'block';
+}
+function clearPayError(){ document.getElementById('payError').style.display = 'none'; }
+
+function openPayModal(){
+  const m = document.getElementById('payModal');
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('payForm').style.display = 'block';
+  document.getElementById('paySuccess').style.display = 'none';
+  clearPayError();
+  if(regData && regData.childName){
+    document.getElementById('paySub').textContent =
+      `Enter a card to reserve ${regData.childName}'s spot.`;
+  }
+  initSquare();
+}
+function closePayModal(){
+  const m = document.getElementById('payModal');
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.getElementById('payClose').addEventListener('click', closePayModal);
+document.getElementById('payModal').addEventListener('click', e=>{
+  if(e.target.id === 'payModal') closePayModal();
+});
+
+document.getElementById('payBtn').addEventListener('click', async ()=>{
+  clearPayError();
+  const btn = document.getElementById('payBtn');
+  btn.disabled = true; btn.textContent = 'Processing…';
+  try{
+    let token = 'cnon_demo_' + Math.random().toString(36).slice(2,10);
+    let brand = 'Visa'; let last4 = '1111';
+
+    if(squareReady === true && card){
+      const result = await card.tokenize();
+      if(result.status === 'OK'){
+        token = result.token;
+        brand = result.details?.card?.brand || 'Card';
+        last4 = result.details?.card?.last4 || '••••';
+      } else {
+        const msg = result.errors?.[0]?.message || 'Card could not be verified.';
+        throw new Error(msg);
+      }
+    } else {
+      // fallback demo — read fake inputs
+      const num = (document.getElementById('fakeCard')?.value || '').replace(/\s/g,'');
+      if(num.length < 13){ throw new Error('Please enter a valid card number.'); }
+      last4 = num.slice(-4);
+      brand = num.startsWith('4') ? 'Visa' : num.startsWith('5') ? 'Mastercard' : 'Card';
+      await new Promise(r=>setTimeout(r, 900)); // simulate network
+    }
+
+    // Success state
+    document.getElementById('rcpBrand').textContent = `${brand} •••• ${last4}`;
+    document.getElementById('rcpRef').textContent =
+      'MPK-' + Date.now().toString(36).toUpperCase().slice(-8);
+    document.getElementById('successText').textContent = regData?.childName
+      ? `Payment received. A confirmation for ${regData.childName}'s registration is on its way to ${regData.parentEmail}.`
+      : 'Payment received. A confirmation is on its way to your inbox.';
+    document.getElementById('payForm').style.display = 'none';
+    document.getElementById('paySuccess').style.display = 'block';
+
+    // Reset the main form quietly
+    showMsg('regMsg','success','Registration complete! Check your email for confirmation and receipt.');
+    regForm.reset();
+    document.querySelectorAll('#panel-register .pill').forEach(p=>{
+      const inp = p.querySelector('input');
+      if(inp) p.classList.toggle('checked', inp.checked);
+    });
+
+  }catch(err){
+    showPayError(err.message || 'Payment failed. Please try again.');
+  } finally {
+    btn.disabled = false; btn.textContent = `Pay $${tweaks.price.toFixed(2)} securely`;
+  }
+});
+
+document.getElementById('payDone').addEventListener('click', closePayModal);
+window.addEventListener('keydown', e=>{ if(e.key==='Escape') closePayModal(); });
+
+/* ── TWEAKS wiring ─────────────────────────────────────────── */
+const HERO_IMAGES = {
+  kitchen:   'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=2000&q=80',
+  classroom: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=2000&q=80',
+  crafts:    'https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=2000&q=80',
+  outdoors:  'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=2000&q=80',
+};
+function applyTweaks(){
+  const img = HERO_IMAGES[tweaks.heroImage] || HERO_IMAGES.kitchen;
+  document.querySelector('.hero-img').style.backgroundImage =
+    `linear-gradient(90deg, rgba(42,49,91,0.92) 0%, rgba(42,49,91,0.78) 40%, rgba(42,49,91,0.45) 100%), url('${img}')`;
+  document.documentElement.style.setProperty('--navy', tweaks.accent);
+  // derive deeper navy by darkening the hex ~15%
+  document.documentElement.style.setProperty('--navy-deep', shade(tweaks.accent, -15));
+  document.documentElement.style.setProperty('--navy-darker', shade(tweaks.accent, -28));
+  // update price
+  const p = tweaks.price;
+  document.querySelector('.summary .line.total .v').textContent = `$${p.toFixed(2)}`;
+  document.querySelectorAll('[data-price]').forEach(el=>el.textContent = `$${p.toFixed(2)}`);
+  document.querySelector('.pay-total .amount').textContent = `$${p.toFixed(2)}`;
+  const payBtn = document.getElementById('payBtn');
+  if(payBtn) payBtn.textContent = `Pay $${p.toFixed(2)} securely`;
+  // CTA text
+  document.querySelector('#regSubmit').childNodes[0].nodeValue = `Continue to payment · $${p.toFixed(0)} `;
+}
+function shade(hex, pct){
+  const n = parseInt(hex.slice(1),16);
+  let r = (n>>16)&255, g = (n>>8)&255, b = n&255;
+  const f = pct/100;
+  r = Math.max(0, Math.min(255, Math.round(r + (f<0 ? r*f : (255-r)*f))));
+  g = Math.max(0, Math.min(255, Math.round(g + (f<0 ? g*f : (255-g)*f))));
+  b = Math.max(0, Math.min(255, Math.round(b + (f<0 ? b*f : (255-b)*f))));
+  return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+document.getElementById('twHero').addEventListener('change', e=>{
+  tweaks.heroImage = e.target.value; persistTweaks(); applyTweaks();
+});
+document.getElementById('twPrice').addEventListener('input', e=>{
+  const v = Math.max(0, Math.min(500, parseInt(e.target.value||'0',10)));
+  tweaks.price = v; persistTweaks(); applyTweaks();
+});
+document.querySelectorAll('#twSwatches .sw').forEach(s=>{
+  s.addEventListener('click', ()=>{
+    document.querySelectorAll('#twSwatches .sw').forEach(x=>x.classList.remove('sel'));
+    s.classList.add('sel');
+    tweaks.accent = s.dataset.c; persistTweaks(); applyTweaks();
+  });
+});
+
+/* Edit mode protocol */
+window.addEventListener('message', ev=>{
+  const d = ev.data || {};
+  if(d.type === '__activate_edit_mode'){
+    document.getElementById('tweaksPanel').classList.add('on');
+  } else if(d.type === '__deactivate_edit_mode'){
+    document.getElementById('tweaksPanel').classList.remove('on');
+  }
+});
+function persistTweaks(){
+  window.parent.postMessage({
+    type:'__edit_mode_set_keys',
+    edits: { heroImage: tweaks.heroImage, accent: tweaks.accent, price: tweaks.price }
+  }, '*');
+}
+// Announce availability after listener is set up
+setTimeout(()=>window.parent.postMessage({type:'__edit_mode_available'}, '*'), 0);
+
+applyTweaks();
+</script>
 </body>
 </html>
