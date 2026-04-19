@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
 
   const client = new Client({
     accessToken: process.env.SQUARE_ACCESS_TOKEN,
-    environment: Environment.Production,
+    environment: Environment.Sandbox,
   });
 
   try {

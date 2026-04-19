@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Square Web Payments SDK (sandbox) -->
-<script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
+<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 
 <style>
 /* ── Tokens (Titan design system) ───────────────────────────── */
@@ -1573,8 +1573,8 @@ applyTweaks();
 
 <!-- Square Web Payments — module script (matches Square docs exactly) -->
 <script type="module">
-  const SQUARE_APP_ID    = 'sq0idp-OTurwSS-m1--L0g9pSPhxA';
-  const SQUARE_LOCATION_ID = 'W367P5RXB7QQS';
+  const SQUARE_APP_ID    = 'sandbox-sq0idb-ZXPRnWjy4ecPDq4Ic4TUCw';
+  const SQUARE_LOCATION_ID = 'LSRAEH90WN0C1';
 
   const payments = Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
   let card = null;
