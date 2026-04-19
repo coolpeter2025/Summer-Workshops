@@ -1076,34 +1076,40 @@ body.nav-open{overflow:hidden}
           </div>
 
           <div class="form-section">
-            <h3><span class="num">3</span>Consent &amp; agreements</h3>
+            <h3><span class="num">3</span>Parental Consent and Medical Authorization</h3>
             <div class="consent-block">
-              <p class="intro">As the parent or legal guardian of the above child, I understand that my child will be participating in activities at South Florida Gospel Center that carry a degree of risk, and I consent to their participation.</p>
+              <p class="intro"><strong>SFGC – 300 N Highland Ave, Tarpon Springs, FL 34688</strong><br><br>As the parent (or legal guardian) of the above-named student, I understand that my student will be participating in a number of activities conducted by SFGC, which carry a degree of risk. I consent for my student to participate in these activities.</p>
               <div class="consent-item">
                 <input type="checkbox" id="c1" name="consentParticipation" required />
-                <label for="c1">I consent for my child to participate in workshop activities and understand the risks involved.</label>
+                <label for="c1">I consent for my child to participate in SFGC summer workshop activities and understand the associated risks.</label>
               </div>
               <div class="consent-item">
-                <input type="checkbox" id="c2" name="consentMedical" required />
-                <label for="c2">I authorize workshop staff to seek emergency medical treatment if I cannot be reached.</label>
+                <input type="checkbox" id="c2" name="consentTransportation" required />
+                <label for="c2">I give consent for transportation provided by volunteer drivers if applicable.</label>
               </div>
               <div class="consent-item">
-                <input type="checkbox" id="c3" name="consentPhotos" required />
-                <label for="c3">I consent to my child being photographed for workshop social media and promotional use.</label>
+                <input type="checkbox" id="c3" name="consentMedical" required />
+                <label for="c3">I authorize SFGC staff to seek medical treatment for my child in case of emergency if I cannot be reached.</label>
               </div>
               <div class="consent-item">
-                <input type="checkbox" id="c4" name="consentLiability" required />
-                <label for="c4">I agree to release and hold harmless South Florida Gospel Center from claims arising from participation.</label>
+                <input type="checkbox" id="c4" name="consentPhotos" required />
+                <label for="c4">I consent to my child being photographed/recorded for promotional and social media use.</label>
+              </div>
+              <div class="consent-item">
+                <input type="checkbox" id="c5" name="consentLiability" required />
+                <label for="c5">I agree to release and hold harmless SFGC from any claims arising from participation in the program.</label>
               </div>
             </div>
           </div>
 
           <div class="submit-zone">
             <button type="submit" class="btn btn-navy" id="regSubmit">
-              Continue to payment · $35
+              Submit Registration
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-            <p class="small">Secure checkout powered by Square · No hidden fees · Refunds up to 7 days before start</p>
+            <p class="small">Registration will be sent to summerworkshops25@gmail.com</p>
+            <p class="small">Payment ($35.00) is required for workshop participation</p>
+            <p class="small">For questions contact: <a href="tel:727-637-3362" style="color:var(--navy);font-weight:600">727-637-3362</a></p>
           </div>
         </form>
 
@@ -1441,10 +1447,10 @@ let regData = null;
 regForm.addEventListener('submit', e=>{
   e.preventDefault();
   // Validate required fields & consent
-  const missingConsent = ['consentParticipation','consentMedical','consentPhotos','consentLiability']
+  const missingConsent = ['consentParticipation','consentTransportation','consentMedical','consentPhotos','consentLiability']
     .some(n => !regForm.querySelector(`[name="${n}"]`).checked);
   if(missingConsent){
-    showMsg('regMsg','error','Please check all four consent agreements to continue.');
+    showMsg('regMsg','error','Please check all five consent agreements to continue.');
     return;
   }
   if(!regForm.checkValidity()){
