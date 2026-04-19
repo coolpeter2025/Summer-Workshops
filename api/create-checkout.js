@@ -1,5 +1,9 @@
 const { Client, Environment } = require('square');
 
+const LOCATION_ID   = process.env.SQUARE_LOCATION_ID   || 'W367P5RXB7QQS';
+const SITE_URL      = process.env.SITE_URL              || 'https://www.summerworkshop.fyi';
+const ACCESS_TOKEN  = process.env.SQUARE_ACCESS_TOKEN   || '';
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -8,7 +12,7 @@ module.exports = async function handler(req, res) {
   const { childName, parentName, parentEmail, parentPhone } = req.body || {};
 
   const client = new Client({
-    accessToken: process.env.SQUARE_ACCESS_TOKEN,
+    accessToken: ACCESS_TOKEN,
     environment: Environment.Production,
   });
 
@@ -18,7 +22,7 @@ module.exports = async function handler(req, res) {
     const response = await client.checkoutApi.createPaymentLink({
       idempotencyKey,
       order: {
-        locationId: process.env.SQUARE_LOCATION_ID,
+        locationId: LOCATION_ID,
         lineItems: [{
           name: 'My Purpose Kids Summer Workshop 2026',
           quantity: '1',
@@ -34,7 +38,7 @@ module.exports = async function handler(req, res) {
       },
       checkoutOptions: {
         allowTipping: false,
-        redirectUrl: process.env.SITE_URL + '/thank-you.html',
+        redirectUrl: SITE_URL + '/thank-you.html',
         askForShippingAddress: false,
         merchantSupportEmail: 'summerworkshops25@gmail.com',
       },
