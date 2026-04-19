@@ -1571,116 +1571,138 @@ setTimeout(()=>window.parent.postMessage({type:'__edit_mode_available'}, '*'), 0
 applyTweaks();
 </script>
 
-<!-- Square Web Payments — module script (matches Square docs exactly) -->
-<script type="module">
-  const SQUARE_APP_ID    = 'sandbox-sq0idb-ZXPRnWjy4ecPDq4Ic4TUCw';
+<!-- Square Web Payments -->
+<script>
+(function() {
+  const SQUARE_APP_ID      = 'sandbox-sq0idb-ZXPRnWjy4ecPDq4Ic4TUCw';
   const SQUARE_LOCATION_ID = 'LSRAEH90WN0C1';
 
-  const payments = Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
-  let card = null;
+  let payments = null;
+  let card     = null;
 
-  async function openPayModal(regData){
-    const m = document.getElementById('payModal');
-    m.classList.add('open');
-    m.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('payForm').style.display = 'block';
-    document.getElementById('paySuccess').style.display = 'none';
-    document.getElementById('card-container').innerHTML = '';
-    document.getElementById('payError').style.display = 'none';
-
-    if(regData?.childName){
-      document.getElementById('paySub').textContent =
-        `Enter a card to reserve ${regData.childName}'s spot.`;
+  // Init after full page load so Square SDK is completely ready
+  window.addEventListener('load', function() {
+    if (!window.Square) {
+      console.error('Square SDK did not load.');
+      return;
     }
-
     try {
-      if(card){ await card.destroy(); card = null; }
-      card = await payments.card();
-      await card.attach('#card-container');
-    } catch(err){
-      console.error('Square card error:', err);
-      const e = document.getElementById('payError');
-      e.textContent = 'Card form failed to load: ' + (err.message || err) + '. Please refresh or call (727) 637-3362.';
-      e.style.display = 'block';
+      payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+    } catch(err) {
+      console.error('Square.payments() error:', err);
     }
-  }
+  });
 
-  function closePayModal(){
+  function closePayModal() {
     const m = document.getElementById('payModal');
     m.classList.remove('open');
-    m.setAttribute('aria-hidden','true');
+    m.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  // Expose so the main script's form submit and close buttons can call them
+  async function openPayModal(regData) {
+    const m = document.getElementById('payModal');
+    m.classList.add('open');
+    m.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('payForm').style.display    = 'block';
+    document.getElementById('paySuccess').style.display = 'none';
+    document.getElementById('card-container').innerHTML = '';
+    document.getElementById('payError').style.display   = 'none';
+
+    if (regData && regData.childName) {
+      document.getElementById('paySub').textContent =
+        'Enter a card to reserve ' + regData.childName + '\u2019s spot.';
+    }
+
+    if (!payments) {
+      document.getElementById('payError').textContent =
+        'Payment system not ready. Please refresh the page or call (727) 637-3362.';
+      document.getElementById('payError').style.display = 'block';
+      return;
+    }
+
+    try {
+      if (card) { await card.destroy(); card = null; }
+      card = await payments.card();
+      await card.attach('#card-container');
+    } catch(err) {
+      console.error('Square card attach error:', err);
+      document.getElementById('payError').textContent =
+        'Card form error: ' + (err.message || String(err)) +
+        '. Please refresh or call (727) 637-3362.';
+      document.getElementById('payError').style.display = 'block';
+    }
+  }
+
   window.openPayModal  = openPayModal;
   window.closePayModal = closePayModal;
 
   document.getElementById('payClose').addEventListener('click', closePayModal);
-  document.getElementById('payModal').addEventListener('click', e=>{
-    if(e.target.id === 'payModal') closePayModal();
+  document.getElementById('payModal').addEventListener('click', function(e) {
+    if (e.target.id === 'payModal') closePayModal();
   });
 
-  document.getElementById('payBtn').addEventListener('click', async () => {
-    const btn = document.getElementById('payBtn');
-    const errEl = document.getElementById('payError');
+  document.getElementById('payBtn').addEventListener('click', async function() {
+    var btn   = document.getElementById('payBtn');
+    var errEl = document.getElementById('payError');
     errEl.style.display = 'none';
-    btn.disabled = true; btn.textContent = 'Processing…';
+    btn.disabled = true;
+    btn.textContent = 'Processing\u2026';
 
     try {
-      if(!card) throw new Error('Payment form not ready. Please refresh and try again.');
+      if (!card) throw new Error('Payment form not ready. Please refresh and try again.');
 
-      const result = await card.tokenize();
-      if(result.status !== 'OK'){
-        const msg = result.errors?.[0]?.message || 'Card could not be verified.';
-        throw new Error(msg);
+      var result = await card.tokenize();
+      if (result.status !== 'OK') {
+        throw new Error((result.errors && result.errors[0] && result.errors[0].message) ||
+          'Card could not be verified.');
       }
 
-      const token  = result.token;
-      const brand  = result.details?.card?.brand || 'Card';
-      const last4  = result.details?.card?.last4 || '••••';
+      var token  = result.token;
+      var brand  = (result.details && result.details.card && result.details.card.brand) || 'Card';
+      var last4  = (result.details && result.details.card && result.details.card.last4) || '\u2022\u2022\u2022\u2022';
 
-      const regData = window._regData || {};
-      const chargeRes = await fetch('/api/charge', {
+      var regData   = window._regData || {};
+      var chargeRes = await fetch('/api/charge', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sourceId:    token,
           childName:   regData.childName   || '',
           parentEmail: regData.parentEmail || '',
-          parentName:  regData.parentName  || '',
+          parentName:  regData.parentName  || ''
         })
       });
-      const chargeData = await chargeRes.json();
-      if(!chargeRes.ok) throw new Error(chargeData.error || 'Payment failed. Please try again.');
+      var chargeData = await chargeRes.json();
+      if (!chargeRes.ok) throw new Error(chargeData.error || 'Payment failed. Please try again.');
 
-      // Show success
-      document.getElementById('rcpBrand').textContent = `${brand} •••• ${last4}`;
-      document.getElementById('rcpRef').textContent   = chargeData.paymentId || ('MPK-' + Date.now().toString(36).toUpperCase().slice(-8));
+      document.getElementById('rcpBrand').textContent = brand + ' \u2022\u2022\u2022\u2022 ' + last4;
+      document.getElementById('rcpRef').textContent   =
+        chargeData.paymentId || ('MPK-' + Date.now().toString(36).toUpperCase().slice(-8));
       document.getElementById('successText').textContent = regData.childName
-        ? `Payment received. A confirmation for ${regData.childName}'s registration is on its way to ${regData.parentEmail}.`
+        ? 'Payment received. A confirmation for ' + regData.childName +
+          '\u2019s registration is on its way to ' + regData.parentEmail + '.'
         : 'Payment received. A confirmation is on its way to your inbox.';
       document.getElementById('payForm').style.display    = 'none';
       document.getElementById('paySuccess').style.display = 'block';
 
-      // Reset the registration form
-      const regForm = document.getElementById('registrationForm');
-      showMsg('regMsg','success','Registration complete! Check your email for confirmation and receipt.');
-      regForm.reset();
-      document.querySelectorAll('#panel-register .pill').forEach(p=>{
-        const inp = p.querySelector('input');
-        if(inp) p.classList.toggle('checked', inp.checked);
+      showMsg('regMsg', 'success', 'Registration complete! Check your email for confirmation and receipt.');
+      document.getElementById('registrationForm').reset();
+      document.querySelectorAll('#panel-register .pill').forEach(function(p) {
+        var inp = p.querySelector('input');
+        if (inp) p.classList.toggle('checked', inp.checked);
       });
 
-    } catch(err){
-      errEl.textContent    = err.message || 'Payment failed. Please try again.';
-      errEl.style.display  = 'block';
+    } catch(err) {
+      errEl.textContent   = err.message || 'Payment failed. Please try again.';
+      errEl.style.display = 'block';
     } finally {
-      btn.disabled = false;
-      btn.textContent = `Pay $${(window._tweaksPrice || 35).toFixed(2)} securely`;
+      btn.disabled    = false;
+      btn.textContent = 'Pay $' + ((window._tweaksPrice || 35)).toFixed(2) + ' securely';
     }
   });
+})();
 </script>
 </body>
 </html>
