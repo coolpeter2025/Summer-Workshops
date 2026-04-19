@@ -103,7 +103,7 @@ For questions, contact: 727-637-3362
 
     // Log environment check
     const envStatus = {
-      EMAIL_USE: process.env.EMAIL_USE ? 'SET' : 'FALLBACK',
+      EMAIL_USER: process.env.EMAIL_USER ? 'SET' : 'FALLBACK',
       EMAIL_PASS: process.env.EMAIL_PASS ? 'SET' : 'FALLBACK',
       SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com (default)',
       SMTP_PORT: process.env.SMTP_PORT || '587 (default)'
@@ -116,8 +116,8 @@ For questions, contact: 727-637-3362
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USE || 'summerworkshops25@gmail.com',
-        pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
       },
       tls: {
         rejectUnauthorized: false,
