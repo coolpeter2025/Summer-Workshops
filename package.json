@@ -9,7 +9,8 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "nodemailer": "^6.9.8"
+    "nodemailer": "^6.9.8",
+    "square": "^37.0.0"
   },
   "devDependencies": {},
   "keywords": [

@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Square Web Payments SDK (sandbox) -->
-<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+<script src="https://web.squarecdn.com/v1/square.js"></script>
 
 <style>
 /* ── Tokens (Titan design system) ───────────────────────────── */
@@ -1489,8 +1489,8 @@ document.getElementById('volunteerForm').addEventListener('submit', e=>{
 });
 
 /* ── Square Web Payments SDK integration ───────────────────── */
-const SQUARE_APP_ID = 'sandbox-sq0idb-demo-application-id';  // demo placeholder
-const SQUARE_LOCATION_ID = 'LDEMO123LOCATION';
+const SQUARE_APP_ID = 'sq0idp-OTurwSS-m1--L0g9pSPhxA';
+const SQUARE_LOCATION_ID = 'W367P5RXB7QQS';
 
 let card = null;
 let squareReady = false;
@@ -1569,8 +1569,7 @@ document.getElementById('payBtn').addEventListener('click', async ()=>{
   const btn = document.getElementById('payBtn');
   btn.disabled = true; btn.textContent = 'Processing…';
   try{
-    let token = 'cnon_demo_' + Math.random().toString(36).slice(2,10);
-    let brand = 'Visa'; let last4 = '1111';
+    let token, brand = 'Card', last4 = '••••';
 
     if(squareReady === true && card){
       const result = await card.tokenize();
@@ -1583,18 +1582,28 @@ document.getElementById('payBtn').addEventListener('click', async ()=>{
         throw new Error(msg);
       }
     } else {
-      // fallback demo — read fake inputs
-      const num = (document.getElementById('fakeCard')?.value || '').replace(/\s/g,'');
-      if(num.length < 13){ throw new Error('Please enter a valid card number.'); }
-      last4 = num.slice(-4);
-      brand = num.startsWith('4') ? 'Visa' : num.startsWith('5') ? 'Mastercard' : 'Card';
-      await new Promise(r=>setTimeout(r, 900)); // simulate network
+      throw new Error('Payment form not ready. Please refresh and try again.');
     }
+
+    // Send token to server to charge $35
+    const chargeRes = await fetch('/api/charge', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        sourceId: token,
+        childName: regData?.childName || '',
+        parentEmail: regData?.parentEmail || '',
+        parentName: regData?.parentName || '',
+      })
+    });
+    const chargeData = await chargeRes.json();
+    if(!chargeRes.ok) throw new Error(chargeData.error || 'Payment failed. Please try again.');
+
+    const paymentId = chargeData.paymentId || '';
 
     // Success state
     document.getElementById('rcpBrand').textContent = `${brand} •••• ${last4}`;
-    document.getElementById('rcpRef').textContent =
-      'MPK-' + Date.now().toString(36).toUpperCase().slice(-8);
+    document.getElementById('rcpRef').textContent = paymentId || 'MPK-' + Date.now().toString(36).toUpperCase().slice(-8);
     document.getElementById('successText').textContent = regData?.childName
       ? `Payment received. A confirmation for ${regData.childName}'s registration is on its way to ${regData.parentEmail}.`
       : 'Payment received. A confirmation is on its way to your inbox.';
