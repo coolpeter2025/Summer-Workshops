@@ -19,11 +19,15 @@ module.exports = async function handler(req, res) {
   try {
     const idempotencyKey = `mpk-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
+    // Early Bird $45 through May 25, 2026; $50 after
+    const EARLY_BIRD_DEADLINE = new Date('2026-05-26T00:00:00');
+    const priceCents = (new Date() < EARLY_BIRD_DEADLINE) ? 4500 : 5000;
+
     const response = await client.paymentsApi.createPayment({
       sourceId,
       idempotencyKey,
       amountMoney: {
-        amount: BigInt(3500), // $35.00 in cents
+        amount: BigInt(priceCents),
         currency: 'USD',
       },
       locationId: process.env.SQUARE_LOCATION_ID,

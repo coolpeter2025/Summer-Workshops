@@ -242,7 +242,7 @@
                 <h3>💰 Payment Information</h3>
                 <div class="payment-item">
                     <span>Summer Workshop Registration</span>
-                    <span>$35.00</span>
+                    <span id="pmtPrice">$45.00</span>
                 </div>
                 <div class="payment-item">
                     <span>Processing Fee</span>
@@ -250,7 +250,10 @@
                 </div>
                 <div class="payment-item">
                     <strong>Total Amount Due</strong>
-                    <strong>$35.00</strong>
+                    <strong id="pmtTotal">$45.00</strong>
+                </div>
+                <div class="payment-item" style="border-top:1px dashed #ccc; padding-top:10px; font-size:13px; color:#666">
+                    <span>Early Bird $45 through May 25 · $50 after</span>
                 </div>
             </div>
 
@@ -293,11 +296,17 @@
         // Get registration data from URL parameters if available
         const urlParams = new URLSearchParams(window.location.search);
         const childName = urlParams.get('childName');
-        
+
         if (childName) {
-            document.querySelector('.payment-header p').innerHTML = 
+            document.querySelector('.payment-header p').innerHTML =
                 `Thank you for registering <strong>${childName}</strong> for the My Purpose Kids Summer Workshop. Your registration has been received and emailed to our team.`;
         }
+
+        // Dynamic early-bird pricing
+        const EARLY_BIRD_DEADLINE = new Date('2026-05-26T00:00:00');
+        const price = (new Date() < EARLY_BIRD_DEADLINE) ? 45 : 50;
+        document.getElementById('pmtPrice').textContent = `$${price}.00`;
+        document.getElementById('pmtTotal').textContent = `$${price}.00`;
     </script>
 </body>
 </html>

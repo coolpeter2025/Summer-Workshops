@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Purpose Kids Summer Workshop · Ages 6–12 · Tarpon Springs, FL</title>
+<title>My Purpose Kids Summer Workshop · Ages 5–13 · Tarpon Springs, FL</title>
 
 <!-- Gantari -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -397,6 +397,36 @@ section.block{padding:80px 0}
 }
 .summary .incl li svg{color:#d9defc; flex-shrink:0; margin-top:2px}
 
+/* Child block (multi-child) */
+.child-block{
+  position:relative; padding:18px 20px 4px; margin-bottom:18px;
+  background:#fafbff; border:1.5px solid var(--lavender-hover);
+  border-radius:var(--radius-md);
+}
+.child-block .child-head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:14px;
+}
+.child-block .child-head .label{
+  font-size:12px; font-weight:700; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--navy);
+}
+.child-block .remove-child{
+  background:transparent; border:1.5px solid var(--gray-200);
+  color:var(--muted); border-radius:var(--radius); padding:6px 12px;
+  font-size:12px; font-weight:600; cursor:pointer;
+}
+.child-block .remove-child:hover{ border-color:#b91c1c; color:#b91c1c }
+.add-child-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; border:1.5px dashed var(--navy);
+  color:var(--navy); border-radius:var(--radius); padding:10px 16px;
+  font-weight:600; font-size:14px; cursor:pointer;
+  transition:background-color .15s ease;
+}
+.add-child-btn:hover{ background:var(--lavender) }
+.summary .line.qty .v{color:#d9defc; font-weight:700}
+
 /* Submit zone */
 .submit-zone{margin-top:32px; text-align:center}
 .submit-zone .btn{min-width:280px}
@@ -757,18 +787,18 @@ body.nav-open{overflow:hidden}
   <div class="hero-img" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-inner">
-      <div class="eyebrow">My Purpose Kids Summer Workshop · Ages 6–12</div>
-      <h1>Christ-Centered creative learning<br>and fun for kids ages 6–12!</h1>
-      <p class="lede">Faith-based education, creative activities, and fellowship in beautiful Tarpon Springs. Join us every Tuesday and Thursday from 9:30 AM to 1:00 PM.</p>
+      <div class="eyebrow">Quest for the Greatest Treasure · Ages 5–13</div>
+      <h1>Adventure to Ancient Egypt<br>this summer in Tarpon Springs.</h1>
+      <p class="lede">Among mysterious pyramids, hidden scrolls, and unforgettable adventures, kids will discover that the greatest treasure isn't gold or jewels — it's God's love, wisdom, and truth. Crafts, clay, sewing, LEGO, games, and a trampoline-park field trip.</p>
 
       <div class="hero-meta">
         <div class="item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <div><div class="label">Dates</div><div class="value">June 16 – July 23, 2026</div></div>
+          <div><div class="label">Dates</div><div class="value">June 9 – July 9, 2026</div></div>
         </div>
         <div class="item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div><div class="label">Schedule</div><div class="value">Tue &amp; Thu · 9:30 AM – 1:00 PM</div></div>
+          <div><div class="label">Schedule</div><div class="value">Tue &amp; Thu · 9:00 AM – 2:00 PM</div></div>
         </div>
         <div class="item">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -777,9 +807,10 @@ body.nav-open{overflow:hidden}
       </div>
 
       <div class="hero-actions">
-        <a href="#register" class="btn btn-primary">Register your child — $35</a>
-        <a href="#volunteer" class="btn btn-outline-white">Volunteer with us</a>
+        <a href="#register" class="btn btn-primary" id="heroRegBtn">Register your child — $45 Early Bird</a>
+        <a href="#volunteer" class="btn btn-outline-white">Volunteer (ages 13–17)</a>
       </div>
+      <p style="font-size:13px; color:rgba(255,255,255,0.75); margin-top:12px">Early Bird $45 through May 25 · $50 after</p>
     </div>
   </div>
 </section>
@@ -817,19 +848,19 @@ body.nav-open{overflow:hidden}
     <div class="split">
       <div class="copy">
         <div class="eyebrow">About the Workshop</div>
-        <h2>My Purpose Kids Summer Workshop</h2>
-        <p>Christ-Centered creative learning and fun activities for kids ages 6–12! Join us every Tuesday and Thursday from 9:30 AM to 1:00 PM in beautiful Tarpon Springs for faith-based education and fellowship.</p>
-        <p>We keep groups small on purpose — every child gets eye contact, their name remembered, and a leader invested in their growth.</p>
+        <h2>A summer-long quest to Ancient Egypt.</h2>
+        <p>This year, children will embark on an exciting journey to Ancient Egypt, where they'll search for the greatest treasure of all. Among mysterious pyramids, hidden scrolls, and unforgettable adventures, they'll discover that the most valuable treasure is not gold or jewels — but God's love, wisdom, and truth that remain with us forever.</p>
+        <p>Tuesdays and Thursdays, 9:00 AM to 2:00 PM, June 9 – July 9. Small groups, faith-based learning, creative activities, and one big trampoline-park field trip.</p>
         <div style="margin-top:20px; padding:16px 20px; background:var(--lavender); border-radius:var(--radius-md); border-left:4px solid var(--navy)">
-          <p style="font-weight:700; color:var(--navy); margin-bottom:6px; font-size:15px">Age Requirements</p>
-          <p style="color:var(--ink); font-size:14px; margin-bottom:4px">This workshop is designed for children ages 6–12.</p>
-          <p style="color:var(--muted); font-size:14px">Younger children? Please contact us at <a href="tel:727-637-3362" style="color:var(--navy);font-weight:600">727-637-3362</a> to discuss options.</p>
+          <p style="font-weight:700; color:var(--navy); margin-bottom:6px; font-size:15px">Ages 5–13 · Volunteers 13–17</p>
+          <p style="color:var(--ink); font-size:14px; margin-bottom:4px">Kids ages 5–13 register as campers. Teens 13–17 can sign up to volunteer and serve alongside our leaders.</p>
+          <p style="color:var(--muted); font-size:14px">Questions? Call us at <a href="tel:727-637-3362" style="color:var(--navy);font-weight:600">727-637-3362</a>.</p>
         </div>
 
         <div class="stats">
-          <div class="stat"><div class="num">12</div><div class="label">Workshop days</div></div>
+          <div class="stat"><div class="num">10</div><div class="label">Workshop days</div></div>
           <div class="stat"><div class="num">6:1</div><div class="label">Kids per leader</div></div>
-          <div class="stat"><div class="num">$35</div><div class="label">All six weeks</div></div>
+          <div class="stat"><div class="num">$45</div><div class="label">Early Bird (thru 5/25)</div></div>
           <div class="stat"><div class="num">100%</div><div class="label">Background-checked</div></div>
         </div>
       </div>
@@ -846,42 +877,38 @@ body.nav-open{overflow:hidden}
   <div class="container">
     <div class="section-head">
       <div class="eyebrow on-navy">What Your Kids Will Do</div>
-      <h2>Four pillars, twelve mornings, one great summer.</h2>
-      <p>Every session rotates through these four areas — so kids stay engaged, bodies get moving, and nobody sits at a table for three hours.</p>
+      <h2>Crafts, clay, sewing, LEGO, games — and a trampoline park.</h2>
+      <p>Hands-on creativity every session, plus very interactive games and one big field-trip day. All wrapped around the Egypt treasure-hunt theme.</p>
     </div>
 
     <div class="grid-4">
       <div class="act-card">
         <div class="act-icon">
-          <!-- book -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <h3>Faith &amp; Learning</h3>
-        <p>Short, age-appropriate Bible lessons led by trained leaders — stories kids can actually retell over dinner.</p>
-      </div>
-      <div class="act-card">
-        <div class="act-icon">
-          <!-- palette -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.6 1.5-1.5 0-.4-.1-.7-.4-1-.3-.3-.4-.6-.4-1 0-.9.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-5-4.5-9-10-9z"/></svg>
         </div>
-        <h3>Creative Arts &amp; Crafts</h3>
-        <p>Hands-on projects kids take home — paint, paper, clay, and the occasional glitter explosion.</p>
+        <h3>Crafts, Clay &amp; Art</h3>
+        <p>Hands-on art projects every session — paint, paper, and pottery-style clay work kids take home.</p>
       </div>
       <div class="act-card">
         <div class="act-icon">
-          <!-- users -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2l3-9 4 18 3-9h6"/></svg>
+        </div>
+        <h3>Sewing &amp; LEGO</h3>
+        <p>Learn beginner sewing stitches and build elaborate LEGO scenes — patience, problem-solving, and play.</p>
+      </div>
+      <div class="act-card">
+        <div class="act-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>Teamwork &amp; Games</h3>
-        <p>Cooperative games and group challenges that build real friendships — the kind that last past July.</p>
+        <h3>Very Interactive Games</h3>
+        <p>Team challenges, treasure hunts, and big-group games tied to the Egypt theme — every kid in, every time.</p>
       </div>
       <div class="act-card">
         <div class="act-icon">
-          <!-- activity -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h3>Active Play</h3>
-        <p>Outdoor time, movement breaks, and plenty of running — kids arrive home tired in the best possible way.</p>
+        <h3>Trampoline Park Day</h3>
+        <p>One special field-trip day to a local trampoline park — released energy, lots of laughs, plenty of jumping.</p>
       </div>
     </div>
   </div>
@@ -931,39 +958,43 @@ body.nav-open{overflow:hidden}
     <div class="section-head">
       <div class="eyebrow">A Typical Day</div>
       <h2>What a Tuesday or Thursday looks like.</h2>
-      <p>Three and a half hours, four rotations, one snack break. Parents pick up at 1:00 PM sharp.</p>
+      <p>Five hours, multiple rotations, one snack break. Parents pick up at 2:00 PM sharp.</p>
     </div>
 
     <div class="day-card">
       <div class="left">
-        <div class="eyebrow">9:30 AM – 1:00 PM</div>
+        <div class="eyebrow">9:00 AM – 2:00 PM</div>
         <h3>Every Tuesday &amp; Thursday</h3>
-        <p>Drop-off opens at 9:15. Please bring a labeled lunchbox and a refillable water bottle — we don't sell snacks on-site.</p>
+        <p>Drop-off opens at 8:45. Please bring a labeled lunchbox and a refillable water bottle — we don't sell snacks on-site.</p>
       </div>
       <div class="right">
         <div class="day-row">
+          <div class="time">9:00 AM</div>
+          <div><div class="name">Welcome &amp; Opening Circle</div><div class="desc">Name tags, worship song, prayer, Egypt theme intro</div></div>
+        </div>
+        <div class="day-row">
           <div class="time">9:30 AM</div>
-          <div><div class="name">Welcome &amp; Opening Circle</div><div class="desc">Name tags, worship song, prayer, theme intro</div></div>
+          <div><div class="name">Bible Story &amp; Treasure Hunt</div><div class="desc">Age-grouped — a story tied to the day's clue</div></div>
         </div>
         <div class="day-row">
-          <div class="time">9:50 AM</div>
-          <div><div class="name">Bible Story &amp; Discussion</div><div class="desc">Age-grouped — a story + three questions</div></div>
-        </div>
-        <div class="day-row">
-          <div class="time">10:30 AM</div>
-          <div><div class="name">Creative Craft Rotation</div><div class="desc">Take-home project tied to the day's theme</div></div>
+          <div class="time">10:15 AM</div>
+          <div><div class="name">Craft Rotation</div><div class="desc">Rotates through clay, art, sewing, and LEGO builds</div></div>
         </div>
         <div class="day-row">
           <div class="time">11:30 AM</div>
           <div><div class="name">Snack &amp; Lunch</div><div class="desc">Kids eat what you packed — water refills on us</div></div>
         </div>
         <div class="day-row">
-          <div class="time">12:00 PM</div>
-          <div><div class="name">Active Play &amp; Games</div><div class="desc">Outdoor when weather permits, indoor if not</div></div>
+          <div class="time">12:15 PM</div>
+          <div><div class="name">Interactive Games</div><div class="desc">Group challenges and Egypt-themed team games</div></div>
         </div>
         <div class="day-row">
-          <div class="time">12:45 PM</div>
-          <div><div class="name">Closing Circle &amp; Pickup</div><div class="desc">Recap, prayer, handoff to parents at 1:00</div></div>
+          <div class="time">1:15 PM</div>
+          <div><div class="name">Discovery Time &amp; Free Play</div><div class="desc">Outdoor when weather permits, indoor if not</div></div>
+        </div>
+        <div class="day-row">
+          <div class="time">1:45 PM</div>
+          <div><div class="name">Closing Circle &amp; Pickup</div><div class="desc">Recap, prayer, handoff to parents at 2:00</div></div>
         </div>
       </div>
     </div>
@@ -976,13 +1007,13 @@ body.nav-open{overflow:hidden}
     <div class="section-head">
       <div class="eyebrow">Register &amp; Volunteer</div>
       <h2 id="formHeading">Reserve your child's spot.</h2>
-      <p id="formSub">Registration is $35 for the full six-week session. Limited spots — we cap each session to protect the ratio.</p>
+      <p id="formSub">Early Bird $45 through May 25 · $50 after. Limited spots — we cap each session to protect the ratio.</p>
     </div>
 
     <div style="text-align:center">
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="register" role="tab">Register a child</button>
-        <button class="tab" data-tab="volunteer" role="tab">Volunteer</button>
+        <button class="tab active" data-tab="register" role="tab">Register a child (5–13)</button>
+        <button class="tab" data-tab="volunteer" role="tab">Volunteer (13–17)</button>
       </div>
     </div>
 
@@ -993,19 +1024,73 @@ body.nav-open{overflow:hidden}
           <div id="regMsg"></div>
 
           <div class="form-section">
-            <h3><span class="num">1</span>Child's information</h3>
+            <h3><span class="num">1</span>Children's information</h3>
+            <div id="childrenList">
+              <div class="child-block" data-idx="0">
+                <div class="child-head">
+                  <span class="label">Child 1</span>
+                </div>
+                <div class="field">
+                  <label>Full name <span class="req">*</span></label>
+                  <input type="text" name="childName_0" required />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label>Date of birth <span class="req">*</span></label>
+                    <input type="date" name="dateOfBirth_0" required />
+                  </div>
+                  <div class="field">
+                    <label>Age (5–13) <span class="req">*</span></label>
+                    <input type="number" name="age_0" min="5" max="13" required />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Shirt size</label>
+                  <select name="shirtSize_0">
+                    <option value="YS">Youth Small</option>
+                    <option value="YM" selected>Youth Medium</option>
+                    <option value="YL">Youth Large</option>
+                    <option value="AS">Adult Small</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Any allergies? (food, medicine, environmental)</label>
+                  <div class="pill-group" data-allergies-idx="0">
+                    <label class="pill checked"><input type="radio" name="allergies_0" value="no" checked><span>No allergies</span></label>
+                    <label class="pill"><input type="radio" name="allergies_0" value="yes"><span>Yes — specify</span></label>
+                  </div>
+                  <input type="text" name="allergyDetails_0" data-allergy-detail="0" placeholder="Please list allergies…" style="margin-top:10px; display:none" />
+                </div>
+                <div class="field">
+                  <label>Medical conditions or special needs?</label>
+                  <div class="pill-group" data-medical-idx="0">
+                    <label class="pill checked"><input type="radio" name="medicalConditions_0" value="no" checked><span>None</span></label>
+                    <label class="pill"><input type="radio" name="medicalConditions_0" value="yes"><span>Yes — specify</span></label>
+                  </div>
+                  <input type="text" name="medicalDetails_0" data-medical-detail="0" placeholder="Please describe…" style="margin-top:10px; display:none" />
+                </div>
+              </div>
+            </div>
+            <button type="button" class="add-child-btn" id="addChildBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add another child
+            </button>
+          </div>
+
+          <div class="form-section">
+            <h3><span class="num">2</span>Parent / guardian</h3>
             <div class="field">
               <label>Full name <span class="req">*</span></label>
-              <input type="text" name="childName" required />
+              <input type="text" name="parentName" required />
             </div>
             <div class="field-row">
               <div class="field">
-                <label>Date of birth <span class="req">*</span></label>
-                <input type="date" name="dateOfBirth" required />
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="parentEmail" required />
               </div>
               <div class="field">
-                <label>Age (6–12) <span class="req">*</span></label>
-                <input type="number" name="age" min="6" max="12" required />
+                <label>Phone <span class="req">*</span></label>
+                <input type="tel" name="parentPhone" placeholder="(727) 555-1234" required />
               </div>
             </div>
             <div class="field">
@@ -1028,54 +1113,9 @@ body.nav-open{overflow:hidden}
                 <input type="text" name="zip" required />
               </div>
               <div class="field">
-                <label>Shirt size</label>
-                <select name="shirtSize">
-                  <option value="YS">Youth Small</option>
-                  <option value="YM" selected>Youth Medium</option>
-                  <option value="YL">Youth Large</option>
-                  <option value="AS">Adult Small</option>
-                </select>
+                <label>Emergency contact (name &amp; phone) <span class="req">*</span></label>
+                <input type="text" name="emergencyContact" placeholder="Jane Doe · (727) 555-5678" required />
               </div>
-            </div>
-
-            <div class="field">
-              <label>Any allergies? (food, medicine, environmental)</label>
-              <div class="pill-group" data-toggle="allergies">
-                <label class="pill checked"><input type="radio" name="allergies" value="no" checked><span>No allergies</span></label>
-                <label class="pill"><input type="radio" name="allergies" value="yes"><span>Yes — specify</span></label>
-              </div>
-              <input type="text" name="allergyDetails" id="allergyDetails" placeholder="Please list allergies…" style="margin-top:10px; display:none" />
-            </div>
-
-            <div class="field">
-              <label>Medical conditions or special needs?</label>
-              <div class="pill-group" data-toggle="medical">
-                <label class="pill checked"><input type="radio" name="medicalConditions" value="no" checked><span>None</span></label>
-                <label class="pill"><input type="radio" name="medicalConditions" value="yes"><span>Yes — specify</span></label>
-              </div>
-              <input type="text" name="medicalDetails" id="medicalDetails" placeholder="Please describe…" style="margin-top:10px; display:none" />
-            </div>
-          </div>
-
-          <div class="form-section">
-            <h3><span class="num">2</span>Parent / guardian</h3>
-            <div class="field">
-              <label>Full name <span class="req">*</span></label>
-              <input type="text" name="parentName" required />
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label>Email <span class="req">*</span></label>
-                <input type="email" name="parentEmail" required />
-              </div>
-              <div class="field">
-                <label>Phone <span class="req">*</span></label>
-                <input type="tel" name="parentPhone" placeholder="(727) 555-1234" required />
-              </div>
-            </div>
-            <div class="field">
-              <label>Emergency contact (name &amp; phone) <span class="req">*</span></label>
-              <input type="text" name="emergencyContact" placeholder="Jane Doe · (727) 555-5678" required />
             </div>
           </div>
 
@@ -1112,7 +1152,7 @@ body.nav-open{overflow:hidden}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
             <p class="small">Registration will be sent to summerworkshops25@gmail.com</p>
-            <p class="small">Payment ($35.00) is required for workshop participation</p>
+            <p class="small" id="submitPriceNote">Payment is required for workshop participation · Early Bird $45 through May 25, $50 after</p>
             <p class="small">For questions contact: <a href="tel:727-637-3362" style="color:var(--navy);font-weight:600">727-637-3362</a></p>
           </div>
         </form>
@@ -1121,12 +1161,13 @@ body.nav-open{overflow:hidden}
           <div class="summary">
             <div class="eyebrow">Your registration</div>
             <h3>Summer Workshop 2026</h3>
-            <p class="lede">Six-week day program · Ages 6–12 · Tarpon Springs</p>
-            <div class="line"><span class="k">12 workshop days</span><span class="v">Included</span></div>
-            <div class="line"><span class="k">Craft supplies</span><span class="v">Included</span></div>
-            <div class="line"><span class="k">Workshop t-shirt</span><span class="v">Included</span></div>
+            <p class="lede">Egypt Treasure Quest · Ages 5–13 · Tarpon Springs</p>
+            <div class="line"><span class="k">10 workshop days (Jun 9 – Jul 9)</span><span class="v">Included</span></div>
+            <div class="line"><span class="k">Craft supplies (clay, art, LEGO, sewing)</span><span class="v">Included</span></div>
+            <div class="line"><span class="k">Trampoline park field trip</span><span class="v">Included</span></div>
+            <div class="line qty"><span class="k" id="sumQtyLine">1 child × $45.00</span><span class="v" id="sumQtyVal">$45.00</span></div>
             <div class="line"><span class="k">Processing fee</span><span class="v">$0.00</span></div>
-            <div class="line total"><span class="k">Total today</span><span class="v">$35.00</span></div>
+            <div class="line total"><span class="k">Total today</span><span class="v">$45.00</span></div>
             <span class="badge">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               Encrypted via Square
@@ -1150,9 +1191,20 @@ body.nav-open{overflow:hidden}
 
           <div class="form-section">
             <h3><span class="num">1</span>About you</h3>
+            <p style="color:var(--muted); font-size:14px; margin-bottom:16px">Youth volunteer applications are open to teens ages 13–17.</p>
             <div class="field">
               <label>Full name <span class="req">*</span></label>
               <input type="text" name="volunteerName" required />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Age (13–17) <span class="req">*</span></label>
+                <input type="number" name="volunteerAge" min="13" max="17" required />
+              </div>
+              <div class="field">
+                <label>Parent/guardian name <span class="req">*</span></label>
+                <input type="text" name="volunteerGuardian" required />
+              </div>
             </div>
             <div class="field-row">
               <div class="field">
@@ -1164,6 +1216,17 @@ body.nav-open{overflow:hidden}
                 <input type="tel" name="volunteerPhone" required />
               </div>
             </div>
+            <div class="field">
+              <label>Shirt size <span class="req">*</span></label>
+              <select name="volunteerShirtSize" required>
+                <option value="YM">Youth Medium</option>
+                <option value="YL">Youth Large</option>
+                <option value="AS" selected>Adult Small</option>
+                <option value="AM">Adult Medium</option>
+                <option value="AL">Adult Large</option>
+                <option value="AXL">Adult XL</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-section">
@@ -1173,9 +1236,9 @@ body.nav-open{overflow:hidden}
 
             <label style="font-size:13px;font-weight:600;margin:20px 0 8px;display:block;color:var(--ink)">Preferred time slot <span class="req">*</span></label>
             <div class="pill-group">
-              <label class="pill checked"><input type="radio" name="timeSlot" value="full" checked><span>Full morning (9:30–1:00)</span></label>
-              <label class="pill"><input type="radio" name="timeSlot" value="early"><span>Early (9:30–11:15)</span></label>
-              <label class="pill"><input type="radio" name="timeSlot" value="late"><span>Late (11:15–1:00)</span></label>
+              <label class="pill checked"><input type="radio" name="timeSlot" value="full" checked><span>Full day (9:00–2:00)</span></label>
+              <label class="pill"><input type="radio" name="timeSlot" value="early"><span>Morning (9:00–11:30)</span></label>
+              <label class="pill"><input type="radio" name="timeSlot" value="late"><span>Afternoon (11:30–2:00)</span></label>
             </div>
           </div>
 
@@ -1237,7 +1300,7 @@ body.nav-open{overflow:hidden}
             <span class="kicker">Summer Workshop</span>
           </span>
         </div>
-        <p class="blurb">A Christ-centered summer day program for kids ages 6–12. Tarpon Springs, FL. Small groups, big summers.</p>
+        <p class="blurb">A Christ-centered summer day program for kids ages 5–13. Tarpon Springs, FL. Small groups, big summers.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -1284,7 +1347,7 @@ body.nav-open{overflow:hidden}
 
         <div class="pay-total">
           <div class="label">Summer Workshop 2026</div>
-          <div class="amount">$35.00</div>
+          <div class="amount">$45.00</div>
         </div>
 
         <label style="font-size:12px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:8px">Card details</label>
@@ -1292,7 +1355,7 @@ body.nav-open{overflow:hidden}
         <div id="payError" style="display:none; color:#b91c1c; font-size:13px; margin-top:10px"></div>
 
         <button id="payBtn" class="btn btn-navy" style="width:100%; margin-top:18px">
-          Pay $35.00 securely
+          Pay $45.00 securely
         </button>
 
         <div class="sandbox-note">
@@ -1307,7 +1370,7 @@ body.nav-open{overflow:hidden}
         <h2>You're registered!</h2>
         <p id="successText">Payment received. A confirmation is on its way to your inbox.</p>
         <div class="receipt">
-          <div class="row"><span class="k">Amount</span><span class="v">$35.00 USD</span></div>
+          <div class="row"><span class="k">Amount</span><span class="v" id="rcpAmount">$45.00 USD</span></div>
           <div class="row"><span class="k">Method</span><span class="v" id="rcpBrand">Visa •••• 1111</span></div>
           <div class="row"><span class="k">Reference</span><span class="v" id="rcpRef">—</span></div>
         </div>
@@ -1336,17 +1399,22 @@ body.nav-open{overflow:hidden}
     <div class="sw" data-c="#9a3f50" style="background:#9a3f50"></div>
   </div>
   <label>Registration price</label>
-  <input type="number" id="twPrice" value="35" min="0" max="500" />
+  <input type="number" id="twPrice" value="45" min="0" max="500" />
 </div>
 
 <!-- ──────────────── Scripts ──────────────── -->
 <script>
+/* Early-Bird pricing: $45 through May 25, 2026; $50 after */
+const EARLY_BIRD_DEADLINE = new Date('2026-05-26T00:00:00');
+const CURRENT_PRICE = (new Date() < EARLY_BIRD_DEADLINE) ? 45 : 50;
+
 /* EDITMODE state */
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "heroImage": "outdoors",
   "accent": "#1e6091",
-  "price": 35
+  "price": 45
 }/*EDITMODE-END*/;
+TWEAK_DEFAULTS.price = CURRENT_PRICE;
 let tweaks = {...TWEAK_DEFAULTS};
 
 /* ── Mobile nav toggle ─────────────────────────────────────── */
@@ -1385,26 +1453,134 @@ document.querySelectorAll('.date-pill').forEach(p=>{
   });
 });
 
-/* ── Conditional detail fields ─────────────────────────────── */
-function bindDetail(groupName, detailId){
-  document.querySelectorAll(`input[name="${groupName}"]`).forEach(r=>{
+/* ── Conditional detail fields (per-child) ─────────────────── */
+function bindChildConditionals(block){
+  const idx = block.dataset.idx;
+  const allergyDetail = block.querySelector(`[data-allergy-detail="${idx}"]`);
+  block.querySelectorAll(`input[name="allergies_${idx}"]`).forEach(r=>{
     r.addEventListener('change', ()=>{
-      const el = document.getElementById(detailId);
       const show = r.value === 'yes' && r.checked;
-      el.style.display = show ? 'block' : 'none';
-      if(!show) el.value = '';
+      allergyDetail.style.display = show ? 'block' : 'none';
+      if(!show) allergyDetail.value = '';
+    });
+  });
+  const medicalDetail = block.querySelector(`[data-medical-detail="${idx}"]`);
+  block.querySelectorAll(`input[name="medicalConditions_${idx}"]`).forEach(r=>{
+    r.addEventListener('change', ()=>{
+      const show = r.value === 'yes' && r.checked;
+      medicalDetail.style.display = show ? 'block' : 'none';
+      if(!show) medicalDetail.value = '';
     });
   });
 }
-bindDetail('allergies','allergyDetails');
-bindDetail('medicalConditions','medicalDetails');
+document.querySelectorAll('#childrenList .child-block').forEach(bindChildConditionals);
+
+/* ── Multi-child: add / remove / renumber ──────────────────── */
+let childCounter = 1; // next index to use for new children
+function renumberChildren(){
+  const blocks = document.querySelectorAll('#childrenList .child-block');
+  blocks.forEach((b, i) => {
+    const labelEl = b.querySelector('.child-head .label');
+    if(labelEl) labelEl.textContent = `Child ${i + 1}`;
+  });
+  updateTotal();
+}
+function updateTotal(){
+  const count = document.querySelectorAll('#childrenList .child-block').length;
+  const price = window._tweaksPrice || CURRENT_PRICE;
+  const total = count * price;
+  const qtyLine = document.getElementById('sumQtyLine');
+  const qtyVal = document.getElementById('sumQtyVal');
+  if(qtyLine) qtyLine.textContent = `${count} ${count === 1 ? 'child' : 'children'} × $${price.toFixed(2)}`;
+  if(qtyVal) qtyVal.textContent = `$${total.toFixed(2)}`;
+  const totalEl = document.querySelector('.summary .line.total .v');
+  if(totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+  const payAmt = document.querySelector('.pay-total .amount');
+  if(payAmt) payAmt.textContent = `$${total.toFixed(2)}`;
+  const payBtn = document.getElementById('payBtn');
+  if(payBtn) payBtn.textContent = `Pay $${total.toFixed(2)} securely`;
+  const rcp = document.getElementById('rcpAmount');
+  if(rcp) rcp.textContent = `$${total.toFixed(2)} USD`;
+  window._regTotal = total;
+  window._regCount = count;
+}
+function addChildBlock(){
+  const idx = childCounter++;
+  const wrap = document.createElement('div');
+  wrap.className = 'child-block';
+  wrap.dataset.idx = idx;
+  wrap.innerHTML = `
+    <div class="child-head">
+      <span class="label">Child</span>
+      <button type="button" class="remove-child">Remove</button>
+    </div>
+    <div class="field">
+      <label>Full name <span class="req">*</span></label>
+      <input type="text" name="childName_${idx}" required />
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Date of birth <span class="req">*</span></label>
+        <input type="date" name="dateOfBirth_${idx}" required />
+      </div>
+      <div class="field">
+        <label>Age (5–13) <span class="req">*</span></label>
+        <input type="number" name="age_${idx}" min="5" max="13" required />
+      </div>
+    </div>
+    <div class="field">
+      <label>Shirt size</label>
+      <select name="shirtSize_${idx}">
+        <option value="YS">Youth Small</option>
+        <option value="YM" selected>Youth Medium</option>
+        <option value="YL">Youth Large</option>
+        <option value="AS">Adult Small</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Any allergies? (food, medicine, environmental)</label>
+      <div class="pill-group" data-allergies-idx="${idx}">
+        <label class="pill checked"><input type="radio" name="allergies_${idx}" value="no" checked><span>No allergies</span></label>
+        <label class="pill"><input type="radio" name="allergies_${idx}" value="yes"><span>Yes — specify</span></label>
+      </div>
+      <input type="text" name="allergyDetails_${idx}" data-allergy-detail="${idx}" placeholder="Please list allergies…" style="margin-top:10px; display:none" />
+    </div>
+    <div class="field">
+      <label>Medical conditions or special needs?</label>
+      <div class="pill-group" data-medical-idx="${idx}">
+        <label class="pill checked"><input type="radio" name="medicalConditions_${idx}" value="no" checked><span>None</span></label>
+        <label class="pill"><input type="radio" name="medicalConditions_${idx}" value="yes"><span>Yes — specify</span></label>
+      </div>
+      <input type="text" name="medicalDetails_${idx}" data-medical-detail="${idx}" placeholder="Please describe…" style="margin-top:10px; display:none" />
+    </div>
+  `;
+  document.getElementById('childrenList').appendChild(wrap);
+  bindChildConditionals(wrap);
+  // re-bind pill-group state for the new block's pills
+  wrap.querySelectorAll('.pill-group').forEach(g=>{
+    g.addEventListener('change', e=>{
+      const t = e.target;
+      if(t.type === 'radio'){
+        g.querySelectorAll('.pill').forEach(p=>p.classList.remove('checked'));
+        t.closest('.pill').classList.add('checked');
+      }
+    });
+  });
+  wrap.querySelector('.remove-child').addEventListener('click', ()=>{
+    wrap.remove();
+    renumberChildren();
+  });
+  renumberChildren();
+  wrap.scrollIntoView({behavior:'smooth', block:'center'});
+}
+document.getElementById('addChildBtn').addEventListener('click', addChildBlock);
 
 /* ── Date grid (volunteer) ─────────────────────────────────── */
 const DATES = [
-  ['Tue','Jun 16'], ['Thu','Jun 18'], ['Tue','Jun 23'],
-  ['Thu','Jun 25'], ['Tue','Jun 30'], ['Thu','Jul 2'],
-  ['Tue','Jul 7'],  ['Thu','Jul 9'],  ['Tue','Jul 14'],
-  ['Thu','Jul 16'], ['Tue','Jul 21'], ['Thu','Jul 23'],
+  ['Tue','Jun 9'],  ['Thu','Jun 11'], ['Tue','Jun 16'],
+  ['Thu','Jun 18'], ['Tue','Jun 23'], ['Thu','Jun 25'],
+  ['Tue','Jun 30'], ['Thu','Jul 2'],  ['Tue','Jul 7'],
+  ['Thu','Jul 9'],
 ];
 const dateGrid = document.getElementById('dateGrid');
 DATES.forEach(([dow,d])=>{
@@ -1425,10 +1601,10 @@ document.querySelectorAll('.tab').forEach(tab=>{
     const target = tab.dataset.tab;
     document.getElementById('panel-register').style.display = target==='register' ? 'block' : 'none';
     document.getElementById('panel-volunteer').style.display = target==='volunteer' ? 'block' : 'none';
-    document.getElementById('formHeading').textContent = target==='register' ? "Reserve your child's spot." : "Join the volunteer team.";
+    document.getElementById('formHeading').textContent = target==='register' ? "Reserve your child's spot." : "Join the youth volunteer team (ages 13–17).";
     document.getElementById('formSub').textContent = target==='register'
-      ? "Registration is $35 for the full six-week session. Limited spots — we cap each session to protect the ratio."
-      : "We need about 12 leaders to run a session. Sign up for the dates you can make — we'll match you to a role.";
+      ? `Early Bird $45 through May 25 · $50 after. Limited spots — we cap each session to protect the ratio.`
+      : "Teens ages 13–17 can serve alongside our adult leaders. Sign up for the dates you can make — we'll match you to a role.";
   });
 });
 
@@ -1448,9 +1624,28 @@ function showMsg(containerId, type, html){
 /* ── Registration form submit (opens Square modal) ─────────── */
 const regForm = document.getElementById('registrationForm');
 let regData = null;
+function collectChildren(){
+  const out = [];
+  document.querySelectorAll('#childrenList .child-block').forEach(b => {
+    const idx = b.dataset.idx;
+    const get = n => (b.querySelector(`[name="${n}_${idx}"]:checked`) || b.querySelector(`[name="${n}_${idx}"]`));
+    const allergiesEl = b.querySelector(`[name="allergies_${idx}"]:checked`);
+    const medicalEl = b.querySelector(`[name="medicalConditions_${idx}"]:checked`);
+    out.push({
+      childName:        (b.querySelector(`[name="childName_${idx}"]`)||{}).value || '',
+      dateOfBirth:      (b.querySelector(`[name="dateOfBirth_${idx}"]`)||{}).value || '',
+      age:              (b.querySelector(`[name="age_${idx}"]`)||{}).value || '',
+      shirtSize:        (b.querySelector(`[name="shirtSize_${idx}"]`)||{}).value || '',
+      allergies:        allergiesEl ? allergiesEl.value : 'no',
+      allergyDetails:   (b.querySelector(`[name="allergyDetails_${idx}"]`)||{}).value || '',
+      medicalConditions: medicalEl ? medicalEl.value : 'no',
+      medicalDetails:   (b.querySelector(`[name="medicalDetails_${idx}"]`)||{}).value || '',
+    });
+  });
+  return out;
+}
 regForm.addEventListener('submit', e=>{
   e.preventDefault();
-  // Validate required fields & consent
   const missingConsent = ['consentParticipation','consentTransportation','consentMedical','consentPhotos','consentLiability']
     .some(n => !regForm.querySelector(`[name="${n}"]`).checked);
   if(missingConsent){
@@ -1461,9 +1656,23 @@ regForm.addEventListener('submit', e=>{
     regForm.reportValidity();
     return;
   }
-  // Collect data, open modal
+  const children = collectChildren();
   const fd = new FormData(regForm);
-  regData = Object.fromEntries(fd.entries());
+  const flat = Object.fromEntries(fd.entries());
+  regData = {
+    children,
+    childCount: children.length,
+    parentName:   flat.parentName   || '',
+    parentEmail:  flat.parentEmail  || '',
+    parentPhone:  flat.parentPhone  || '',
+    street:       flat.street       || '',
+    city:         flat.city         || '',
+    state:        flat.state        || '',
+    zip:          flat.zip          || '',
+    emergencyContact: flat.emergencyContact || '',
+    // legacy single-child fields for first kid (so existing email template works)
+    childName: children[0]?.childName || '',
+  };
   window._regData = regData;
   window.openPayModal(regData);
 });
@@ -1516,13 +1725,17 @@ function applyTweaks(){
   // update price
   const p = tweaks.price;
   window._tweaksPrice = p;
-  document.querySelector('.summary .line.total .v').textContent = `$${p.toFixed(2)}`;
   document.querySelectorAll('[data-price]').forEach(el=>el.textContent = `$${p.toFixed(2)}`);
-  document.querySelector('.pay-total .amount').textContent = `$${p.toFixed(2)}`;
-  const payBtn = document.getElementById('payBtn');
-  if(payBtn) payBtn.textContent = `Pay $${p.toFixed(2)} securely`;
-  // CTA text
-  document.querySelector('#regSubmit').childNodes[0].nodeValue = `Continue to payment · $${p.toFixed(0)} `;
+  // Hero CTA
+  const heroBtn = document.getElementById('heroRegBtn');
+  if(heroBtn){
+    const earlyBird = (new Date() < EARLY_BIRD_DEADLINE);
+    heroBtn.textContent = earlyBird
+      ? `Register your child — $${p.toFixed(0)} Early Bird`
+      : `Register your child — $${p.toFixed(0)}`;
+  }
+  // Recompute child-aware totals (summary, pay modal, receipt, submit btn)
+  if(typeof updateTotal === 'function') updateTotal();
 }
 function shade(hex, pct){
   const n = parseInt(hex.slice(1),16);
@@ -1576,11 +1789,14 @@ applyTweaks();
     var btn = document.getElementById('regSubmit');
     if (btn) { btn.disabled = true; btn.textContent = 'Redirecting to payment…'; }
 
+    var childNames = (regData.children || []).map(function(c){ return c.childName; }).filter(Boolean).join(', ');
+
     fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        childName:   regData.childName   || '',
+        childName:   childNames || regData.childName || '',
+        childCount:  regData.childCount || (regData.children ? regData.children.length : 1),
         parentName:  regData.parentName  || '',
         parentEmail: regData.parentEmail || '',
         parentPhone: regData.parentPhone || ''

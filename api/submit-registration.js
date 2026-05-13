@@ -86,11 +86,11 @@ Photo/Media Consent: ${data.consentPhotos ? 'Yes' : 'No'}
 Liability Release: ${data.consentLiability ? 'Yes' : 'No'}
 
 WORKSHOP DETAILS:
-Event: My Purpose Summer Workshops
-Dates: June 17 - July 24, 2025
-Schedule: Every Tuesday & Thursday, 9:30 AM - 1:00 PM
+Event: My Purpose Summer Workshops 2026 — Egypt Treasure Quest
+Dates: June 9 - July 9, 2026
+Schedule: Every Tuesday & Thursday, 9:00 AM - 2:00 PM
 Location: 300 N Highland Ave, Tarpon Springs, FL 34688
-Fee: $35.00
+Fee: $45.00 Early Bird (through May 25) / $50.00 after
 
 PAYMENT STATUS: Pending
 
