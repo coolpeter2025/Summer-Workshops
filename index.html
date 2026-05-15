@@ -1674,17 +1674,56 @@ regForm.addEventListener('submit', e=>{
     childName: children[0]?.childName || '',
   };
   window._regData = regData;
+
+  // Fire-and-forget email notification to staff (parallel with payment redirect)
+  fetch('/api/submit-registration', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: {
+      ...regData,
+      consentParticipation:   !!regForm.querySelector('[name="consentParticipation"]')?.checked,
+      consentTransportation:  !!regForm.querySelector('[name="consentTransportation"]')?.checked,
+      consentMedical:         !!regForm.querySelector('[name="consentMedical"]')?.checked,
+      consentPhotos:          !!regForm.querySelector('[name="consentPhotos"]')?.checked,
+      consentLiability:       !!regForm.querySelector('[name="consentLiability"]')?.checked,
+    }})
+  }).then(r => r.json()).then(r => {
+    console.log('Staff notification email:', r);
+  }).catch(err => {
+    console.warn('Staff notification email failed (non-fatal):', err);
+  });
+
   window.openPayModal(regData);
 });
 
-/* ── Volunteer form submit (email fallback) ────────────────── */
-document.getElementById('volunteerForm').addEventListener('submit', e=>{
+/* ── Volunteer form submit ─────────────────────────────────── */
+document.getElementById('volunteerForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const f = e.target;
   if(!f.checkValidity()){ f.reportValidity(); return; }
   const btn = document.getElementById('volSubmit');
   btn.disabled = true; btn.textContent = 'Submitting…';
-  setTimeout(()=>{
+
+  // Collect fields including multi-value checkboxes (availableDates, interest)
+  const fd = new FormData(f);
+  const data = {};
+  for(const [k, v] of fd.entries()){
+    if(k === 'availableDates' || k === 'interest'){
+      if(!data[k]) data[k] = [];
+      data[k].push(v);
+    } else {
+      data[k] = v;
+    }
+  }
+
+  try{
+    const r = await fetch('/api/submit-volunteer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data })
+    });
+    const result = await r.json();
+    if(!r.ok) throw new Error(result.error || 'Failed to submit application');
     showMsg('volMsg','success','Thanks! Your volunteer application is in — we\'ll be in touch within 3 business days.');
     f.reset();
     document.querySelectorAll('.date-pill').forEach(p=>p.classList.remove('checked'));
@@ -1693,8 +1732,12 @@ document.getElementById('volunteerForm').addEventListener('submit', e=>{
       if(inp.type==='radio') p.classList.toggle('checked', inp.checked);
       if(inp.type==='checkbox') p.classList.toggle('checked', inp.checked);
     });
+  } catch(err){
+    console.error('Volunteer submit error:', err);
+    showMsg('volMsg','error', err.message + ' — please try again or call (727) 637-3362.');
+  } finally {
     btn.disabled = false; btn.textContent = 'Submit volunteer application';
-  }, 600);
+  }
 });
 
 /* ── Square: openPayModal / closePayModal wired by module script below ── */

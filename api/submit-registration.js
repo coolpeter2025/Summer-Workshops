@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 // Retry function for email sending
 async function retryEmailSend(transporter, mailOptions, maxRetries = 3) {
@@ -23,7 +23,7 @@ async function retryEmailSend(transporter, mailOptions, maxRetries = 3) {
   }
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -44,39 +44,62 @@ export default async function handler(req, res) {
 
   try {
     const { data } = req.body;
-    
+
+    // Backwards-compat: support both new {children: [...]} and legacy single-child shape
+    const children = Array.isArray(data?.children) && data.children.length
+      ? data.children
+      : (data ? [{
+          childName: data.childName,
+          dateOfBirth: data.dateOfBirth,
+          age: data.age,
+          shirtSize: data.shirtSize,
+          allergies: data.allergies,
+          allergyDetails: data.allergyDetails,
+          medicalConditions: data.medicalConditions,
+          medicalDetails: data.medicalDetails,
+        }] : []);
+
+    const parentName  = data?.parentName  || data?.parent1Name  || '';
+    const parentEmail = data?.parentEmail || data?.parent1Email || '';
+    const parentPhone = data?.parentPhone || data?.parent1Phone || '';
+
     // Validate required fields
-    if (!data || !data.childName || !data.parent1Name || !data.parent1Email) {
-      return res.status(400).json({ 
+    if (!data || !children.length || !children[0].childName || !parentName || !parentEmail) {
+      return res.status(400).json({
         error: 'Missing required fields',
-        details: 'Child name, parent name, and parent email are required'
+        details: 'At least one child name, parent name, and parent email are required'
       });
     }
 
-    console.log('Processing registration for:', data.childName);
-    
+    console.log('Processing registration for:', children.map(c => c.childName).join(', '));
+
+    // Per-child block
+    const childBlocks = children.map((c, i) => `
+CHILD ${i + 1}:
+  Full Name: ${c.childName}
+  Date of Birth: ${c.dateOfBirth || ''}
+  Age: ${c.age || ''} years old
+  Shirt Size: ${c.shirtSize || ''}
+  Allergies: ${c.allergies === 'yes' ? (c.allergyDetails || 'Yes — unspecified') : 'None'}
+  Medical Conditions: ${c.medicalConditions === 'yes' ? (c.medicalDetails || 'Yes — unspecified') : 'None'}
+    `.trim()).join('\n\n');
+
     // Create email content
     const emailContent = `
 SUMMER WORKSHOP REGISTRATION
 ============================
 
-CHILD'S INFORMATION:
-Full Name: ${data.childName}
-Date of Birth: ${data.dateOfBirth}
-Age: ${data.age} years old
+CHILDREN (${children.length}):
+${childBlocks}
 
 CONTACT INFORMATION:
-Address: ${data.street}, ${data.city}, ${data.state} ${data.zip}
-Country: ${data.country}
+Address: ${data.street || ''}, ${data.city || ''}, ${data.state || ''} ${data.zip || ''}
 
 PARENT/GUARDIAN INFORMATION:
-Name: ${data.parent1Name}
-Phone: ${data.parent1Phone}
-Email: ${data.parent1Email}
-
-MEDICAL INFORMATION:
-Allergies: ${data.allergies === 'yes' ? data.allergyDetails : 'None'}
-Medical Conditions: ${data.medicalConditions === 'yes' ? data.medicalDetails : 'None'}
+Name: ${parentName}
+Phone: ${parentPhone}
+Email: ${parentEmail}
+Emergency Contact: ${data.emergencyContact || ''}
 
 CONSENT AGREEMENTS:
 Participation Consent: ${data.consentParticipation ? 'Yes' : 'No'}
@@ -111,7 +134,7 @@ For questions, contact: 727-637-3362
     console.log('Environment status:', envStatus);
 
     // Configure nodemailer transporter with enhanced settings
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
@@ -120,8 +143,7 @@ For questions, contact: 727-637-3362
         pass: process.env.EMAIL_PASS
       },
       tls: {
-        rejectUnauthorized: false,
-        ciphers: 'SSLv3'
+        rejectUnauthorized: false
       },
       connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000,   // 30 seconds
@@ -145,7 +167,7 @@ For questions, contact: 727-637-3362
     const mailOptions = {
       from: process.env.EMAIL_FROM || 'summerworkshops25@gmail.com',
       to: process.env.EMAIL_TO || 'summerworkshops25@gmail.com',
-      subject: `Summer Workshop Registration - ${data.childName}`,
+      subject: `Summer Workshop Registration - ${children.map(c => c.childName).join(', ')}`,
       text: emailContent,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -204,7 +226,7 @@ For questions, contact: 727-637-3362
       suggestion,
       fallbackEmail: {
         to: 'summerworkshops25@gmail.com',
-        subject: `Summer Workshop Registration - ${req.body?.data?.childName || 'Unknown'}`,
+        subject: `Summer Workshop Registration - ${req.body?.data?.childName || req.body?.data?.children?.[0]?.childName || 'Unknown'}`,
         body: 'There was an error processing the registration. Please contact us directly at 727-637-3362.'
       },
       details: {

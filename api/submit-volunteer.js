@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 // Retry function for email sending
 async function retryEmailSend(transporter, mailOptions, maxRetries = 3) {
@@ -23,7 +23,7 @@ async function retryEmailSend(transporter, mailOptions, maxRetries = 3) {
   }
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -55,25 +55,34 @@ export default async function handler(req, res) {
 
     console.log('Processing volunteer application for:', data.volunteerName);
     
-    const selectedDates = data.availableDates ? data.availableDates.join(', ') : 'None selected';
-    
+    const selectedDates = Array.isArray(data.availableDates)
+      ? data.availableDates.join(', ')
+      : (data.availableDates || 'None selected');
+
+    const interestsList = Array.isArray(data.interest)
+      ? data.interest.join(', ')
+      : (data.interest || data.volunteerInterests || 'Not provided');
+
     // Create email content
     const emailContent = `
-VOLUNTEER APPLICATION
-====================
+VOLUNTEER APPLICATION (Youth · Ages 13–17)
+==========================================
 
 VOLUNTEER INFORMATION:
 Name: ${data.volunteerName}
+Age: ${data.volunteerAge || ''}
+Parent/Guardian: ${data.volunteerGuardian || ''}
 Phone: ${data.volunteerPhone}
 Email: ${data.volunteerEmail}
+Shirt Size: ${data.volunteerShirtSize || ''}
 
 AVAILABILITY:
 Available Dates: ${selectedDates}
 Preferred Time Slot: ${data.timeSlot}
 
 ADDITIONAL INFORMATION:
-Experience with Children: ${data.volunteerExperience || 'Not provided'}
-Activity Interests: ${data.volunteerInterests || 'Not provided'}
+Experience with Children: ${data.experience || data.volunteerExperience || 'Not provided'}
+Activity Interests: ${interestsList}
 
 WORKSHOP DETAILS:
 Event: My Purpose Summer Workshops 2026 — Egypt Treasure Quest
@@ -97,7 +106,7 @@ For questions, contact: 727-637-3362
     console.log('Environment status:', envStatus);
 
     // Configure nodemailer transporter with enhanced settings
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
@@ -106,8 +115,7 @@ For questions, contact: 727-637-3362
         pass: process.env.EMAIL_PASS
       },
       tls: {
-        rejectUnauthorized: false,
-        ciphers: 'SSLv3'
+        rejectUnauthorized: false
       },
       connectionTimeout: 60000, // 60 seconds
       greetingTimeout: 30000,   // 30 seconds
