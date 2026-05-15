@@ -45,7 +45,7 @@ module.exports = async function handler(req, res) {
         allowTipping: false,
         redirectUrl: SITE_URL + '/thank-you.html',
         askForShippingAddress: false,
-        merchantSupportEmail: 'summerworkshops25@gmail.com',
+        merchantSupportEmail: 'summerworkshops26@gmail.com',
       },
       prePopulatedData: {
         buyerEmail: parentEmail || undefined,

@@ -23,12 +23,12 @@ The application uses Gmail SMTP with App Passwords for secure email delivery.
 Set these in your Vercel dashboard under Project Settings > Environment Variables:
 
 ```
-EMAIL_USE=summerworkshops25@gmail.com
+EMAIL_USE=summerworkshops26@gmail.com
 EMAIL_PASS=your_app_password_here
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
-EMAIL_FROM=summerworkshops25@gmail.com
-EMAIL_TO=summerworkshops25@gmail.com
+EMAIL_FROM=summerworkshops26@gmail.com
+EMAIL_TO=summerworkshops26@gmail.com
 ```
 
 #### Gmail App Password Setup

@@ -133,7 +133,7 @@ Submitted on: ${new Date().toLocaleString()}
                     `.trim();
                     
                     // Create mailto link and automatically trigger it
-                    const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=Summer Workshop Registration - ${data.childName}&body=${encodeURIComponent(emailBody)}`;
+                    const mailtoLink = `mailto:summerworkshops26@gmail.com?subject=Summer Workshop Registration - ${data.childName}&body=${encodeURIComponent(emailBody)}`;
                     
                     // Show success message
                     showMessage(this, '✅ Registration submitted successfully! Redirecting to payment...', 'success');
@@ -235,7 +235,7 @@ Submitted on: ${new Date().toLocaleString()}
                     `.trim();
                     
                     // Create mailto link
-                    const mailtoLink = `mailto:summerworkshops25@gmail.com?subject=Summer Workshop Volunteer Application - ${data.volunteerName}&body=${encodeURIComponent(emailBody)}`;
+                    const mailtoLink = `mailto:summerworkshops26@gmail.com?subject=Summer Workshop Volunteer Application - ${data.volunteerName}&body=${encodeURIComponent(emailBody)}`;
                     
                     // Show success message with instructions
                     showMessage(this, '✅ Volunteer application completed! Please click the button below to send via email, or call 727-637-3362 to apply by phone.', 'success');

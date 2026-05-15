@@ -139,7 +139,7 @@ For questions, contact: 727-637-3362
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+        user: process.env.EMAIL_USER || 'summerworkshops26@gmail.com',
         pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: {
@@ -165,8 +165,8 @@ For questions, contact: 727-637-3362
 
     // Prepare email options
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'summerworkshops25@gmail.com',
-      to: process.env.EMAIL_TO || 'summerworkshops25@gmail.com',
+      from: process.env.EMAIL_FROM || 'summerworkshops26@gmail.com',
+      to: process.env.EMAIL_TO || 'summerworkshops26@gmail.com',
       subject: `Summer Workshop Registration - ${children.map(c => c.childName).join(', ')}`,
       text: emailContent,
       html: `
@@ -225,7 +225,7 @@ For questions, contact: 727-637-3362
       errorType,
       suggestion,
       fallbackEmail: {
-        to: 'summerworkshops25@gmail.com',
+        to: 'summerworkshops26@gmail.com',
         subject: `Summer Workshop Registration - ${req.body?.data?.childName || req.body?.data?.children?.[0]?.childName || 'Unknown'}`,
         body: 'There was an error processing the registration. Please contact us directly at 727-637-3362.'
       },

@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
       port: parseInt(process.env.SMTP_PORT, 10) || 587,
       secure: false,
       auth: {
-        user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+        user: process.env.EMAIL_USER || 'summerworkshops26@gmail.com',
         pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: { rejectUnauthorized: false },
@@ -50,8 +50,8 @@ module.exports = async function handler(req, res) {
     console.log('SMTP connection verified');
 
     const testMailOptions = {
-      from: process.env.EMAIL_FROM || 'summerworkshops25@gmail.com',
-      to: process.env.EMAIL_TO || 'summerworkshops25@gmail.com',
+      from: process.env.EMAIL_FROM || 'summerworkshops26@gmail.com',
+      to: process.env.EMAIL_TO || 'summerworkshops26@gmail.com',
       subject: 'SMTP Test - ' + new Date().toISOString(),
       text: `SMTP Test Email
 
