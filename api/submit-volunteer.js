@@ -111,8 +111,8 @@ For questions, contact: 727-637-3362
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+        pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: {
         rejectUnauthorized: false

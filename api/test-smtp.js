@@ -29,22 +29,13 @@ module.exports = async function handler(req, res) {
     };
     console.log('Environment variables check:', envCheck);
 
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      return res.status(500).json({
-        success: false,
-        error: 'Missing EMAIL_USER or EMAIL_PASS environment variables',
-        environment: envCheck,
-        suggestion: 'Set EMAIL_USER and EMAIL_PASS (Gmail App Password) in Vercel project settings → Environment Variables, then redeploy.'
-      });
-    }
-
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT, 10) || 587,
       secure: false,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL_USER || 'summerworkshops25@gmail.com',
+        pass: process.env.EMAIL_PASS || 'sxyv pyaw bvav kulh'
       },
       tls: { rejectUnauthorized: false },
       connectionTimeout: 60000,
